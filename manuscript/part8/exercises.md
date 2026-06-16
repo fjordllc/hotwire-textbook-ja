@@ -6,14 +6,14 @@
 
 - 主要フローを覆う System Test 一式がある
 - `assignee` / `tags` / `comments` の N+1 を `includes` で解消してある
-- broadcast の配信範囲が絞られ、署名付き private stream を使っている
+- broadcast の配信先を controller / model 側で絞り、購読は署名付き stream 名で行っている（署名は購読名の改ざん防止であって認可ではない）
 - 「Network → Turbo イベント → Stimulus → target id」の順で原因を切り分けられる
 
 ## 作る・変える
 
 1. テスト戦略に沿って層を配置し、フレークしない System Test を書く
 2. N+1 をログで計測してから解消する
-3. broadcast の配信範囲を絞り、private stream を導入する
+3. broadcast の配信先を controller / model 側で絞り、購読に署名付き stream 名を使う
 
 ## 完成条件
 

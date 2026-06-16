@@ -6,7 +6,7 @@
 
 - 本文は **2026年6月時点の Hotwire 公式ドキュメント**を基準に書きます。
 - Turbo / Stimulus / Hotwire Native のバージョン差に触れるときは、必ず確認日と対象バージョンを明記します。
-- ハンズオン（サンプルアプリ Relay）は **Rails 8.0 以上**を前提にします。認証ジェネレータ（`User` の `email_address` / `password_digest`、`Session` モデル）と importmap 既定構成が Rails 8 の挙動に依存するためです。
+- ハンズオン（サンプルアプリ Relay）は **Rails 8.0 以上**を前提にします。これは独立した 2 つの理由によります。(1) Rails 8 標準の認証ジェネレータ（`bin/rails generate authentication`）を使うため。(2) JavaScript 構成を importmap 既定に揃えるため。両者は別々の決定であり、互いに依存しません。
 - 概念説明そのものは Rails 7.2 以降にも当てはまりますが、コード手順は Rails 8.0 以上で動作確認します。特定の Rails バージョンに依存する記述は、確認日とバージョンを本文中に明記します。
 
 ## 2. 文体

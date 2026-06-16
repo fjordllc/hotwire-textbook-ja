@@ -15,6 +15,7 @@
 | --- | --- | --- |
 | fig-1-1 | 第1章 | Hotwire 全体像: Turbo / Stimulus / Native |
 | fig-2-1 | 第2章 | JSON API + SPA と HTML over the wire の違い |
+| fig-4-1 | 第4章 | Relay のモデル関連（Project / Task / Comment / Tag / User）と主要画面の対応 |
 | fig-7-1 | 第7章 | Turbo Drive のページ置換 |
 | fig-11-1 | 第11章 | Turbo Frames の独立したナビゲーション |
 | fig-15-1 | 第15章 | Turbo Streams のレスポンスと DOM 更新 |

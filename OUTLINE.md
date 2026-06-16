@@ -177,7 +177,7 @@ Relay を採用する理由は、第7部の実務 UI パターンを 1 つの自
 - 8.2 POST / PATCH / DELETE の送信
 - 8.3 成功時は redirect（`update` / `destroy` は `status: :see_other`／303 を使う理由）
 - 8.4 失敗時は 422 でフォームを再描画する
-- 8.5 status code は Turbo との契約である（200 で返すと差し替わらない、を予告 → 第25章で実装）
+- 8.5 status code は Turbo との契約: 状態を変えるフォーム送信は、成功＝303 redirect・失敗＝422 render に揃える（→ 第25章で実装）
 - 8.6 この章の System Test（作成成功で遷移、失敗で同画面にエラー）
 - ◎ <https://turbo.hotwired.dev/handbook/drive>
 - ◎ <https://turbo.hotwired.dev/reference/attributes>
@@ -272,11 +272,11 @@ Relay を採用する理由は、第7部の実務 UI パターンを 1 つの自
 **ねらい:** 「target id ＋ action ＋ HTML」という stream 命令の構造を理解し、frame との違い（差し替えではなく命令）を掴む。
 
 - 15.1 Turbo Streams とは（frame との違い）
-- 15.2 7 つの action（append / prepend / replace / update / remove / before / after）
+- 15.2 8 つの action（append / prepend / replace / update / remove / before / after / refresh）
 - 15.3 target（単一 id）と targets（CSS セレクタで複数）
 - 15.4 `turbo_stream.erb` と `format.turbo_stream`
 - 15.5 MIME type（`text/vnd.turbo-stream.html`）と、なぜ POST 応答で効くか
-- 15.6 refresh action の位置づけ（→ 第9章 morphing と接続）
+- 15.6 refresh action の使いどころ（page refresh を誘発、→ 第9章 morphing と接続）
 - ◎ <https://turbo.hotwired.dev/handbook/streams>
 - ◎ <https://turbo.hotwired.dev/reference/streams>
 
@@ -298,7 +298,7 @@ Relay を採用する理由は、第7部の実務 UI パターンを 1 つの自
 - 17.2 カウンター更新
 - 17.3 空状態の表示
 - 17.4 partial の共通化
-- 17.5 id 設計
+- 17.5 id 設計と `dom_id`（`dom_id(task)` が stream target の基盤になる）
 - 17.6 アクセシブルな更新通知の入口
 - ◎ <https://turbo.hotwired.dev/reference/streams>
 - ◎ <https://turbo.hotwired.dev/reference/attributes>
@@ -306,11 +306,11 @@ Relay を採用する理由は、第7部の実務 UI パターンを 1 つの自
 ## 第18章 Action Cable でリアルタイム更新する
 **ねらい:** 複数ユーザーに同じ更新を配信する仕組みを理解する。
 
-- 18.1 broadcast の基本
-- 18.2 model callback と broadcast
+- 18.1 broadcast の基本（`turbo_stream_from` で購読する）
+- 18.2 model callback と broadcast（`broadcasts_to` / `broadcast_append_to` など）
 - 18.3 controller からの broadcast
 - 18.4 配信範囲の設計
-- 18.5 認可の入口（詳細は第31章）
+- 18.5 認可の入口（配信先の制御は controller / model 側。詳細は第31章）
 - 18.6 実務での注意点
 - ◎ <https://guides.rubyonrails.org/action_cable_overview.html>
 - ◎ <https://turbo.hotwired.dev/handbook/streams>
@@ -437,7 +437,7 @@ Relay を採用する理由は、第7部の実務 UI パターンを 1 つの自
 - 25.7 a11y: エラーサマリ、フォーカス移動、`aria-invalid`、`aria-describedby`、`role="alert"`
 - 25.8 URL は基本不変にする
 - 25.9 テスト: 無効入力、有効入力、二重送信防止
-- 25.10 アンチパターン: 200 で返す、JS 検証だけにする、エラー時にフォーカスが迷子になる
+- 25.10 アンチパターン: 失敗時に 422 ではなく 200 で render する、JS 検証だけにする、エラー時にフォーカスが迷子になる
 - ◎ <https://turbo.hotwired.dev/handbook/drive>
 - ◎ <https://turbo.hotwired.dev/reference/attributes>
 - ○ <https://developer.mozilla.org/en-US/docs/Web/Accessibility/ARIA>
@@ -492,7 +492,7 @@ Relay を採用する理由は、第7部の実務 UI パターンを 1 つの自
 
 # 第8部 Hotwire アプリを保守する
 
-この部を貫く軸は「**Hotwire は、遅い Rails も危ない Rails も隠してくれない**」です。Hotwire は Rails の上の薄い層なので、保守は「Rails の保守＋Hotwire 固有の観察点」になります。第28〜31章は、動いた後のアプリを 見る（テスト）→ 切り分ける（デバッグ）→ 測る（性能）→ 守る（認可）の順で支えます。第3〜7部で各章に仕込んだ小テスト（8.6 / 12.6 / 16.6 / 20.6）、broadcast の認可入口（18.5）、id 設計（17.5）が、ここで回収されます。
+この部を貫く軸は「**Hotwire は、遅い Rails も危ない Rails も隠してくれない**」です。Hotwire は Rails の上の薄い層なので、保守は「Rails の保守＋Hotwire 固有の観察点」になります。第28〜31章は、動いた後のアプリを 見る（テスト）→ 切り分ける（デバッグ）→ 測る（性能）→ 守る（認可）の順で支えます。第3〜7部で各章に仕込んだ小テスト（8.6 / 12.6 / 16.6 / 20.6 や、第7部の 23.9 / 24.9 / 25.9 / 26.10 / 27.9 など）、broadcast の認可入口（18.5）、id 設計（17.5）が、ここで回収されます。
 
 ## 第28章 Hotwire のテスト
 **ねらい:** テスト戦略を立てる。何を System Test で守り、何をモデル・リクエストなど下位のテストに委ねるかの配分を決め、各章で書いた小テストをその中に位置づける。第7部で章ごとに散らしたテストを、ここで「戦略」として束ねる。
@@ -538,7 +538,7 @@ Relay を採用する理由は、第7部の実務 UI パターンを 1 つの自
 - 31.1 controller の認可を省略しない
 - 31.2 Frame / Stream でも権限を確認する
 - 31.3 broadcast の配信範囲
-- 31.4 private stream（`turbo_stream_from` の署名付き stream 名で購読を保護する）
+- 31.4 署名付き stream 名への購読（`turbo_stream_from` は購読名の改ざんを防ぐ。これは認可ではなく、アクセス制御は controller / model 側で別途行う）
 - 31.5 CSRF とフォーム
 - 31.6 ユーザーごとの DOM id
 - 31.7 第18章との責務分担
