@@ -1,0 +1,25 @@
+[book]
+title = "FBC Press: Hotwire"
+authors = ["FjordBootCamp"]
+language = "ja"
+multilingual = false
+src = "manuscript"
+
+[build]
+build-dir = "book"
+create-missing = false
+
+[output.html]
+git-repository-url = "https://github.com/fjordllc/hotwire-textbook-ja"
+edit-url-template = "https://github.com/fjordllc/hotwire-textbook-ja/edit/main/{path}"
+additional-css = ["theme/mdbook-book-jp.css", "theme/hotwire-textbook.css"]
+additional-js = ["theme/textbook-footer.js"]
+no-section-label = true
+
+[output.html.search]
+enable = true
+use-boolean-and = true
+
+[output.html.fold]
+enable = true
+level = 1

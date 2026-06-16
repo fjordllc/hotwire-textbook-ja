@@ -1,0 +1,5 @@
+/* Book-specific overrides for FBC Press: Hotwire. */
+
+:root {
+  --hotwire-accent: #d73a31;
+}

@@ -1,0 +1,210 @@
+@import "./mdbook-book-core.css";
+
+html:lang(ja) {
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Hiragino Sans",
+    "Hiragino Kaku Gothic ProN",
+    "Yu Gothic",
+    "YuGothic",
+    "Noto Sans JP",
+    "Meiryo",
+    sans-serif;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+  line-break: strict;
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+
+body {
+  letter-spacing: 0;
+  line-height: 1.8;
+}
+
+@supports (text-spacing-trim: trim-start) {
+  html:lang(ja) {
+    text-spacing-trim: trim-start;
+  }
+}
+
+.sidebar .menu-title {
+  font-size: 1.55rem;
+  line-height: 1.25;
+  font-weight: 700;
+  letter-spacing: 0;
+}
+
+.content main {
+  font-size: 1.72rem;
+  font-weight: 400;
+  padding-top: 1.35rem;
+}
+
+.content p,
+.content li {
+  font-weight: 400;
+  line-height: 1.95;
+  text-wrap: pretty;
+}
+
+.content p {
+  margin-block: 0.9em;
+}
+
+.content ul,
+.content ol {
+  margin-block: 1em 1.25em;
+  padding-inline-start: 1.4em;
+}
+
+.content li + li {
+  margin-top: 0.35em;
+}
+
+.content li p {
+  margin-block: 0.35em;
+}
+
+.content h1,
+.content h2,
+.content h3,
+.content h4 {
+  font-weight: 700;
+  letter-spacing: 0;
+  line-height: 1.42;
+  color: var(--text-strong);
+}
+
+.content h1 {
+  font-size: 3.45rem;
+  margin-top: 1.2em;
+  margin-bottom: 0.8em;
+}
+
+.content h2 {
+  font-size: 2.25rem;
+  margin-top: 1.8em;
+  margin-bottom: 0.6em;
+}
+
+.content h3 {
+  font-size: 1.95rem;
+  margin-top: 1.45em;
+  margin-bottom: 0.5em;
+}
+
+.content h4 {
+  font-size: 1.72rem;
+  margin-top: 1.25em;
+  margin-bottom: 0.45em;
+}
+
+.content hr {
+  height: 1px;
+  margin: 3.2em 0 2.8em;
+  border: 0;
+  background: var(--table-border);
+}
+
+.content blockquote {
+  margin: 1.5em 0 2em;
+  padding: 1.05em 1.3em;
+  line-height: 1.85;
+}
+
+.content blockquote p {
+  margin: 0;
+}
+
+.content table {
+  line-height: 1.65;
+  border-collapse: collapse;
+}
+
+.content code,
+.content pre,
+.content kbd {
+  font-family:
+    "SFMono-Regular",
+    Consolas,
+    "Liberation Mono",
+    Menlo,
+    monospace;
+}
+
+.content :not(pre) > code {
+  padding: 0.12em 0.32em;
+  border-radius: 0.35rem;
+  font-size: 0.92em;
+}
+
+.content pre {
+  margin: 1.2em 0 1.5em;
+  padding: 1.05em 1.15em;
+  line-height: 1.7;
+  overflow-x: auto;
+  word-break: normal;
+  overflow-wrap: normal;
+}
+
+.content details summary {
+  margin: -0.2em 0 0;
+  padding: 0.2em 0;
+}
+
+.content details[open] summary {
+  margin-bottom: 0.55em;
+}
+
+.content figure {
+  text-align: center;
+}
+
+.content figure img {
+  margin-inline: auto;
+}
+
+.content figcaption {
+  text-align: left;
+}
+
+.chapter li {
+  line-height: 1.65;
+}
+
+@media (max-width: 768px) {
+  :root {
+    --content-max-width: 100%;
+  }
+
+  .sidebar .menu-title {
+    font-size: 1.45rem;
+  }
+
+  .content main {
+    font-size: 1.62rem;
+    padding-top: 0.9rem;
+  }
+
+  .content h1 {
+    font-size: 2.8rem;
+  }
+
+  .content h2 {
+    font-size: 2.05rem;
+  }
+
+  .content h3 {
+    font-size: 1.85rem;
+  }
+
+  .content h4 {
+    font-size: 1.65rem;
+  }
+
+  .content pre {
+    padding: 0.95em 1em;
+  }
+}
