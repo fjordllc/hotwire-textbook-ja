@@ -26,10 +26,12 @@ cd relay
 Rails 8 では、`rails new` の既定構成に本書で必要なものがそろっています。
 
 - データベースは SQLite（学習用としてはこのままで十分です）
-- JavaScript は importmap（ビルド工程が不要）
-- Hotwire（`turbo-rails` と `stimulus-rails`）が最初から入っている
+- JavaScript は import maps（ビルド工程が不要。Rails の既定です）
+- Hotwire（`turbo-rails` と `stimulus-rails`）が `Gemfile` に最初から入っている
 
-つまり、追加のオプションを付けなくても、Hotwire を学ぶ準備は整っています。スタイルについては、本書は特定の CSS フレームワークに依存しません。見た目は最小限に留め、Hotwire の挙動に集中します。
+これらは生成されたアプリの実物で確認できます。`Gemfile` に `turbo-rails` と `stimulus-rails` が含まれ、`config/importmap.rb` と `app/javascript/application.js` が生成されています。中身の読み解きは第6章で行いますが、ここでは「追加のオプションを付けなくても、Hotwire を学ぶ準備が整っている」とだけ押さえれば十分です。
+
+スタイルについては、本書は特定の CSS フレームワークに依存しません。見た目は最小限に留め、Hotwire の挙動に集中します。
 
 サーバーを起動して、初期画面が出ることを確認します。
 
@@ -48,7 +50,7 @@ bin/rails generate authentication
 bin/rails db:migrate
 ```
 
-このジェネレータは、`User` と `Session` を中心に、認証に必要な一式（コントローラ・ビュー・ルーティング・マイグレーション・`bcrypt` の導入）をまとめて生成します。ログイン・ログアウトとパスワード再設定の流れが、この時点で動くようになります。
+このジェネレータは、`User` と `Session` を中心に、認証に必要な一式（コントローラ・ビュー・ルーティング・マイグレーション・`bcrypt` の導入）をまとめて生成します。これで、認証（ログイン・ログアウト）とパスワード再設定の土台が入ります。ただし、パスワード再設定メールを実際に届けるには、別途メール送信（Action Mailer）の設定が必要です。本書ではメール配信そのものは扱わず、ログインを使います。
 
 ここで 1 つ、初級者がつまずきやすい点があります。<strong>このジェネレータが作るのはログイン機能であって、サインアップ（ユーザー登録）画面ではありません。</strong>本書では、ユーザーは後述の seed データで作成し、その認証情報でログインします。
 
@@ -91,13 +93,18 @@ end
 
 `status` は第4章で決めたとおり enum にします。`todo` / `in_progress` / `done` の 3 状態が、後の検索・絞り込み・バリデーション・通知すべての軸になります。担当者（`assignee`）は未割り当てを許すため `optional: true` にします。
 
-`User` にも、担当しているタスクとコメントの関連を加えます。
+`User` にも、担当しているタスクとコメントの関連を加えます。認証ジェネレータが生成した行はそのまま残し、クラスの中に次の 2 行を追記します。
 
-`app/models/user.rb`（認証ジェネレータが生成した内容に追記）
+`app/models/user.rb`
 
 ```ruby
+class User < ApplicationRecord
+  # 認証ジェネレータが生成した内容（has_secure_password など）はそのまま残します
+
+  # ↓ 次の 2 行を追記します
   has_many :assigned_tasks, class_name: "Task", foreign_key: :assignee_id, dependent: :nullify
   has_many :comments, dependent: :destroy
+end
 ```
 
 ## 5.4 通常 CRUD の生成（`Project` と `Task`）
@@ -109,7 +116,9 @@ bin/rails generate scaffold Project name:string description:text
 bin/rails generate scaffold Task project:references title:string description:text status:integer due_on:date assignee:references
 ```
 
-`Task` の `assignee` は `User` への参照です。生成されたマイグレーションは、そのままでは `assignees` テーブルを参照しようとし、かつ必須になります。`User` を参照し、未割り当てを許すように直します。
+ここで、2 つの参照の扱いが違う点に注意します。`project` は「タスクは必ずどれかのプロジェクトに属する」ため、必須の参照のままで構いません。一方 `assignee` は「担当者は未割り当てもありうる」うえに、`assignees` テーブルではなく `User` を指す必要があります。
+
+そこで `assignee` の参照だけを直します。生成されたマイグレーションは、そのままでは `assignees` テーブルを参照しようとし、かつ必須になります。`User` を参照し、未割り当てを許すように直します。
 
 `db/migrate/xxxxxx_create_tasks.rb`（該当行を修正）
 
@@ -169,14 +178,18 @@ end
 
 検索やページネーションを後の章で体感するには、ある程度の件数が必要です。seed データを用意します。ログイン用のユーザーも、ここで作ります。
 
+seed は、何度実行しても同じ結果になるように書きます。先頭でドメインデータを消してから作り直し、ログイン用のユーザーは `find_or_create_by!` で重複を避けます。こうしておくと、`bin/rails db:seed` を繰り返しても失敗しません。
+
 `db/seeds.rb`
 
 ```ruby
-user = User.create!(
-  email_address: "alice@example.com",
-  password: "password",
-  name: "Alice"
-)
+# 再実行できるように、ドメインデータを子から順に消してから作り直します
+[Tagging, Comment, Task, Tag, Project].each(&:delete_all)
+
+user = User.find_or_create_by!(email_address: "alice@example.com") do |u|
+  u.name = "Alice"
+  u.password = "password"
+end
 
 tags = %w[bug feature chore urgent].map { |name| Tag.create!(name: name) }
 
