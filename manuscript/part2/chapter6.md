@@ -11,7 +11,7 @@
 Turbo は `turbo-rails` という gem で入っています。この gem は、2 つのものをまとめて提供します。
 
 1. JavaScript パッケージ `@hotwired/turbo-rails`。これを import すると、Turbo の JavaScript（Turbo Drive / Frames / Streams）が効きます。
-2. サーバー側の Rails 用ヘルパー（`turbo_frame_tag`、`turbo_stream`、broadcast 関連メソッドなど）。
+2. サーバー側の Rails 用ヘルパー（`turbo_frame_tag` や `turbo_stream` など）と、stream／broadcast の Rails 統合。broadcast 系の API は第18章で扱います。
 
 ブラウザ側は、第5章でも見たとおり `app/javascript/application.js` から読み込まれます。
 
@@ -120,7 +120,7 @@ Hotwire の挙動を理解・デバッグするには、サーバーのログと
 ブラウザの DevTools では、次の 3 つを見ます。
 
 - Network タブ: リクエストの形式とレスポンス。Turbo Streams のレスポンスは MIME タイプが `text/vnd.turbo-stream.html` になります。
-- Console タブ: Stimulus の debug ログと、自分で仕込んだ Turbo イベントのログ。`app/javascript/controllers/application.js` の `application.debug` を `true` にすると、Stimulus のコントローラの接続状況がログに出ます。一方、Turbo のイベント（visit や submit など）は、自分で `addEventListener` を仕込まない限り自動では出ません（仕込み方は第10章・第29章で扱います）。
+- Console タブ: 次の 2 つは別物として見ます。(1) Stimulus の debug ログ。`app/javascript/controllers/application.js` の `application.debug` を `true` にすると、コントローラの接続状況がログに出ます。(2) Turbo イベントの自前ログ。Turbo のイベント（visit や submit など）は自動では出ないので、自分で `addEventListener` を仕込んで出します（仕込み方は第10章・第29章で扱います）。
 - Elements タブ: `<turbo-frame>` や `data-controller` 属性が、HTML のどこに付いているか。
 
 これらの見方は、各機能の章で繰り返し使います。いまは「困ったらこの 3 か所を見る」と覚えておけば十分です。
