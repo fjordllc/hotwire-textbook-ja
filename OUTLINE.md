@@ -188,7 +188,7 @@ Relay を採用する理由は、第7部の実務 UI パターンを 1 つの自
 **〔キャッシュ系〕差し替えを速く見せる**
 - 9.1 snapshot cache
 - 9.2 preview 表示
-- 9.3 `data-turbo-cache`
+- 9.3 `data-turbo-temporary` と `turbo-cache-control`（`no-cache` / `no-preview`）
 - 9.4 `data-turbo-track` の再確認
 - 9.5 キャッシュと Stimulus の関係（再接続）
 
