@@ -81,10 +81,10 @@ Turbo::StreamsChannel.broadcast_update_to(
 
 リアルタイム更新は強力ですが、いくつか注意点があります。
 
-- <strong>配信のたびに HTML を描く</strong>。broadcast は partial をサーバーで描画します。保存のたびに重い描画が走ると、レスポンスが遅くなります。`broadcasts_to` には非同期版（裏のジョブで描く `*_later` 系）もあるので、重い配信はジョブに逃がします。
+- <strong>配信のたびに HTML を描く</strong>。broadcast は partial をサーバーで描画します。保存のたびに重い描画が走ると、レスポンスが遅くなります。broadcast の各 action には、裏のジョブで描く非同期版（`broadcast_append_later_to` や `broadcast_replace_later_to` などの `*_later` 系）があるので、重い配信はそちらに逃がします（`broadcasts_to` も内部でこれらを使います）。
 - <strong>N+1 に注意</strong>。配信用の partial でも、関連を引けば N+1 が起きます。これは第30章で扱います。
 - <strong>細かすぎる配信を見直す</strong>。変化のたびに細かい命令を配信すると、数が増えます。「とにかく最新に揃えたい」だけなら、第15章の `refresh` を使った broadcast refresh が向きます。サーバーが「このページを refresh して」と配信すると、各自の画面が morph（第9章）で最新化されます。
-- <strong>seed や一括更新でも callback は走る</strong>。`broadcasts_to` はレコードの保存ごとに動くので、seed や大量更新でも配信が走ります。必要なら条件を付けて抑えます。
+- <strong>1 件ずつの保存では callback が走る</strong>。`broadcasts_to` はレコードの保存（`save` / `destroy`）ごとに動くので、seed で 1 件ずつ作るときにも配信が走ります。一方、`update_all` / `delete_all` のような SQL の一括更新は callback を通らないので、配信されません。「配信してほしいのに飛ばない」「飛んでほしくないのに飛ぶ」のどちらの取りこぼしにも注意します。
 
 > 第18章で、第5部を締めます。Turbo Streams を「差し替え命令の入った HTML」として理解し、CRUD への組み込み、複数箇所の同時更新、そして Action Cable による複数ユーザーへの配信まで見ました。次の第6部では、ここまでサーバー主体で進めてきた更新に対し、サーバーを介さない振る舞いを足す Stimulus を学びます。
 
