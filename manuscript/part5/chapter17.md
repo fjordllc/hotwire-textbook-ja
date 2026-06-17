@@ -20,11 +20,13 @@
 
 ```erb
 <%= turbo_stream.remove @task %>
-<%= turbo_stream.update "task_count" do %><%= Task.count %><% end %>
+<%= turbo_stream.update "task_count" do %><%= @tasks.size %><% end %>
 <%= turbo_stream.update "flash", partial: "layouts/flash" %>
 ```
 
 第14章で「frame では 1 か所しか差し替えられないので応えられない」とした要求が、Turbo Streams なら 3 つの命令で実現できます。命令を並べるだけです。
+
+ここで使っている `@tasks` は、その一覧で表示しているタスクの集まり（現在の一覧スコープ）です。stream を返す前に、controller で `@tasks` に index と同じスコープを入れておきます。こうすると、最初の表示と部分更新が、同じ一覧を指せます。
 
 ## 17.2 カウンター更新
 
@@ -33,16 +35,16 @@
 `app/views/tasks/index.html.erb`（抜粋）
 
 ```erb
-<span id="task_count"><%= Task.count %></span> 件
+<span id="task_count"><%= @tasks.size %></span> 件
 ```
 
 更新は、17.1 で見たとおり `turbo_stream.update "task_count"` です。作成時にも増やしたいので、`create.turbo_stream.erb` にも同じ命令を足します。
 
 ```erb
-<%= turbo_stream.update "task_count" do %><%= Task.count %><% end %>
+<%= turbo_stream.update "task_count" do %><%= @tasks.size %><% end %>
 ```
 
-ここでは全タスクの件数（`Task.count`）を出していますが、実際には「いま表示している一覧に合わせた件数」を出します。プロジェクトごとの一覧なら、そのプロジェクトのタスク数にします。件数の出し方を、一覧の絞り込みと揃えるのがポイントです。
+件数は、表示している一覧（`@tasks`）の数を出します。全タスク数（`Task.count`）を出すと、絞り込みやプロジェクトごとの一覧に進んだとき、画面の件数と食い違います。`@tasks` を使い、index と stream で同じスコープを指すのがポイントです。プロジェクトごとの一覧なら、そのプロジェクトのタスクを `@tasks` に入れます。
 
 ## 17.3 空状態の表示
 
@@ -67,10 +69,12 @@
 `app/views/tasks/destroy.turbo_stream.erb`（空状態に対応した形）
 
 ```erb
-<%= turbo_stream.replace "tasks", partial: "tasks/tasks", locals: { tasks: Task.all } %>
-<%= turbo_stream.update "task_count" do %><%= Task.count %><% end %>
+<%= turbo_stream.replace "tasks", partial: "tasks/tasks", locals: { tasks: @tasks } %>
+<%= turbo_stream.update "task_count" do %><%= @tasks.size %><% end %>
 <%= turbo_stream.update "flash", partial: "layouts/flash" %>
 ```
+
+ここでも `@tasks`（現在の一覧スコープ）を渡しています。`Task.all` を直接書くと、絞り込みやページングに進んだときに、一覧と食い違います。一覧スコープは controller の `@tasks` に一本化し、index と stream の両方でそれを使います。
 
 `remove` は 1 行だけを正確に消せる軽い方法ですが、空状態を別に面倒見る必要があります。領域ごと `replace` する方法は、一覧をまるごと描き直すので少し重い代わりに、空状態を自然に扱えます。<strong>「精密に消すか、領域ごと描き直すか」は設計判断です。</strong>空状態のような分岐が要るときは、領域ごと描き直す方が素直です。
 
@@ -118,7 +122,7 @@ Turbo Streams は、ページ遷移なしで画面を書き換えます。目で
 </div>
 ```
 
-`role="status"` は、`aria-live="polite"`（手が空いたときに読み上げる）を含む役割です。操作の結果を伝えるフラッシュに向いています。
+`role="status"` は、`aria-live="polite"`（手が空いたときに読み上げる）を含む役割です。操作の結果を伝えるフラッシュに向いています。そのため、`role="status"` だけでも読み上げは働きます。上の例で `aria-live="polite"` を併記しているのは、意図を読み手に明示するためで、動作上は重ねなくても構いません。
 
 ここでは「部分更新には読み上げの配慮が要る」という入口だけ押さえます。フォーカスの移動や、件数・エラーの読み上げといった本格的な作り込みは、第7部（実務で使う Hotwire UI パターン）と、その a11y チェックリストで扱います。
 
