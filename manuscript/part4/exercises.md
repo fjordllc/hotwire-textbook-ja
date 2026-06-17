@@ -22,4 +22,4 @@
 
 ## Relay の現在地
 
-**1 か所の部分更新が frame で動く状態。** 次の第5部で、複数箇所を同時に更新する Turbo Streams に進みます。
+<strong>1 か所の部分更新が frame で動く状態。</strong> 次の第5部で、複数箇所を同時に更新する Turbo Streams に進みます。

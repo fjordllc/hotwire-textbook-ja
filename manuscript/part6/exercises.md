@@ -23,4 +23,4 @@
 
 ## Relay の現在地
 
-**サーバー不要の振る舞いを Stimulus で安全に足せる状態。** 次の第7部で、ここまでの Turbo と Stimulus を組み合わせて実務 UI に仕上げます。
+<strong>サーバー不要の振る舞いを Stimulus で安全に足せる状態。</strong> 次の第7部で、ここまでの Turbo と Stimulus を組み合わせて実務 UI に仕上げます。
