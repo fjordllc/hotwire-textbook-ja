@@ -14,7 +14,7 @@
 <div id="flash"><%= render "layouts/flash" %></div>
 
 <div id="new_task_form">
-  <%= render "form", task: Task.new %>
+  <%= render "form", task: @task %>
 </div>
 
 <div id="tasks">
@@ -22,7 +22,9 @@
 </div>
 ```
 
-`id="tasks"` がタスク一覧の入れ物、`id="new_task_form"` が新規作成フォームの入れ物、`id="flash"` がフラッシュの入れ物です。各タスクは、第12章の `_task`（`id="task_1"` の frame）で描かれます。
+`id="tasks"` がタスク一覧の入れ物、`id="new_task_form"` が新規作成フォームの入れ物、`id="flash"` がフラッシュの入れ物です。各タスクは、第12章の `_task`（`id="task_1"` の frame）で描かれます。`index` アクションでは、一覧用の `@tasks` と、新規フォーム用の `@task = Task.new` を用意しておきます。
+
+なお本書は、Turbo が有効な前提で進めます。各アクションには通常の HTML を返す `format.html` も書きますが、これは Turbo が使えないクライアント向けのフォールバックです。Turbo 経路と HTML 経路で挙動が食い違わないよう、フラッシュの渡し方や失敗時の戻し先を、経路ごとに揃えておきます。
 
 ## 16.1 create 後に prepend する
 
@@ -84,19 +86,23 @@ end
 
 操作の結果を、フラッシュで知らせたいこともあります。一覧の入れ物に `id="flash"` を用意してあるので、ここを更新する命令を足します。
 
-まず、controller でフラッシュを設定します。ページ遷移しないので、`flash` ではなく `flash.now` を使います。
+まず、controller でフラッシュを設定します。ここで注意が要ります。Turbo Streams の応答ではページ遷移しないので `flash.now` を使いますが、HTML フォールバックは `redirect_to` で遷移するので、リダイレクト後まで残る `flash` を使う必要があります。`flash.now` はそのリクエスト限りで消えるため、リダイレクトでは残りません。そこで、経路ごとに分けて設定します。
 
 `app/controllers/tasks_controller.rb`（`create` の成功側）
 
 ```ruby
 if @task.save
-  flash.now[:notice] = "タスクを作成しました。"
   respond_to do |format|
-    format.turbo_stream
-    format.html { redirect_to @task }
+    format.turbo_stream do
+      flash.now[:notice] = "タスクを作成しました。"
+      render :create
+    end
+    format.html { redirect_to @task, notice: "タスクを作成しました。" }
   end
 end
 ```
+
+`format.turbo_stream` の側では `flash.now` を立ててから `create.turbo_stream.erb` を描き（その中で flash を更新します）、`format.html` の側では `redirect_to` の `notice:` でリダイレクト後に残るフラッシュを渡します。
 
 そして、`create.turbo_stream.erb` に flash を更新する命令を足します。
 
@@ -118,10 +124,12 @@ end
 def create
   @task = Task.new(task_params)
   if @task.save
-    flash.now[:notice] = "タスクを作成しました。"
     respond_to do |format|
-      format.turbo_stream
-      format.html { redirect_to @task }
+      format.turbo_stream do
+        flash.now[:notice] = "タスクを作成しました。"
+        render :create
+      end
+      format.html { redirect_to @task, notice: "タスクを作成しました。" }
     end
   else
     respond_to do |format|
@@ -130,13 +138,18 @@ def create
           "new_task_form", partial: "tasks/form", locals: { task: @task }
         ), status: :unprocessable_entity
       end
-      format.html { render :new, status: :unprocessable_entity }
+      format.html do
+        @tasks = Task.all
+        render :index, status: :unprocessable_entity
+      end
     end
   end
 end
 ```
 
-失敗側は、`id="new_task_form"` の中身を、エラー付きのフォーム（`@task` にはエラーが入っている）に `update` します。ステータスは 422 です。`status: :unprocessable_entity` を付けるのは、第8章で見た契約のためです。Turbo は、422 でも Turbo Streams の応答であれば命令として処理します。
+失敗側の Turbo Streams は、`id="new_task_form"` の中身を、エラー付きのフォーム（`@task` にはエラーが入っている）に `update` します。ステータスは 422 です。`status: :unprocessable_entity` を付けるのは、第8章で見た契約のためです。Turbo は、422 でも Turbo Streams の応答であれば命令として処理します。
+
+HTML フォールバックの戻し先にも注意します。この章のフォームは一覧ページ（index）に置いた inline フォームなので、失敗時は `:new` ではなく `:index` を 422 で返します。`:new` を返すと、`#flash` / `#new_task_form` / `#tasks` を持つこの章の画面構造から外れてしまうからです。`render :index` ではエラーの入った `@task` がフォームに使われ、一覧用の `@tasks` も必要なので、ここで用意しています。
 
 成功時は一覧に追加、失敗時はフォームをエラー付きに差し替え。どちらもページ遷移せず、必要な場所だけが変わります。
 
@@ -172,6 +185,7 @@ class TasksStreamTest < ApplicationSystemTestCase
     click_on "Create Task"
 
     within "#new_task_form" do
+      assert_selector "input[name='task[title]']"
       assert_text "prohibited"
     end
   end
