@@ -90,7 +90,9 @@ respond_to do |format|
 end
 ```
 
-`format.turbo_stream` があると、Rails は `create.turbo_stream.erb` を探して返します。具体的な CRUD への組み込みは、第16章で行います。
+`format.turbo_stream` があると、Rails は `create.turbo_stream.erb` を探して返します。
+
+なお、この `respond_to` は<strong>成功時だけ</strong>を抜き出した断片です。保存に失敗したときは、第8章の契約どおり 422 でフォームを返す必要があります。成功・失敗の両方を含む完全な形と、その System Test は、第16章で扱います。
 
 ## 15.5 MIME type と、なぜ POST 応答で効くか
 
@@ -98,9 +100,9 @@ end
 
 鍵は、リクエストの `Accept` ヘッダーと、Turbo Streams 専用の MIME type です。Turbo Streams の MIME type は `text/vnd.turbo-stream.html` です。
 
-Turbo は、フォームを送信するとき（POST / PATCH / DELETE）に、`Accept` ヘッダーへ自動でこの MIME type を加えます。すると Rails の `respond_to` は、「このリクエストは Turbo Streams を受け取れる」と判断し、`format.turbo_stream` の応答を選べます。
+Turbo は、フォームを送信するとき（POST / PUT / PATCH / DELETE）に、`Accept` ヘッダーへ自動でこの MIME type を加えます。すると Rails の `respond_to` は、「このリクエストは Turbo Streams を受け取れる」と判断し、`format.turbo_stream` の応答を選べます。
 
-これが、Turbo Streams が<strong>フォーム送信の応答で効く</strong>理由です。逆に、通常の GET リクエストにはこの MIME type が付かないので、Turbo Streams は基本的に状態を変える送信（POST / PATCH / DELETE）の応答として使います。一覧表示（GET）には使いません。
+これが、Turbo Streams が<strong>フォーム送信の応答で効く</strong>理由です。そのため Turbo Streams は、基本的に状態を変える送信（POST / PUT / PATCH / DELETE）の応答として使います。通常の GET リクエストには、この MIME type はデフォルトでは付きません。ただし、必要であれば GET でも使えます。リンクなどに `data-turbo-stream` を付けると、その GET でも Turbo Streams を受け取れるようになります（opt-in）。まずは「状態を変える送信の応答で使う」が基本だと押さえてください。
 
 ## 15.6 refresh action の使いどころ
 
@@ -110,7 +112,15 @@ Turbo は、フォームを送信するとき（POST / PATCH / DELETE）に、`A
 <turbo-stream action="refresh"></turbo-stream>
 ```
 
-これは「ページを再描画せよ」という命令です。受け取ると、ブラウザは第9章で見た page refresh を行います。レイアウトに morph の指定（`turbo-refresh-method` を `morph`）があれば、再描画は morph で行われ、スクロール位置やフォーカスが保たれます。
+これは「ページを再描画せよ」という命令です。受け取ると、ブラウザは第9章で見た page refresh を行います。
+
+再描画の方法とスクロールの扱いは、refresh ストリーム自身に持たせられます。
+
+```html
+<turbo-stream action="refresh" method="morph" scroll="preserve"></turbo-stream>
+```
+
+`method="morph"` で差分適用（morph）、`scroll="preserve"` でスクロール位置の保持です。第9章で見たレイアウトの `<meta name="turbo-refresh-method">` などは、同じ設定をページ単位で与える別の経路で、両者は同じ振る舞いを指します。
 
 `refresh` は、細かい命令を 1 つずつ組み立てる代わりに、「とにかく最新の状態に揃えてほしい」というときに向きます。とくに、複数ユーザーへ「このページを更新して」と一斉に伝えるリアルタイム更新（broadcast refresh）で効きます。これは第18章で扱います。
 
