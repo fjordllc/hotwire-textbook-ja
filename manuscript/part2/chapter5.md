@@ -43,6 +43,9 @@ bin/rails server
 
 ## 5.2 認証の追加
 
+
+![bin/rails generate authentication が作る User、Session、Current、各コントローラやメール周辺を示す図。](../figures/fig-5-1.svg)
+
 Relay では、担当者・コメント投稿者・リアルタイム更新の配信範囲を決めるために `current_user` が必要です。そこで、Rails 8 標準の認証ジェネレータを使います。
 
 ```bash

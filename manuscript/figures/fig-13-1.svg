@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">lazy loading と skeleton</title>
+  <desc id="desc">src と loading=lazy で可視になってから取得し、skeleton が本体に差し替わる流れを示す図。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#0284c7"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="420" fill="#ffffff"/>
+  <style>
+    .title { font: 700 28px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a; }
+    .small { font: 600 15px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #475569; }
+    .tiny { font: 500 13px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #64748b; }
+  </style>
+  <text x="44" y="42" class="title">lazy loading と skeleton</text>
+  <rect x="38" y="82" width="1124" height="280" rx="18" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><rect x="90" y="160" width="220" height="96" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><rect x="90" y="288" width="220" height="60" rx="16" fill="#e2e8f0" stroke="#94a3b8" stroke-width="2"/><text x="200" y="190" text-anchor="middle" style="font: 700 18px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="200" dy="0">page 表示</tspan></text><text x="200" y="320" text-anchor="middle" style="font: 700 16px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="200" dy="0">skeleton</tspan></text><rect x="390" y="160" width="220" height="96" rx="16" fill="#ecfeff" stroke="#06b6d4" stroke-width="2"/><text x="500" y="190" text-anchor="middle" style="font: 700 18px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="500" dy="0">可視になる</tspan></text><text x="500" y="220" text-anchor="middle" style="font: 600 15px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #475569;"><tspan x="500" dy="0">loading=lazy</tspan></text><rect x="700" y="160" width="220" height="96" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><text x="810" y="190" text-anchor="middle" style="font: 700 18px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="810" dy="0">src を fetch</tspan></text><rect x="970" y="160" width="120" height="96" rx="16" fill="#dbeafe" stroke="#0284c7" stroke-width="2"/><text x="1030" y="190" text-anchor="middle" style="font: 700 18px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="1030" dy="0">本体</tspan></text><line x1="310" y1="208" x2="382" y2="208" stroke="#0284c7" stroke-width="3" fill="none" marker-end="url(#arrow)" /><line x1="620" y1="208" x2="694" y2="208" stroke="#0284c7" stroke-width="3" fill="none" marker-end="url(#arrow)" /><line x1="920" y1="208" x2="962" y2="208" stroke="#0284c7" stroke-width="3" fill="none" marker-end="url(#arrow)" />
+</svg>

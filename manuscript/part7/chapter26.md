@@ -21,7 +21,7 @@
 
 同じ「重ねて表示する」見た目でも、中身がどこから来るかで道具が変わります。
 
-<!-- fig-26-1: サーバー状態の要否で道具を選ぶ。サーバー内容が要らない（ドロップダウン・静的タブ＝Stimulus）か、要る（遅延タブ・モーダル＝Frames/Streams）かを仕分ける判断フローチャート -->
+![サーバー状態の要否で道具を選ぶ。サーバー内容が要らない（ドロップダウン・静的タブ＝Stimulus）か、要る（遅延タブ・モーダル＝Frames/Streams）かを仕分ける判断フローチャート](../figures/fig-26-1.svg)
 
 
 ## 26.3 ドロップダウンを Stimulus だけで作る
@@ -89,6 +89,9 @@ export default class extends Controller {
 各タブの行き先が `id="tab_content"` の frame を返します（第13章）。中身をサーバーから取るので、Stimulus 単独ではなく Turbo Frames です。
 
 ## 26.6 モーダルを Turbo Frames と `<dialog>` で作る
+
+
+![modal frame + dialog + Stimulus open + 成功時 Streams close の流れを示す図。](../figures/fig-26-2.svg)
 
 モーダルは、サーバーからフォームを取って重ねます。Turbo Frames で内容を取り、`<dialog>` 要素で重ねて表示します。
 

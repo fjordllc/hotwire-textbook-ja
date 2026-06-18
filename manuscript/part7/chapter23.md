@@ -72,6 +72,9 @@ end
 
 ## 23.5 Stimulus で requestSubmit を debounce する
 
+
+![Stimulus で debounce した GET 検索が frame を差し替え、advance で URL を反映する構成図。](../figures/fig-23-1.svg)
+
 「検索」ボタンを押さなくても、入力に追従して絞り込みたいところです。Stimulus で、入力のたびにフォームを送信します。ただし、1 文字ごとに送るとリクエストが多すぎるので、少し待ってから送る（debounce）ようにします。
 
 `app/javascript/controllers/search_controller.js`
@@ -97,10 +100,11 @@ export default class extends Controller {
 
 ```erb
 <%= form_with url: tasks_path, method: :get,
-      data: { turbo_frame: "task_list", controller: "search", action: "input->search#submit" } do |form| %>
+      data: { turbo_frame: "task_list", controller: "search",
+              action: "input->search#submit change->search#submit" } do |form| %>
 ```
 
-action は form 要素に付けているので、子要素から伝わってくる `input` イベントを拾います。検索ボックスの入力に加え、ステータスの `<select>` も変更時に `input` イベントを発火するため、同じく拾えます（明示したいときは `change->search#submit` も併記します）。入力のたびに `submit` が呼ばれ、300 ミリ秒待ってから `this.element.requestSubmit()` でフォームを送信します。`requestSubmit()` は、ボタンを押したのと同じようにフォームを送り、Turbo がそれを横取りして frame を差し替えます。待ち時間は Values で持たせているので（第21章）、HTML 側から変えられます。
+action は form 要素に付けているので、子要素から伝わってくるイベントを拾います。ここで、要素によって発火するイベントが違う点に注意します。検索ボックスのテキスト入力は `input` イベント、ステータスの `<select>` は `change` イベントで変化します。どちらも拾えるように、`input` と `change` の 2 つを指定しています。どちらが起きても `submit` が呼ばれ、300 ミリ秒待ってから `this.element.requestSubmit()` でフォームを送信します。`requestSubmit()` は、ボタンを押したのと同じようにフォームを送り、Turbo がそれを横取りして frame を差し替えます。待ち時間は Values で持たせているので（第21章）、HTML 側から変えられます。
 
 ## 23.6 `data-turbo-action="advance"` で履歴に積む
 

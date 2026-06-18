@@ -43,7 +43,7 @@ end
 
 これで、誰かがタスクを作ると、同じプロジェクトを開いている全員の一覧に、そのタスクが先頭へ追加されます。
 
-<!-- fig-18-1: Action Cable broadcast。1 人のタスク作成が broadcasts_to で project ストリームに配信され、turbo_stream_from で購読する全クライアントの画面に反映される配信図 -->
+![Action Cable broadcast。1 人のタスク作成が broadcasts_to で project ストリームに配信され、turbo_stream_from で購読する全クライアントの画面に反映される配信図](../figures/fig-18-1.svg)
 
 
 ## 18.3 controller からの broadcast

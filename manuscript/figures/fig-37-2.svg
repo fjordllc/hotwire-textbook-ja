@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">採用判断フローチャート</title>
+  <desc id="desc">CRUD 中心か、クライアント状態、オフライン、チーム、API 要否の問いから、Hotwire 向きか SPA/混在向きかを導く図。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#0284c7"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="420" fill="#ffffff"/>
+  <style>
+    .title { font: 700 28px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a; }
+    .small { font: 600 15px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #475569; }
+    .tiny { font: 500 13px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #64748b; }
+  </style>
+  <text x="44" y="42" class="title">採用判断フローチャート</text>
+  <rect x="38" y="82" width="1124" height="280" rx="18" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><rect x="96" y="120" width="508" height="30" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><text x="350" y="140" text-anchor="middle" style="font: 700 14px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="350" dy="0">データの CRUD が中心?</tspan></text><rect x="96" y="160" width="508" height="30" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><text x="350" y="180" text-anchor="middle" style="font: 700 14px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="350" dy="0">クライアント状態は小さい?</tspan></text><rect x="96" y="200" width="508" height="30" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><text x="350" y="220" text-anchor="middle" style="font: 700 14px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="350" dy="0">オフライン不要?</tspan></text><rect x="96" y="240" width="508" height="30" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><text x="350" y="260" text-anchor="middle" style="font: 700 14px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="350" dy="0">チームは Rails 寄り?</tspan></text><rect x="96" y="280" width="508" height="30" rx="10" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><text x="350" y="300" text-anchor="middle" style="font: 700 14px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="350" dy="0">Web だけなら API 不要?</tspan></text><rect x="738" y="136" width="160" height="88" rx="16" fill="#ecfeff" stroke="#06b6d4" stroke-width="2"/><rect x="960" y="136" width="160" height="88" rx="16" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/><text x="818" y="168" text-anchor="middle" style="font: 700 17px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="818" dy="0">Yes が多い</tspan></text><text x="818" y="196" text-anchor="middle" style="font: 700 18px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0e7490;"><tspan x="818" dy="0">Hotwire</tspan></text><text x="1040" y="168" text-anchor="middle" style="font: 700 17px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="1040" dy="0">No が多い</tspan></text><text x="1040" y="196" text-anchor="middle" style="font: 700 18px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #92400e;"><tspan x="1040" dy="0">SPA / 混在</tspan></text><text x="900" y="292" text-anchor="middle" style="font: 700 15px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #475569;"><tspan x="900" dy="0">質問に答えると採用方針が見える</tspan></text>
+</svg>

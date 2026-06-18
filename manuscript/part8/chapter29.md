@@ -6,7 +6,7 @@ Hotwire のアプリがうまく動かないとき、「どこで差し替えが
 
 闇雲にコードを直す前に、観察します。順番は、Network → Turbo のイベント → Stimulus の接続 → Frame / Stream の target → morph、です。上から順に見れば、たいていの不具合は場所を特定できます。第28章のテストでは捉えきれない不具合を、ここで追います。
 
-<!-- fig-29-1: デバッグの切り分け順。Network→Turbo イベント→Stimulus 接続→target id→morph の順で、各ステップの「見るもの」と「分かること」を示すフローチャート -->
+![デバッグの切り分け順。Network→Turbo イベント→Stimulus 接続→target id→morph の順で、各ステップの「見るもの」と「分かること」を示すフローチャート](../figures/fig-29-1.svg)
 
 
 ## 29.1 Network タブで見るべきもの

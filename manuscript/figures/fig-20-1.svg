@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="360" viewBox="0 0 1200 360" role="img" aria-labelledby="title desc">
+  <title id="title">controller / action / target</title>
+  <desc id="desc">data-action がイベントを controller に、data-target が要素を this.xTarget に結びつける流れを示す図。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#0284c7"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="360" fill="#ffffff"/>
+  <style>
+    .title { font: 700 28px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a; }
+    .small { font: 600 15px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #475569; }
+    .tiny { font: 500 13px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #64748b; }
+  </style>
+  <text x="44" y="42" class="title">controller / action / target</text>
+  <rect x="38" y="82" width="1124" height="240" rx="18" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><rect x="84" y="138" width="252" height="100" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><rect x="424" y="138" width="320" height="100" rx="16" fill="#ecfeff" stroke="#06b6d4" stroke-width="2"/><rect x="804" y="138" width="312" height="100" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><text x="210" y="168" text-anchor="middle" style="font: 700 14px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="210" dy="0">HTML: data-action=&quot;input-&gt;counter#count&quot;</tspan></text><text x="210" y="196" text-anchor="middle" style="font: 700 14px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="210" dy="0">data-counter-target=&quot;field&quot;</tspan></text><text x="584" y="168" text-anchor="middle" style="font: 700 18px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #075985;"><tspan x="584" dy="0">counter controller</tspan></text><text x="584" y="196" text-anchor="middle" style="font: 700 14px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #075985;"><tspan x="584" dy="0">count() / this.fieldTarget</tspan></text><text x="960" y="168" text-anchor="middle" style="font: 700 18px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="960" dy="0">output target</tspan></text><text x="960" y="196" text-anchor="middle" style="font: 700 14px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="960" dy="0">文字数表示</tspan></text><line x1="338" y1="188" x2="418" y2="188" stroke="#0284c7" stroke-width="3" fill="none" marker-end="url(#arrow)" /><line x1="744" y1="188" x2="796" y2="188" stroke="#0284c7" stroke-width="3" fill="none" marker-end="url(#arrow)" />
+</svg>

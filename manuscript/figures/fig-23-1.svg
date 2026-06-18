@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="380" viewBox="0 0 1200 380" role="img" aria-labelledby="title desc">
+  <title id="title">検索の構成</title>
+  <desc id="desc">Stimulus で debounce した GET 検索が frame を差し替え、advance で URL を反映する構成図。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#0284c7"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="380" fill="#ffffff"/>
+  <style>
+    .title { font: 700 28px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a; }
+    .small { font: 600 15px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #475569; }
+    .tiny { font: 500 13px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #64748b; }
+  </style>
+  <text x="44" y="42" class="title">検索の構成</text>
+  <rect x="38" y="82" width="1124" height="260" rx="18" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><rect x="80" y="150" width="220" height="84" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><text x="190" y="178" text-anchor="middle" style="font: 700 18px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="190" dy="0">検索ボックス</tspan></text><text x="190" y="206" text-anchor="middle" style="font: 700 14px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #475569;"><tspan x="190" dy="0">Stimulus debounce</tspan></text><rect x="380" y="150" width="200" height="84" rx="16" fill="#ecfeff" stroke="#06b6d4" stroke-width="2"/><text x="480" y="178" text-anchor="middle" style="font: 700 18px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="480" dy="0">GET /tasks?q=…</tspan></text><text x="480" y="206" text-anchor="middle" style="font: 700 14px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0e7490;"><tspan x="480" dy="0">submit</tspan></text><rect x="650" y="150" width="220" height="84" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><text x="760" y="178" text-anchor="middle" style="font: 700 18px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="760" dy="0">task_list frame</tspan></text><text x="760" y="206" text-anchor="middle" style="font: 700 14px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #475569;"><tspan x="760" dy="0">差し替え</tspan></text><rect x="940" y="150" width="150" height="84" rx="16" fill="#dbeafe" stroke="#0284c7" stroke-width="2"/><text x="1015" y="178" text-anchor="middle" style="font: 700 18px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="1015" dy="0">URL</tspan></text><text x="1015" y="206" text-anchor="middle" style="font: 700 14px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #475569;"><tspan x="1015" dy="0">?q=…</tspan></text><line x1="300" y1="192" x2="372" y2="192" stroke="#0284c7" stroke-width="3" fill="none" marker-end="url(#arrow)" /><line x1="580" y1="192" x2="642" y2="192" stroke="#0284c7" stroke-width="3" fill="none" marker-end="url(#arrow)" /><line x1="870" y1="192" x2="932" y2="192" stroke="#0284c7" stroke-width="3" fill="none" marker-end="url(#arrow)" />
+</svg>

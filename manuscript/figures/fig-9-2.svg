@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">replace と morph の違い</title>
+  <desc id="desc">全置換と差分適用の違い、フォーカスやスクロールの保持を対比する図。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#0284c7"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="420" fill="#ffffff"/>
+  <style>
+    .title { font: 700 28px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a; }
+    .small { font: 600 15px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #475569; }
+    .tiny { font: 500 13px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #64748b; }
+  </style>
+  <text x="44" y="42" class="title">replace と morph の違い</text>
+  <rect x="38" y="82" width="1124" height="280" rx="18" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><rect x="82" y="136" width="466" height="170" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><rect x="652" y="136" width="466" height="170" rx="16" fill="#ecfeff" stroke="#06b6d4" stroke-width="2"/><text x="315" y="164" text-anchor="middle" style="font: 700 20px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="315" dy="0">replace</tspan></text><text x="885" y="164" text-anchor="middle" style="font: 700 20px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #075985;"><tspan x="885" dy="0">morph</tspan></text><rect x="130" y="198" width="170" height="44" rx="10" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/><rect x="324" y="198" width="170" height="44" rx="10" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/><text x="215" y="226" text-anchor="middle" style="font: 700 14px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="215" dy="0">全体を作り直す</tspan></text><text x="409" y="226" text-anchor="middle" style="font: 700 14px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="409" dy="0">状態を失う</tspan></text><rect x="700" y="198" width="170" height="44" rx="10" fill="#dbeafe" stroke="#0284c7" stroke-width="2"/><rect x="894" y="198" width="170" height="44" rx="10" fill="#dbeafe" stroke="#0284c7" stroke-width="2"/><text x="785" y="226" text-anchor="middle" style="font: 700 14px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="785" dy="0">変わった部分だけ</tspan></text><text x="979" y="226" text-anchor="middle" style="font: 700 14px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="979" dy="0">状態を保つ</tspan></text><text x="600" y="348" text-anchor="middle" style="font: 700 15px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #475569;"><tspan x="600" dy="0">data-turbo-permanent は触らない</tspan></text>
+</svg>

@@ -94,6 +94,9 @@
 
 ## 17.5 id 設計と `dom_id`
 
+
+![dom_id(task) が表示側の frame id と stream target をどちらも task_1 に揃えることを示す図。](../figures/fig-17-1.svg)
+
 ここまで、`turbo_stream.replace @task` や `turbo_stream.remove @task` のように、命令の宛先をモデルから指定してきました。これを支えているのが `dom_id` です。
 
 `dom_id(task)` は、`"task_1"` のような文字列を返します。第12章で `_task` を `turbo_frame_tag task` で囲んだとき、その frame の `id` は `dom_id(task)` ＝ `"task_1"` でした。そして stream の `turbo_stream.replace @task` も、同じ `dom_id(@task)` を target にします。<strong>表示側の `id` と、命令側の target が、`dom_id` で自動的に一致する</strong>のです。

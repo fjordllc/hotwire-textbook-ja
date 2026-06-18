@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="420" viewBox="0 0 960 420" role="img" aria-labelledby="title desc">
+  <title id="title">サーバー状態の要否で道具を選ぶ</title>
+  <desc id="desc">UI にサーバー内容が要るかどうかで Stimulus 単独か Turbo Frames/Streams かを仕分けるフローチャート。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#0284c7"/>
+    </marker>
+  </defs>
+  <rect width="960" height="420" fill="#ffffff"/>
+  <style>
+    .title { font: 700 28px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a; }
+    .label { font: 700 18px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a; }
+    .small { font: 600 15px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #475569; }
+    .tiny { font: 500 13px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #64748b; }
+  </style>
+  <text x="44" y="42" class="title">サーバー状態の要否で道具を選ぶ</text>
+  <rect x="34" y="74" width="892" height="300" rx="18" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><rect x="330" y="106" width="300" height="54" rx="14" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><text x="480" y="139" text-anchor="middle" style="font: 700 18px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="480" dy="0">サーバーの内容が要る?</tspan></text><line x1="480" y1="160" x2="480" y2="190" stroke="#0284c7" stroke-width="3" fill="none" marker-end="url(#arrow)" /><rect x="130" y="198" width="220" height="74" rx="14" fill="#ecfeff" stroke="#06b6d4" stroke-width="2"/><rect x="610" y="198" width="220" height="74" rx="14" fill="#eff6ff" stroke="#60a5fa" stroke-width="2"/><text x="240" y="230" text-anchor="middle" style="font: 700 17px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="240" dy="0">No → Stimulus</tspan></text><text x="240" y="252" text-anchor="middle" style="font: 600 14px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #475569;"><tspan x="240" dy="0">ドロップダウン / 静的タブ</tspan></text><text x="720" y="230" text-anchor="middle" style="font: 700 17px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="720" dy="0">Yes → Frames / Streams</tspan></text><text x="720" y="252" text-anchor="middle" style="font: 600 14px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #475569;"><tspan x="720" dy="0">遅延タブ / モーダル / 更新</tspan></text><line x1="360" y1="230" x2="330" y2="230" stroke="#0284c7" stroke-width="3" fill="none" marker-end="url(#arrow)" /><line x1="600" y1="230" x2="570" y2="230" stroke="#0284c7" stroke-width="3" fill="none" marker-end="url(#arrow)" />
+</svg>

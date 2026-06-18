@@ -42,7 +42,7 @@ Hotwire を使っても、Rails の基本は変わりません。MVC、REST、pa
 
 どれも、Rails の作法から大きく外れるものではありません。「いつもの Rails を、部分更新に向く形に少し整える」。それが、Hotwire を使うときの設計の勘所です。本書は、この勘所を、Relay を育てながら身につけていきます。
 
-<!-- fig-3-1: Rails の仕組みと Hotwire の接続点。MVC/partial/REST/Action Cable が Turbo Drive・Frames/Streams/broadcast へつながることを線で結んだ対応図 -->
+![Rails の仕組みと Hotwire の接続点。MVC/partial/REST/Action Cable が Turbo Drive・Frames/Streams/broadcast へつながることを線で結んだ対応図](../figures/fig-3-1.svg)
 
 
 > 第1部はここまでです。Hotwire を設計思想として捉え、その背景と、Rails との相性を見ました。次の第2部では、いよいよ手を動かします。本書を通して育てるサンプルアプリ Relay の仕様を決め、その土台を作ります。

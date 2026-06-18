@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="300" viewBox="0 0 960 300" role="img" aria-labelledby="title desc">
+  <title id="title">Hotwire の全体像</title>
+  <desc id="desc">Turbo、Stimulus、Hotwire Native が HTML over the wire の上に立つことを示す図。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#0284c7"/>
+    </marker>
+  </defs>
+  <rect width="960" height="300" fill="#ffffff"/>
+  <style>
+    .title { font: 700 28px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a; }
+    .label { font: 700 18px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a; }
+    .small { font: 600 15px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #475569; }
+    .tiny { font: 500 13px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #64748b; }
+  </style>
+  <text x="44" y="42" class="title">Hotwire の全体像</text>
+  <rect x="36" y="70" width="888" height="190" rx="18" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><rect x="60" y="130" width="240" height="56" rx="12" fill="#dbeafe" stroke="#0284c7" stroke-width="2"/><text x="180.0" y="164.0" text-anchor="middle" style="font: 700 16px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="180.0" dy="0">Turbo</tspan></text><text x="180" y="205" text-anchor="middle" style="font: 600 16px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #334155;"><tspan x="180" dy="0">Drive / Frames / Streams</tspan></text><rect x="360" y="130" width="220" height="56" rx="12" fill="#dbeafe" stroke="#0284c7" stroke-width="2"/><text x="470.0" y="164.0" text-anchor="middle" style="font: 700 16px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="470.0" dy="0">Stimulus</tspan></text><text x="470" y="205" text-anchor="middle" style="font: 600 16px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #334155;"><tspan x="470" dy="0">HTML に振る舞いを足す</tspan></text><rect x="650" y="130" width="250" height="56" rx="12" fill="#dbeafe" stroke="#0284c7" stroke-width="2"/><text x="775.0" y="164.0" text-anchor="middle" style="font: 700 16px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="775.0" dy="0">Hotwire Native</tspan></text><text x="775" y="205" text-anchor="middle" style="font: 600 16px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #334155;"><tspan x="775" dy="0">Web をモバイルへ</tspan></text><text x="480" y="98" text-anchor="middle" style="font: 700 20px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #075985;"><tspan x="480" dy="0">HTML over the wire</tspan></text><line x1="300" y1="158" x2="352" y2="158" stroke="#0284c7" stroke-width="3" fill="none" marker-end="url(#arrow)" /><line x1="580" y1="158" x2="642" y2="158" stroke="#0284c7" stroke-width="3" fill="none" marker-end="url(#arrow)" /><text x="480" y="250" text-anchor="middle" style="font: 600 14px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #64748b;"><tspan x="480" dy="0">同じ思想の現れ</tspan></text>
+</svg>

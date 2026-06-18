@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">通知の合わせ技</title>
+  <desc id="desc">Streams による差し込み、Stimulus による演出、Action Cable による他者発配信の役割分担を示す図。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#0284c7"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="420" fill="#ffffff"/>
+  <style>
+    .title { font: 700 28px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a; }
+    .small { font: 600 15px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #475569; }
+    .tiny { font: 500 13px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #64748b; }
+  </style>
+  <text x="44" y="42" class="title">通知の合わせ技</text>
+  <rect x="38" y="82" width="1124" height="280" rx="18" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><rect x="472" y="146" width="256" height="110" rx="18" fill="#ecfeff" stroke="#06b6d4" stroke-width="2"/><text x="600" y="178" text-anchor="middle" style="font: 700 18px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="600" dy="0">toasts</tspan></text><text x="600" y="206" text-anchor="middle" style="font: 700 14px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0e7490;"><tspan x="600" dy="0">role=status / aria-live</tspan></text><line x1="200" y1="200" x2="460" y2="200" stroke="#0284c7" stroke-width="3" fill="none" marker-end="url(#arrow)" /><line x1="760" y1="200" x2="1000" y2="200" stroke="#0284c7" stroke-width="3" fill="none" marker-end="url(#arrow)" /><line x1="600" y1="126" x2="600" y2="146" stroke="#0284c7" stroke-width="3" fill="none" marker-end="url(#arrow)" /><text x="168" y="168" text-anchor="middle" style="font: 700 16px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="168" dy="0">Turbo Streams</tspan></text><text x="1032" y="168" text-anchor="middle" style="font: 700 16px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="1032" dy="0">Stimulus</tspan></text><text x="600" y="112" text-anchor="middle" style="font: 700 16px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="600" dy="0">Action Cable</tspan></text><text x="166" y="224" text-anchor="middle" style="font: 700 14px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #475569;"><tspan x="166" dy="0">差し込み</tspan></text><text x="1032" y="224" text-anchor="middle" style="font: 700 14px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #475569;"><tspan x="1032" dy="0">演出</tspan></text><text x="600" y="236" text-anchor="middle" style="font: 700 14px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #475569;"><tspan x="600" dy="0">broadcast</tspan></text>
+</svg>

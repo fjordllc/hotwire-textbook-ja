@@ -57,6 +57,9 @@ eagerLoadControllersFrom("controllers", application)
 
 ## 6.3 本書の基本構成: importmap
 
+
+![application.js から importmap.rb の pin を通じて Turbo と Stimulus が読み込まれる経路を示す図。](../figures/fig-6-1.svg)
+
 Relay の JavaScript は importmap で読み込まれています。どのライブラリをどの名前で読み込むかは、`config/importmap.rb` に書かれています。
 
 `config/importmap.rb`

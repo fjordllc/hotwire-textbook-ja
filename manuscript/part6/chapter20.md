@@ -63,6 +63,9 @@ export default class extends Controller {
 
 ## 20.3 target の参照
 
+
+![data-action がイベントを controller に、data-target が要素を this.xTarget に結びつける流れを示す図。](../figures/fig-20-1.svg)
+
 文字数を Console ではなく、画面に表示したいところです。表示先の要素を、controller から参照できるようにします。これが target です。
 
 target も、HTML 側で宣言します。`data-controller名-target` 属性に、target の名前を書きます。

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="420" viewBox="0 0 1200 420" role="img" aria-labelledby="title desc">
+  <title id="title">Turbo Frame の id 一致</title>
+  <desc id="desc">frame 内リンクが、レスポンスから同じ id の turbo-frame だけを抽出して差し替える仕組みと、id 不一致時のエラーを示す図。</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#0284c7"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="420" fill="#ffffff"/>
+  <style>
+    .title { font: 700 28px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a; }
+    .label { font: 700 18px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a; }
+    .small { font: 600 15px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #475569; }
+    .tiny { font: 500 13px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #64748b; }
+  </style>
+  <text x="44" y="42" class="title">Turbo Frame の id 一致</text>
+  <rect x="40" y="82" width="1120" height="280" rx="18" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><rect x="94" y="130" width="300" height="160" rx="16" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2"/><rect x="806" y="130" width="300" height="160" rx="16" fill="#ecfeff" stroke="#06b6d4" stroke-width="2"/><rect x="150" y="172" width="180" height="52" rx="12" fill="#dbeafe" stroke="#0284c7" stroke-width="2"/><text x="240" y="204" text-anchor="middle" style="font: 700 18px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="240" dy="0">リンク</tspan></text><text x="244" y="156" text-anchor="middle" style="font: 700 13px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #475569;"><tspan x="244" dy="0">&lt;turbo-frame id=&quot;task_detail&quot;&gt;</tspan></text><text x="956" y="156" text-anchor="middle" style="font: 700 13px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #075985;"><tspan x="956" dy="0">&lt;turbo-frame id=&quot;task_detail&quot;&gt;</tspan></text><rect x="852" y="182" width="208" height="58" rx="12" fill="#ffffff" stroke="#06b6d4" stroke-width="2"/><text x="956" y="217" text-anchor="middle" style="font: 700 16px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #0f172a;"><tspan x="956" dy="0">差し替え対象</tspan></text><line x1="326" y1="198" x2="400" y2="198" stroke="#0284c7" stroke-width="3" fill="none" marker-end="url(#arrow)" /><line x1="744" y1="198" x2="810" y2="198" stroke="#0284c7" stroke-width="3" fill="none" marker-end="url(#arrow)" /><rect x="458" y="174" width="286" height="48" rx="12" fill="#fee2e2" stroke="#ef4444" stroke-width="2"/><text x="601" y="204" text-anchor="middle" style="font: 700 15px 'Hiragino Sans', 'Yu Gothic', sans-serif; fill: #b91c1c;"><tspan x="601" dy="0">id 不一致 = Content missing</tspan></text>
+</svg>
