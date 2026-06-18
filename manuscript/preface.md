@@ -4,7 +4,7 @@
 
 Hotwire は、ブラウザで動く JavaScript アプリケーションを大きく作る代わりに、サーバーで生成した HTML を活かして、現代的な操作感を実現するための考え方とツール群です。
 
-本書では、思想や生まれた背景を扱いながら、Tailwind CSS 本よりもハンズオンを多くします。題材は、チーム向けタスク管理アプリ <strong>Relay</strong>（仮称）です。この 1 つのアプリを最初から最後まで育てながら、通常の CRUD から Turbo Drive、Turbo Frames、Turbo Streams、Stimulus、Hotwire Native へ段階的に広げていきます。
+本書では、思想や生まれた背景を扱いながら、Tailwind CSS 本よりもハンズオンを多くします。題材は、チーム向けタスク管理アプリ <strong>Relay</strong>です。この 1 つのアプリを最初から最後まで育てながら、通常の CRUD から Turbo Drive、Turbo Frames、Turbo Streams、Stimulus、Hotwire Native へ段階的に広げていきます。
 
 ## 想定読者
 
