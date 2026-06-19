@@ -3,3 +3,22 @@
 :root {
   --hotwire-accent: #d73a31;
 }
+
+/*
+ * 全ページ共通フッター（theme/textbook-footer.js が挿入する）。
+ * 本書が FjordBootCamp の教材であることを各ページ末に示す。
+ * 参考: FBC Press の他書（tailwind-css-textbook）と体裁を揃える。
+ */
+.textbook-footer {
+  margin-block: 6rem -4rem;
+  padding-block: 4rem 3rem;
+  border-top: 1px solid color-mix(in srgb, currentColor 18%, transparent);
+  font-size: 0.85em;
+  text-align: center;
+  opacity: 0.85;
+}
+
+.textbook-footer a {
+  color: var(--hotwire-accent);
+  text-decoration: underline;
+}

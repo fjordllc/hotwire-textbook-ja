@@ -12,6 +12,27 @@ Hotwire は動き続けます。本書の内容も、いつかは古くなりま
 
 それでは、あなたのアプリで、Hotwire を活かしてください。
 
+## FjordBootCamp について
+
+本書は、プログラミングスクール **[FjordBootCamp（フィヨルドブートキャンプ）](https://bootcamp.fjord.jp/)** の教材として作成されました。
+
+FjordBootCamp は、現役エンジニアが運営する日本語のオンラインプログラミングスクールです。未経験からでも学べる **Rails エンジニアコース**と**フロントエンドエンジニアコース**があり、暗記ではなく「自分で考えて学び続ける力」を育てます。本書で繰り返してきた「なぜそうなっているのかを理解する」という姿勢は、Hotwire に限らず、これからの学習すべてで効いてきます。
+
+もっと体系的に、仲間やメンターと一緒に学びたくなったら、ぜひのぞいてみてください。
+
+- 公式サイト: <https://bootcamp.fjord.jp/>
+
+## 主要な一次情報
+
+最後に、実務で何度も戻ることになる主要な一次情報を挙げます。
+
+- [Hotwire（公式トップ）](https://hotwired.dev/)
+- [Turbo Handbook](https://turbo.hotwired.dev/)
+- [Stimulus Handbook](https://stimulus.hotwired.dev/)
+- [Hotwire Native](https://native.hotwired.dev/)
+- [Rails ガイド](https://guides.rubyonrails.org/)
+- [完成版サンプルアプリ Relay](https://github.com/fjordllc/Relay)
+
 ## ライセンス
 
 本書の本文・原稿は、MIT License で公開されています。

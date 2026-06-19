@@ -1,6 +1,9 @@
 # はじめに
 
-本書は、Rails の基本を学習済みの読者に向けた Hotwire の教科書です。
+> **FBC Press: Hotwire**
+> ― HTML over the wire という設計思想から理解する
+
+本書は、プログラミングスクール **[FjordBootCamp（フィヨルドブートキャンプ）](https://bootcamp.fjord.jp/)** の教材として作成された、Hotwire の教科書です。Rails の基本を学習済みの読者に向けています。
 
 Hotwire は、ブラウザで動く JavaScript アプリケーションを大きく作る代わりに、サーバーで生成した HTML を活かして、現代的な操作感を実現するための考え方とツール群です。
 
