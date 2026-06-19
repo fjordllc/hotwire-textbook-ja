@@ -40,7 +40,7 @@ class Svg
     @body << %(<line #{attrs.join(" ")} />)
   end
 
-  def arrow(x1, y1, x2, y2, stroke: "#0284c7", sw: 3)
+  def arrow(x1, y1, x2, y2, stroke: "#0284c7", sw: 2.5)
     line(x1, y1, x2, y2, stroke: stroke, sw: sw, marker: "arrow")
   end
 
@@ -59,8 +59,8 @@ class Svg
         <title id="title">#{escape(@title)}</title>
         <desc id="desc">#{escape(@desc)}</desc>
         <defs>
-          <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
-            <path d="M0,0 L8,4 L0,8 z" fill="#0284c7"/>
+          <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+            <path d="M0,0 L7,3.5 L0,7 z" fill="#0284c7"/>
           </marker>
         </defs>
         <rect width="#{@width}" height="#{@height}" fill="#ffffff"/>
@@ -84,27 +84,31 @@ end
 
 FIGURES = {
   "fig-4-2" => {
-    width: 1200, height: 420,
+    width: 1200, height: 460,
     title: "主要画面と使う技術の対応",
     desc: "Relay の主要画面に Turbo Drive、Frames、Streams、Stimulus、Action Cable を対応づけた図。",
     render: lambda { |s|
-      s.panel(36, 84, 1128, 280)
+      s.panel(36, 84, 1128, 330)
       cards = [
         ["プロジェクト一覧 / 詳細", "Drive"],
-        ["タスク一覧（リスト / ボード）", "Frames + Stimulus"],
+        ["タスク一覧（リスト / ボード）", "Frames\nStimulus"],
         ["タスク詳細（サイドバー）", "Frames"],
-        ["タスク作成 / 編集", "Frames + Streams + Stimulus"],
-        ["コメント欄", "Streams + Action Cable"],
-        ["通知トースト / flash", "Streams + Stimulus + Action Cable"]
+        ["タスク作成 / 編集", "Frames\nStreams\nStimulus"],
+        ["コメント欄", "Streams\nAction Cable"],
+        ["通知トースト / flash", "Streams\nStimulus\nAction Cable"]
       ]
       cards.each_with_index do |(a, b), i|
-        x = 66 + (i % 3) * 360
-        y = 120 + (i / 3) * 120
-        s.rect(x, y, 300, 84, fill: i.even? ? "#f8fafc" : "#ecfeff", stroke: i.even? ? "#cbd5e1" : "#06b6d4", rx: 16)
-        s.text(x + 150, y + 30, a, size: 16, weight: 700, anchor: "middle")
-        s.badge(x + 92, y + 44, 116, 24, b)
+        x = 66 + (i % 3) * 356
+        y = 126 + (i / 3) * 136
+        s.rect(x, y, 320, 108, fill: i.even? ? "#f8fafc" : "#ecfeff", stroke: i.even? ? "#cbd5e1" : "#06b6d4", rx: 16)
+        s.text(x + 160, y + 32, a, size: 15, weight: 700, anchor: "middle")
+        pill_h = b.count("\n") >= 2 ? 58 : (b.include?("\n") ? 46 : 34)
+        pill_y = y + 54
+        s.rect(x + 48, pill_y, 224, pill_h, fill: "#eff6ff", stroke: "#60a5fa", rx: 12)
+        s.text(x + 160, pill_y + 22, b, size: 13, weight: 700, anchor: "middle")
       end
       s.text(600, 102, "1 画面に複数の技術を組み合わせる", size: 18, weight: 700, anchor: "middle")
+      s.text(600, 396, "役割ごとに技術を重ねると見通しがよい", size: 15, weight: 700, fill: "#475569", anchor: "middle")
     }
   },
   "fig-5-1" => {
@@ -113,49 +117,53 @@ FIGURES = {
     desc: "bin/rails generate authentication が作る User、Session、Current、各コントローラやメール周辺を示す図。",
     render: lambda { |s|
       s.panel(36, 84, 1128, 300)
-      s.rect(514, 170, 172, 86, fill: "#ecfeff", stroke: "#06b6d4", rx: 18)
-      s.text(600, 202, "authentication", size: 20, weight: 700, anchor: "middle")
-      s.text(600, 230, "ジェネレータ", size: 15, weight: 600, fill: "#0e7490", anchor: "middle")
+      s.rect(92, 170, 230, 94, fill: "#ecfeff", stroke: "#06b6d4", rx: 18)
+      s.text(207, 204, "authentication", size: 20, weight: 700, anchor: "middle")
+      s.text(207, 234, "ジェネレータ", size: 15, weight: 600, fill: "#0e7490", anchor: "middle")
+      s.arrow(322, 217, 410, 217)
+      s.rect(410, 116, 690, 200, fill: "#f8fafc", stroke: "#cbd5e1", rx: 18)
+      s.text(755, 146, "生成される主要ファイル", size: 18, weight: 700, anchor: "middle")
       items = [
-        ["User", 110, 110], ["Session", 320, 110], ["Current", 530, 110], ["SessionsController", 740, 110],
-        ["PasswordsController", 950, 110], ["PasswordsMailer", 740, 300], ["views", 950, 300], ["routes", 530, 300]
+        ["User", 448, 168, "#eff6ff"], ["Session", 614, 168, "#eff6ff"], ["Current", 780, 168, "#f8fafc"], ["routes", 946, 168, "#f8fafc"],
+        ["SessionsController", 448, 246, "#f8fafc"], ["PasswordsController", 614, 246, "#f8fafc"], ["PasswordsMailer", 780, 246, "#f8fafc"], ["views", 946, 246, "#f8fafc"]
       ]
-      items.each do |name, x, y|
-        s.rect(x, y, 160, 62, fill: name == "User" || name == "Session" ? "#eff6ff" : "#f8fafc", stroke: "#cbd5e1", rx: 14)
-        s.text(x + 80, y + 38, name, size: 15, weight: 700, anchor: "middle")
-        s.arrow(600, 214, x + 80, y + 31) unless %w[User Session].include?(name)
+      items.each do |name, x, y, fill|
+        s.rect(x, y, 140, 46, fill: fill, stroke: "#cbd5e1", rx: 12)
+        s.text(x + 70, y + 29, name, size: 13, weight: 700, anchor: "middle")
       end
-      s.text(110, 360, "User は domain に近い", size: 14, weight: 700, fill: "#475569")
-      s.text(860, 360, "他は認証インフラ", size: 14, weight: 700, fill: "#475569")
-      s.text(1080, 202, "bcrypt", size: 15, weight: 700, fill: "#475569")
+      s.text(520, 332, "User / Session はモデル層", size: 13, weight: 700, fill: "#475569", anchor: "middle")
+      s.text(760, 332, "password 系は bcrypt を使う", size: 13, weight: 700, fill: "#475569", anchor: "middle")
+      s.text(972, 332, "他は認証フローを支える部品", size: 13, weight: 700, fill: "#475569", anchor: "middle")
     }
   },
   "fig-6-1" => {
-    width: 1200, height: 420,
+    width: 1200, height: 440,
     title: "importmap の読み込み経路",
     desc: "application.js から importmap.rb の pin を通じて Turbo と Stimulus が読み込まれる経路を示す図。",
     render: lambda { |s|
-      s.panel(38, 82, 1124, 280)
-      s.rect(88, 160, 240, 84, fill: "#f8fafc", stroke: "#cbd5e1", rx: 16)
-      s.text(208, 192, "application.js", size: 18, weight: 700, anchor: "middle")
-      s.text(208, 220, 'import "@hotwired/turbo-rails"', size: 13, weight: 600, fill: "#475569", anchor: "middle")
-      s.rect(392, 132, 240, 130, fill: "#ecfeff", stroke: "#06b6d4", rx: 16)
-      s.text(512, 164, "config/importmap.rb", size: 18, weight: 700, anchor: "middle")
-      s.text(512, 194, "pin Turbo / Stimulus", size: 14, weight: 600, fill: "#475569", anchor: "middle")
-      s.text(512, 222, "ビルド不要", size: 14, weight: 700, fill: "#0e7490", anchor: "middle")
-      s.rect(700, 110, 168, 86, fill: "#f8fafc", stroke: "#cbd5e1", rx: 14)
-      s.rect(906, 110, 168, 86, fill: "#f8fafc", stroke: "#cbd5e1", rx: 14)
-      s.rect(700, 250, 168, 86, fill: "#f8fafc", stroke: "#cbd5e1", rx: 14)
-      s.rect(906, 250, 168, 86, fill: "#f8fafc", stroke: "#cbd5e1", rx: 14)
-      s.text(784, 158, "Turbo", size: 18, weight: 700, anchor: "middle")
-      s.text(990, 158, "Stimulus", size: 18, weight: 700, anchor: "middle")
-      s.text(784, 298, "controllers/", size: 18, weight: 700, anchor: "middle")
-      s.text(990, 298, "eagerLoadControllersFrom", size: 16, weight: 700, anchor: "middle")
-      s.arrow(328, 202, 384, 202)
-      s.arrow(632, 202, 694, 158)
-      s.arrow(632, 202, 694, 298)
-      s.arrow(868, 158, 900, 158)
-      s.arrow(868, 298, 900, 298)
+      s.panel(38, 82, 1124, 300)
+      s.rect(82, 160, 250, 92, fill: "#f8fafc", stroke: "#cbd5e1", rx: 16)
+      s.text(207, 193, "application.js", size: 18, weight: 700, anchor: "middle")
+      s.text(207, 222, 'import "@hotwired/turbo-rails"', size: 13, weight: 600, fill: "#475569", anchor: "middle")
+      s.rect(390, 136, 254, 140, fill: "#ecfeff", stroke: "#06b6d4", rx: 16)
+      s.text(517, 170, "config/importmap.rb", size: 18, weight: 700, anchor: "middle")
+      s.text(517, 200, "pin Turbo / Stimulus", size: 14, weight: 600, fill: "#475569", anchor: "middle")
+      s.text(517, 230, "ビルド不要", size: 14, weight: 700, fill: "#0e7490", anchor: "middle")
+      s.rect(710, 118, 174, 82, fill: "#f8fafc", stroke: "#cbd5e1", rx: 14)
+      s.rect(920, 118, 174, 82, fill: "#f8fafc", stroke: "#cbd5e1", rx: 14)
+      s.rect(710, 240, 174, 82, fill: "#f8fafc", stroke: "#cbd5e1", rx: 14)
+      s.rect(920, 240, 174, 82, fill: "#f8fafc", stroke: "#cbd5e1", rx: 14)
+      s.text(797, 167, "Turbo", size: 18, weight: 700, anchor: "middle")
+      s.text(1007, 167, "Stimulus", size: 18, weight: 700, anchor: "middle")
+      s.text(797, 288, "controllers/", size: 17, weight: 700, anchor: "middle")
+      s.text(1007, 276, "eagerLoadControllers", size: 13, weight: 700, anchor: "middle")
+      s.text(1007, 296, "From()", size: 13, weight: 700, anchor: "middle")
+      s.arrow(332, 206, 382, 206)
+      s.arrow(644, 206, 702, 159)
+      s.arrow(644, 206, 702, 281)
+      s.arrow(884, 159, 914, 159)
+      s.arrow(884, 281, 914, 281)
+      s.text(600, 360, "pin の定義から Turbo と Stimulus 周辺が読まれる", size: 15, weight: 700, fill: "#475569", anchor: "middle")
     }
   },
   "fig-7-2" => {
