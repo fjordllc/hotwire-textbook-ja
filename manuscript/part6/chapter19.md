@@ -99,9 +99,9 @@ Stimulus の `connect()` と `disconnect()` は、Turbo の動きと噛み合っ
 ![Stimulus controller と data 属性。data-controller が HTML と controller を名前で結びつけ、Turbo の差し替えのたびに connect/disconnect が呼ばれることを、DOMContentLoaded（初回のみ）との対比で示す図](../figures/fig-19-1.svg)
 
 
-逆に、`disconnect()` で後始末をしないと、要素が消えても残骸が残ることがあります。第9章で見たキャッシュとも関わるこの後始末は、外部ライブラリを扱う第22章で詳しく扱います。
+逆に、`disconnect()` で後始末をしないと、要素が消えても残骸が残ることがあります。[第9章](../part3/chapter9.md)で見たキャッシュとも関わるこの後始末は、[第22章](chapter22.md)で詳しく扱います。
 
-> 第19章では、Stimulus を「HTML に振る舞いを足す仕組み」として理解し、controller・`data-controller`・Turbo との関係を見ました。次の第20章では、Stimulus の中心概念である controller・action・target を、手を動かして覚えます。
+> 第19章では、Stimulus を「HTML に振る舞いを足す仕組み」として理解し、controller・`data-controller`・Turbo との関係を見ました。次の [第20章](chapter20.md) では、Stimulus の中心概念である controller・action・target を、手を動かして覚えます。
 
 ## 参考資料
 

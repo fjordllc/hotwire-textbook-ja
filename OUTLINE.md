@@ -2,8 +2,23 @@
 
 各章は「ねらい」→「節構成」→「主な参考資料（候補）」で示します。参考 URL は執筆時に実在確認のうえ各章末へ掲載します。
 
+## このページ内の案内
+
+- [第1部 Hotwire を理解する](#outline-part1)
+- [第2部 ハンズオンの準備](#outline-part2)
+- [第3部 Turbo Drive](#outline-part3)
+- [第4部 Turbo Frames](#outline-part4)
+- [第5部 Turbo Streams](#outline-part5)
+- [第6部 Stimulus](#outline-part6)
+- [第7部 実務で使う Hotwire UI パターン](#outline-part7)
+- [第8部 Hotwire アプリを保守する](#outline-part8)
+- [第9部 Hotwire Native](#outline-part9)
+- [第10部 Hotwire を選ぶべきか](#outline-part10)
+- [付録](#outline-appendix)
+
 ---
 
+<a id="outline-part1"></a>
 # 第1部 Hotwire を理解する
 
 ## 第1章 Hotwire とは何か
@@ -38,6 +53,7 @@
 
 ---
 
+<a id="outline-part2"></a>
 # 第2部 ハンズオンの準備
 
 この部では、本書を通して育てるサンプルアプリを確定します。題材は、チーム向けタスク管理アプリ **Relay** とします。プロジェクトの下にタスクがぶら下がり、タスクにステータス、担当者、タグ、コメントが付きます。
@@ -149,6 +165,7 @@ Relay を採用する理由は、第7部の実務 UI パターンを 1 つの自
 
 ---
 
+<a id="outline-part3"></a>
 # 第3部 Turbo Drive
 
 この部を貫く軸は「**すべては visit である**」です。Turbo Drive は、リンクもフォーム送信も visit（訪問）という同じ処理に揃えます。visit とは「HTML を取得し、`<body>` を差し替え、`<head>` をマージする」ことです。第7〜10章は、この 1 つの動作を **どの HTML で・いつ・どう差し替えるか** を制御する話として一直線に読めます。
@@ -214,6 +231,7 @@ Relay を採用する理由は、第7部の実務 UI パターンを 1 つの自
 
 ---
 
+<a id="outline-part4"></a>
 # 第4部 Turbo Frames
 
 この部を貫く軸は「**frame は独立した小さな visit 領域である**」です。第3部の visit が `<body>` 全体の差し替えなら、Turbo Frame は `<turbo-frame>` 単位の差し替えです。frame 内のリンク・フォームは、ページ全体ではなく frame の中だけを差し替えます。第11〜14章は「frame の中だけを差し替える」という 1 動作を、基本 → CRUD 化 → 遅延読み込み → 使いすぎの見切り、と育てていきます。
@@ -264,6 +282,7 @@ Relay を採用する理由は、第7部の実務 UI パターンを 1 つの自
 
 ---
 
+<a id="outline-part5"></a>
 # 第5部 Turbo Streams
 
 この部を貫く軸は「**Streams は差し替え命令の入った HTML を送る**」です。第3部の body visit、第4部の frame visit が「1 か所をまるごと差し替える」のに対し、Turbo Streams は「どの id に・どの action を・どの HTML で」適用するかを書いた命令を送り、**複数の場所を別々の action で同時に操作**できます。第15〜18章は、この命令を「1 つ書く → CRUD に流す → 複数同時に束ねる → 他者へ配信する」と広げます。第4部14.4「複数箇所の更新が要るなら frame をやめる」が、この部の入口です。
@@ -317,6 +336,7 @@ Relay を採用する理由は、第7部の実務 UI パターンを 1 つの自
 
 ---
 
+<a id="outline-part6"></a>
 # 第6部 Stimulus
 
 この部を貫く軸は「**Stimulus は HTML に振る舞いを足す。状態は HTML に置く**」です。第3〜5 部はサーバが HTML を送って差し替える話でしたが、第6部はその補完です。Stimulus はサーバ往復が要らない振る舞いだけを HTML に足し、状態は JS の中ではなく HTML 側（data 属性）に持ちます。だから Turbo がページや frame を差し替えても、controller は HTML を見て自分を再構成できます。第19〜22章は「接続する → 操作する → 状態を HTML に持たせる → 外部ライブラリの生死を管理する」と進みます。第7部（第26章）の「サーバの状態が要るか」という問いの、答えの片側を担う部です。
@@ -370,6 +390,7 @@ Relay を採用する理由は、第7部の実務 UI パターンを 1 つの自
 
 ---
 
+<a id="outline-part7"></a>
 # 第7部 実務で使う Hotwire UI パターン
 
 この部では、実務で頻出する UI を題材にして、Hotwire の使い分けを体得します。各章では次の 3 つの問いを使い回します。
@@ -490,6 +511,7 @@ Relay を採用する理由は、第7部の実務 UI パターンを 1 つの自
 
 ---
 
+<a id="outline-part8"></a>
 # 第8部 Hotwire アプリを保守する
 
 この部を貫く軸は「**Hotwire は、遅い Rails も危ない Rails も隠してくれない**」です。Hotwire は Rails の上の薄い層なので、保守は「Rails の保守＋Hotwire 固有の観察点」になります。第28〜31章は、動いた後のアプリを 見る（テスト）→ 切り分ける（デバッグ）→ 測る（性能）→ 守る（認可）の順で支えます。第3〜7部で各章に仕込んだ小テスト（8.6 / 12.6 / 16.6 / 20.6 や、第7部の 23.9 / 24.9 / 25.9 / 26.10 / 27.9 など）、broadcast の認可入口（18.5）、id 設計（17.5）が、ここで回収されます。
@@ -547,6 +569,7 @@ Relay を採用する理由は、第7部の実務 UI パターンを 1 つの自
 
 ---
 
+<a id="outline-part9"></a>
 # 第9部 Hotwire Native
 
 この部を貫く軸は「**同じ Relay を、ネイティブの殻で包む**」です。Hotwire Native は、既存の Web 画面をそのまま WebView で表示し、必要な部分だけネイティブに置き換える Web-first な構成です。第32〜35章は「考え方を掴む → URL ごとの見せ方を決める（Path Configuration）→ Web とネイティブをつなぐ（Bridge Components）→ ネイティブ画面を足す（Native Screens）」と進みます。第7部までで Relay の HTML が整っているほど、ネイティブ化の追加コストは小さくなります。第10部（第37・38章）への助走でもあります。
@@ -595,6 +618,7 @@ Relay を採用する理由は、第7部の実務 UI パターンを 1 つの自
 
 ---
 
+<a id="outline-part10"></a>
 # 第10部 Hotwire を選ぶべきか
 
 ## 第36章 Hotwire のアンチパターン
@@ -635,6 +659,7 @@ Relay を採用する理由は、第7部の実務 UI パターンを 1 つの自
 
 ---
 
+<a id="outline-appendix"></a>
 # 付録
 
 - 付録A 公式ドキュメントの歩き方
