@@ -15,6 +15,8 @@
   --code-border: #e2e8f0;
   --blockquote-bg: #f6fbff;
   --table-border: #d8e1ea;
+  --table-header-bg: #eef6fb;
+  --table-row-alt: #fbfdff;
   --surface-alt: #f8fbfe;
   --shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
   --radius: 14px;
@@ -43,6 +45,8 @@
   --code-border: var(--table-border-color, rgba(255, 255, 255, 0.16));
   --blockquote-bg: var(--quote-bg, rgba(255, 255, 255, 0.04));
   --table-border: var(--table-border-color, rgba(255, 255, 255, 0.12));
+  --table-header-bg: var(--table-header-bg, rgba(255, 255, 255, 0.08));
+  --table-row-alt: rgba(255, 255, 255, 0.03);
   --surface-alt: var(--table-header-bg, rgba(255, 255, 255, 0.04));
   --shadow: none;
 }
@@ -161,11 +165,41 @@ summary:focus-visible,
 
 .content table th,
 .content table td {
+  padding: 0.72em 0.9em;
   border-color: var(--table-border);
+  vertical-align: top;
+  line-height: 1.65;
+}
+
+.content table td {
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 .content table thead th {
-  background: var(--surface-alt);
+  background: var(--table-header-bg);
+  color: var(--text-strong);
+  font-weight: 700;
+  text-align: left;
+  white-space: nowrap;
+  word-break: keep-all;
+  border-bottom-width: 2px;
+}
+
+.content table {
+  display: block;
+  width: max-content;
+  min-width: 100%;
+  max-width: 100%;
+  margin: 1.3em 0 1.7em;
+  overflow-x: auto;
+  border: 1px solid var(--table-border);
+  border-radius: 12px;
+  background: var(--panel-bg);
+}
+
+.content table tbody tr:nth-child(even) {
+  background: var(--table-row-alt);
 }
 
 .content :not(pre) > code {
