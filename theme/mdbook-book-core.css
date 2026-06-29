@@ -287,14 +287,14 @@ summary:focus-visible,
 }
 
 .nav-chapters {
-  border: 1px solid var(--table-border);
-  background: var(--panel-bg);
-  border-radius: 999px;
-  box-shadow: var(--shadow);
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
 .nav-chapters:hover {
-  background: var(--surface-alt);
+  background: var(--accent-hover-bg);
 }
 
 .nav-wrapper .nav-chapters,
