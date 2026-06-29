@@ -12,7 +12,7 @@ create-missing = false
 [output.html]
 git-repository-url = "https://github.com/fjordllc/hotwire-textbook-ja"
 edit-url-template = "https://github.com/fjordllc/hotwire-textbook-ja/edit/main/{path}"
-additional-css = ["theme/mdbook-book-jp.css", "theme/hotwire-textbook.css"]
+additional-css = ["theme/mdbook-book-core.css", "theme/mdbook-book-jp.css", "theme/hotwire-textbook.css"]
 additional-js = ["theme/textbook-footer.js"]
 no-section-label = true
 
