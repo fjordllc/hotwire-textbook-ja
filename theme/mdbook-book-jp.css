@@ -140,11 +140,14 @@ body {
 
 .content pre {
   margin: 1.2em 0 1.5em;
-  padding: 1.05em 1.15em;
   line-height: 1.7;
   overflow-x: auto;
   word-break: normal;
   overflow-wrap: normal;
+}
+
+.content pre > code {
+  padding: 1.05em 1.15em;
 }
 
 .content details summary {
@@ -203,6 +206,9 @@ body {
   }
 
   .content pre {
+  }
+
+  .content pre > code {
     padding: 0.95em 1em;
   }
 }
