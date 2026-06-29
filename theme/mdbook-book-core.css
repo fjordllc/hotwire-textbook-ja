@@ -157,10 +157,6 @@ summary:focus-visible,
   background: transparent;
 }
 
-#content {
-  max-width: var(--content-max-width);
-}
-
 .content {
   color: var(--text-base);
 }
