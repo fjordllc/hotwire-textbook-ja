@@ -11,6 +11,12 @@
   --accent: #0284c7;
   --accent-strong: #0369a1;
   --accent-soft: #d8eefb;
+  --accent-underline: rgba(3, 105, 161, 0.28);
+  --accent-outline: rgba(2, 132, 199, 0.42);
+  --accent-hover-bg: rgba(2, 132, 199, 0.08);
+  --accent-active-bg: rgba(2, 132, 199, 0.12);
+  --accent-code-bg: rgba(2, 132, 199, 0.07);
+  --accent-code-border: rgba(2, 132, 199, 0.12);
   --code-bg: #f3f6fa;
   --code-border: #e2e8f0;
   --blockquote-bg: #f6fbff;
@@ -41,13 +47,19 @@
   --accent: var(--links);
   --accent-strong: var(--links);
   --accent-soft: rgba(255, 255, 255, 0.08);
+  --accent-underline: rgba(255, 255, 255, 0.28);
+  --accent-outline: rgba(255, 255, 255, 0.42);
+  --accent-hover-bg: rgba(255, 255, 255, 0.08);
+  --accent-active-bg: rgba(255, 255, 255, 0.12);
+  --accent-code-bg: rgba(255, 255, 255, 0.08);
+  --accent-code-border: rgba(255, 255, 255, 0.16);
   --code-bg: rgba(255, 255, 255, 0.1);
   --code-border: var(--table-border-color, rgba(255, 255, 255, 0.16));
   --blockquote-bg: var(--quote-bg, rgba(255, 255, 255, 0.04));
   --table-border: var(--table-border-color, rgba(255, 255, 255, 0.12));
-  --table-header-bg: var(--table-header-bg, rgba(255, 255, 255, 0.08));
+  --table-header-bg: rgba(255, 255, 255, 0.08);
   --table-row-alt: rgba(255, 255, 255, 0.03);
-  --surface-alt: var(--table-header-bg, rgba(255, 255, 255, 0.04));
+  --surface-alt: rgba(255, 255, 255, 0.04);
   --shadow: none;
 }
 
@@ -63,7 +75,7 @@ body {
 
 a {
   color: var(--accent-strong);
-  text-decoration-color: rgba(3, 105, 161, 0.28);
+  text-decoration-color: var(--accent-underline);
   text-underline-offset: 0.16em;
 }
 
@@ -75,7 +87,7 @@ a:focus-visible,
 button:focus-visible,
 summary:focus-visible,
 [tabindex]:focus-visible {
-  outline: 3px solid rgba(2, 132, 199, 0.42);
+  outline: 3px solid var(--accent-outline);
   outline-offset: 3px;
 }
 
@@ -103,12 +115,12 @@ summary:focus-visible,
 }
 
 .sidebar a:hover {
-  background: rgba(2, 132, 199, 0.08);
+  background: var(--accent-hover-bg);
   color: var(--accent-strong);
 }
 
 .sidebar .active {
-  background: rgba(2, 132, 199, 0.12);
+  background: var(--accent-active-bg);
   color: var(--accent-strong) !important;
   font-weight: 700;
 }
@@ -186,14 +198,17 @@ summary:focus-visible,
   border-bottom-width: 2px;
 }
 
+.content .table-wrapper {
+  margin: 1.3em 0 1.7em;
+  overflow-x: auto;
+}
+
 .content table {
-  display: block;
   width: max-content;
   min-width: 100%;
-  max-width: 100%;
-  margin: 1.3em 0 1.7em;
+  max-width: none;
+  margin: 0;
   font-size: 0.95em;
-  overflow-x: auto;
   border: 1px solid var(--table-border);
   border-radius: 12px;
   background: var(--panel-bg);
@@ -204,8 +219,8 @@ summary:focus-visible,
 }
 
 .content :not(pre) > code {
-  background: rgba(2, 132, 199, 0.07);
-  border: 1px solid rgba(2, 132, 199, 0.12);
+  background: var(--accent-code-bg);
+  border: 1px solid var(--accent-code-border);
 }
 
 .content pre {
