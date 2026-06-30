@@ -98,6 +98,8 @@ mdbook build
 
 執筆時の表記・文体・コード例・Markdown の注意点は [`STYLEGUIDE.md`](./STYLEGUIDE.md) にまとめています。特に、日本語文中で `**...**` を密着させると mdBook で強調に変換されないことがあるため、文中強調は必要に応じて `<strong>...</strong>` を使います。
 
+表記ルールとして、半角英数字・英単語と日本語の間には半角スペースを入れます。このルールは本文だけでなく、章見出し、部見出し、`manuscript/SUMMARY.md` の目次表記にも適用します。ただし `第8章` `第1部` `付録A` のような日本語の番号ラベル内ではスペースを入れません。
+
 図版を追加・修正するときは、`manuscript/figures/` に SVG を置き、本文から相対パスで参照します。図版の内容仕様は [`FIGURES.md`](./FIGURES.md)、見た目のルールは [`FIGURE_STYLEGUIDE.md`](./FIGURE_STYLEGUIDE.md) を参照してください。
 
 <a id="readme-html"></a>
