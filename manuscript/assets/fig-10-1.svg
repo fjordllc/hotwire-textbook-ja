@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 46 1200 374" role="img" aria-label="Turbo の visit 中に発火する主要イベントの順序と、フォームや morph のイベントを示すタイムライン。">
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#3a6ea5"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="420" fill="#ffffff"/>
+  <style>
+    .title { font: 700 28px sans-serif; fill: #1f2933; }
+    .small { font: 600 15px sans-serif; fill: #52606d; }
+    .tiny { font: 500 13px sans-serif; fill: #52606d; }
+  </style>
+  
+  <rect x="36" y="84" width="1128" height="260" rx="18" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="92" y="170" width="150" height="54" rx="14" fill="#dce9f2" stroke="#3a6ea5" stroke-width="2"/><text x="167" y="203" text-anchor="middle" style="font: 700 14px sans-serif; fill: #1f2933;"><tspan x="167" dy="0">turbo:click</tspan></text><line x1="242" y1="197" x2="268" y2="197" stroke="#3a6ea5" stroke-width="2.5" fill="none" marker-end="url(#arrow)" /><rect x="268" y="170" width="150" height="54" rx="14" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><text x="343" y="203" text-anchor="middle" style="font: 700 14px sans-serif; fill: #1f2933;"><tspan x="343" dy="0">before-visit</tspan></text><line x1="418" y1="197" x2="444" y2="197" stroke="#3a6ea5" stroke-width="2.5" fill="none" marker-end="url(#arrow)" /><rect x="444" y="170" width="150" height="54" rx="14" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><text x="519" y="203" text-anchor="middle" style="font: 700 14px sans-serif; fill: #1f2933;"><tspan x="519" dy="0">visit</tspan></text><line x1="594" y1="197" x2="620" y2="197" stroke="#3a6ea5" stroke-width="2.5" fill="none" marker-end="url(#arrow)" /><rect x="620" y="170" width="150" height="54" rx="14" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><text x="695" y="203" text-anchor="middle" style="font: 700 14px sans-serif; fill: #1f2933;"><tspan x="695" dy="0">before-render</tspan></text><line x1="770" y1="197" x2="796" y2="197" stroke="#3a6ea5" stroke-width="2.5" fill="none" marker-end="url(#arrow)" /><rect x="796" y="170" width="150" height="54" rx="14" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><text x="871" y="203" text-anchor="middle" style="font: 700 14px sans-serif; fill: #1f2933;"><tspan x="871" dy="0">render</tspan></text><line x1="946" y1="197" x2="972" y2="197" stroke="#3a6ea5" stroke-width="2.5" fill="none" marker-end="url(#arrow)" /><rect x="972" y="170" width="150" height="54" rx="14" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><text x="1047" y="203" text-anchor="middle" style="font: 700 14px sans-serif; fill: #1f2933;"><tspan x="1047" dy="0">load</tspan></text><text x="600" y="128" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="600" dy="0">中断できるのは before-visit</tspan></text><text x="600" y="314" text-anchor="middle" style="font: 700 14px sans-serif; fill: #52606d;"><tspan x="600" dy="0">submit-start / submit-end / before-morph-element も別レーン</tspan></text>
+</svg>

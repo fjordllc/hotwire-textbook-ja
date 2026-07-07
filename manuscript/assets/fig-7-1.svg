@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 46 1200 314" role="img" aria-label="通常遷移はページ全体を作り直すが、visit は head をマージして body だけ差し替えることを対比する図。">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#3a6ea5"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="360" fill="#ffffff"/>
+  <style>
+    .title { font: 700 28px sans-serif; fill: #1f2933; }
+    .label { font: 700 18px sans-serif; fill: #1f2933; }
+    .small { font: 600 15px sans-serif; fill: #52606d; }
+    .tiny { font: 500 13px sans-serif; fill: #52606d; }
+  </style>
+  
+  <rect x="40" y="86" width="1120" height="230" rx="18" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="88" y="122" width="468" height="150" rx="16" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="644" y="122" width="468" height="150" rx="16" fill="#dce9f2" stroke="#3a6ea5" stroke-width="2"/><text x="322" y="150" text-anchor="middle" style="font: 700 20px sans-serif; fill: #1f2933;"><tspan x="322" dy="0">通常遷移</tspan></text><text x="878" y="150" text-anchor="middle" style="font: 700 20px sans-serif; fill: #3a6ea5;"><tspan x="878" dy="0">Turbo Drive visit</tspan></text><rect x="136" y="188" width="120" height="34" rx="10" fill="#f6e7e9" stroke="#b23a48" stroke-width="2"/><rect x="276" y="188" width="120" height="34" rx="10" fill="#f6e7e9" stroke="#b23a48" stroke-width="2"/><rect x="416" y="188" width="86" height="34" rx="10" fill="#f6e7e9" stroke="#b23a48" stroke-width="2"/><text x="196" y="210" text-anchor="middle" style="font: 700 14px sans-serif; fill: #1f2933;"><tspan x="196" dy="0">head</tspan></text><text x="336" y="210" text-anchor="middle" style="font: 700 14px sans-serif; fill: #1f2933;"><tspan x="336" dy="0">body</tspan></text><text x="459" y="210" text-anchor="middle" style="font: 700 13px sans-serif; fill: #1f2933;"><tspan x="459" dy="0">白い再描画</tspan></text><rect x="694" y="132" width="120" height="34" rx="10" fill="#dce9f2" stroke="#3a6ea5" stroke-width="2"/><rect x="834" y="188" width="176" height="50" rx="10" fill="#ffffff" stroke="#3a6ea5" stroke-width="2"/><rect x="1030" y="188" width="58" height="50" rx="10" fill="#ffffff" stroke="#3a6ea5" stroke-width="2"/><text x="754" y="154" text-anchor="middle" style="font: 700 14px sans-serif; fill: #1f2933;"><tspan x="754" dy="0">head マージ</tspan></text><text x="922" y="220" text-anchor="middle" style="font: 700 14px sans-serif; fill: #1f2933;"><tspan x="922" dy="0">body 差し替え</tspan></text><text x="1059" y="220" text-anchor="middle" style="font: 700 13px sans-serif; fill: #1f2933;"><tspan x="1059" dy="0">保持</tspan></text><line x1="556" y1="198" x2="640" y2="198" stroke="#3a6ea5" stroke-width="3" fill="none" marker-end="url(#arrow)" />
+</svg>

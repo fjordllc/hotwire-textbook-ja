@@ -13,7 +13,7 @@
 ## 27.2 この章の選択
 
 
-![Streams による差し込み、Stimulus による演出、Action Cable による他者発配信の役割分担を示す図。](../figures/fig-27-1.svg)
+![Streams による差し込み、Stimulus による演出、Action Cable による他者発配信の役割分担を示す図。](../assets/fig-27-1.svg)
 
 役割を 3 つに分けます。
 

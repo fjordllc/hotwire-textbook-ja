@@ -33,7 +33,7 @@ native shell は、WebView が URL を開こうとするたびに、この設定
 ## 33.3 presentation
 
 
-![URL パターンとネイティブの提示方法を rules が対応づける図。](../figures/fig-33-1.svg)
+![URL パターンとネイティブの提示方法を rules が対応づける図。](../assets/fig-33-1.svg)
 
 ルールのプロパティで、画面の出し方を指定します。代表的なのが、モーダルで出すか、プッシュで出すか、です。
 

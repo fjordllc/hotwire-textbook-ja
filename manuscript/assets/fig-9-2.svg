@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 46 1200 374" role="img" aria-label="全置換と差分適用の違い、フォーカスやスクロールの保持を対比する図。">
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#3a6ea5"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="420" fill="#ffffff"/>
+  <style>
+    .title { font: 700 28px sans-serif; fill: #1f2933; }
+    .small { font: 600 15px sans-serif; fill: #52606d; }
+    .tiny { font: 500 13px sans-serif; fill: #52606d; }
+  </style>
+  
+  <rect x="38" y="82" width="1124" height="280" rx="18" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="82" y="136" width="466" height="170" rx="16" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="652" y="136" width="466" height="170" rx="16" fill="#dce9f2" stroke="#3a6ea5" stroke-width="2"/><text x="315" y="164" text-anchor="middle" style="font: 700 20px sans-serif; fill: #1f2933;"><tspan x="315" dy="0">replace</tspan></text><text x="885" y="164" text-anchor="middle" style="font: 700 20px sans-serif; fill: #3a6ea5;"><tspan x="885" dy="0">morph</tspan></text><rect x="130" y="198" width="170" height="44" rx="10" fill="#f6e7e9" stroke="#b23a48" stroke-width="2"/><rect x="324" y="198" width="170" height="44" rx="10" fill="#f6e7e9" stroke="#b23a48" stroke-width="2"/><text x="215" y="226" text-anchor="middle" style="font: 700 14px sans-serif; fill: #1f2933;"><tspan x="215" dy="0">全体を作り直す</tspan></text><text x="409" y="226" text-anchor="middle" style="font: 700 14px sans-serif; fill: #1f2933;"><tspan x="409" dy="0">状態を失う</tspan></text><rect x="700" y="198" width="170" height="44" rx="10" fill="#dce9f2" stroke="#3a6ea5" stroke-width="2"/><rect x="894" y="198" width="170" height="44" rx="10" fill="#dce9f2" stroke="#3a6ea5" stroke-width="2"/><text x="785" y="226" text-anchor="middle" style="font: 700 14px sans-serif; fill: #1f2933;"><tspan x="785" dy="0">変わった部分だけ</tspan></text><text x="979" y="226" text-anchor="middle" style="font: 700 14px sans-serif; fill: #1f2933;"><tspan x="979" dy="0">状態を保つ</tspan></text><text x="600" y="348" text-anchor="middle" style="font: 700 15px sans-serif; fill: #52606d;"><tspan x="600" dy="0">data-turbo-permanent は触らない</tspan></text>
+</svg>

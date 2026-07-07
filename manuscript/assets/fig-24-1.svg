@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 46 1200 374" role="img" aria-label="ページ送り、もっと読む、無限スクロールの 3 方式を使う道具と a11y / URL 再現性で比べる図。">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#3a6ea5"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="420" fill="#ffffff"/>
+  <style>
+    .title { font: 700 28px sans-serif; fill: #1f2933; }
+    .label { font: 700 18px sans-serif; fill: #1f2933; }
+    .small { font: 600 15px sans-serif; fill: #52606d; }
+    .tiny { font: 500 13px sans-serif; fill: #52606d; }
+  </style>
+  
+  <rect x="36" y="82" width="1128" height="280" rx="18" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="82" y="132" width="292" height="170" rx="16" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="102" y="152" width="110" height="34" rx="12" fill="#dce9f2" stroke="#3a6ea5" stroke-width="2"/><text x="157.0" y="175.0" text-anchor="middle" style="font: 700 16px sans-serif; fill: #1f2933;"><tspan x="157.0" dy="0">ページ送り</tspan></text><text x="228" y="202" text-anchor="middle" style="font: 700 17px sans-serif; fill: #1f2933;"><tspan x="228" dy="0">Frames で置換</tspan></text><text x="228" y="236" text-anchor="middle" style="font: 700 14px sans-serif; fill: #52606d;"><tspan x="228" dy="0">URL 再現性 ○</tspan></text><text x="228" y="264" text-anchor="middle" style="font: 700 14px sans-serif; fill: #52606d;"><tspan x="228" dy="0">a11y ○</tspan></text><rect x="442" y="132" width="292" height="170" rx="16" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="462" y="152" width="110" height="34" rx="12" fill="#dce9f2" stroke="#3a6ea5" stroke-width="2"/><text x="517.0" y="175.0" text-anchor="middle" style="font: 700 16px sans-serif; fill: #1f2933;"><tspan x="517.0" dy="0">もっと読む</tspan></text><text x="588" y="202" text-anchor="middle" style="font: 700 17px sans-serif; fill: #1f2933;"><tspan x="588" dy="0">Streams で追記</tspan></text><text x="588" y="236" text-anchor="middle" style="font: 700 14px sans-serif; fill: #52606d;"><tspan x="588" dy="0">URL 再現性 ○</tspan></text><text x="588" y="264" text-anchor="middle" style="font: 700 14px sans-serif; fill: #52606d;"><tspan x="588" dy="0">a11y ○</tspan></text><rect x="802" y="132" width="292" height="170" rx="16" fill="#f4e9dc" stroke="#c9a26b" stroke-width="2"/><rect x="822" y="152" width="110" height="34" rx="12" fill="#c9a26b" stroke="#3a6ea5" stroke-width="2"/><text x="877.0" y="175.0" text-anchor="middle" style="font: 700 16px sans-serif; fill: #1f2933;"><tspan x="877.0" dy="0">無限スクロール</tspan></text><text x="948" y="202" text-anchor="middle" style="font: 700 17px sans-serif; fill: #1f2933;"><tspan x="948" dy="0">Stimulus + Streams</tspan></text><text x="948" y="236" text-anchor="middle" style="font: 700 14px sans-serif; fill: #52606d;"><tspan x="948" dy="0">URL 再現性 △</tspan></text><text x="948" y="264" text-anchor="middle" style="font: 700 14px sans-serif; fill: #52606d;"><tspan x="948" dy="0">a11y △</tspan></text><text x="600" y="118" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="600" dy="0">3 方式を使い分ける</tspan></text>
+</svg>

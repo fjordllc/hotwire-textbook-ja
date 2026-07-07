@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 46 1200 374" role="img" aria-label="frame 内リンクが、レスポンスから同じ id の turbo-frame だけを抽出して差し替える仕組みと、id 不一致時のエラーを示す図。">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#3a6ea5"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="420" fill="#ffffff"/>
+  <style>
+    .title { font: 700 28px sans-serif; fill: #1f2933; }
+    .label { font: 700 18px sans-serif; fill: #1f2933; }
+    .small { font: 600 15px sans-serif; fill: #52606d; }
+    .tiny { font: 500 13px sans-serif; fill: #52606d; }
+  </style>
+  
+  <rect x="40" y="82" width="1120" height="280" rx="18" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="94" y="130" width="300" height="160" rx="16" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="806" y="130" width="300" height="160" rx="16" fill="#dce9f2" stroke="#3a6ea5" stroke-width="2"/><rect x="150" y="172" width="180" height="52" rx="12" fill="#dce9f2" stroke="#3a6ea5" stroke-width="2"/><text x="240" y="204" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="240" dy="0">リンク</tspan></text><text x="244" y="156" text-anchor="middle" style="font: 700 13px sans-serif; fill: #52606d;"><tspan x="244" dy="0">&lt;turbo-frame id=&quot;task_detail&quot;&gt;</tspan></text><text x="956" y="156" text-anchor="middle" style="font: 700 13px sans-serif; fill: #3a6ea5;"><tspan x="956" dy="0">&lt;turbo-frame id=&quot;task_detail&quot;&gt;</tspan></text><rect x="852" y="182" width="208" height="58" rx="12" fill="#ffffff" stroke="#3a6ea5" stroke-width="2"/><text x="956" y="217" text-anchor="middle" style="font: 700 16px sans-serif; fill: #1f2933;"><tspan x="956" dy="0">差し替え対象</tspan></text><line x1="326" y1="198" x2="400" y2="198" stroke="#3a6ea5" stroke-width="3" fill="none" marker-end="url(#arrow)" /><line x1="744" y1="198" x2="810" y2="198" stroke="#3a6ea5" stroke-width="3" fill="none" marker-end="url(#arrow)" /><rect x="458" y="174" width="286" height="48" rx="12" fill="#f6e7e9" stroke="#b23a48" stroke-width="2"/><text x="601" y="204" text-anchor="middle" style="font: 700 15px sans-serif; fill: #b23a48;"><tspan x="601" dy="0">id 不一致 = Content missing</tspan></text>
+</svg>

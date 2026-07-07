@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 46 1200 314" role="img" aria-label="状態を data 属性に置けばスナップショットに乗るが、JS のインスタンス変数だけだと差し替えで失われることを対比する図。">
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#3a6ea5"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="360" fill="#ffffff"/>
+  <style>
+    .title { font: 700 28px sans-serif; fill: #1f2933; }
+    .small { font: 600 15px sans-serif; fill: #52606d; }
+    .tiny { font: 500 13px sans-serif; fill: #52606d; }
+  </style>
+  
+  <rect x="38" y="82" width="1124" height="240" rx="18" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="90" y="138" width="420" height="116" rx="16" fill="#dce9f2" stroke="#3a6ea5" stroke-width="2"/><rect x="690" y="138" width="420" height="116" rx="16" fill="#f4e9dc" stroke="#c9a26b" stroke-width="2"/><text x="300" y="168" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="300" dy="0">HTML に状態</tspan></text><text x="300" y="196" text-anchor="middle" style="font: 700 14px sans-serif; fill: #1f2933;"><tspan x="300" dy="0">data-...-value / class</tspan></text><text x="300" y="224" text-anchor="middle" style="font: 700 14px sans-serif; fill: #3a6ea5;"><tspan x="300" dy="0">スナップショットに含まれる</tspan></text><text x="900" y="168" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="900" dy="0">JS だけに状態</tspan></text><text x="900" y="196" text-anchor="middle" style="font: 700 14px sans-serif; fill: #1f2933;"><tspan x="900" dy="0">controller の instance variable</tspan></text><text x="900" y="224" text-anchor="middle" style="font: 700 14px sans-serif; fill: #c9a26b;"><tspan x="900" dy="0">差し替えで消える</tspan></text><line x1="510" y1="196" x2="682" y2="196" stroke="#3a6ea5" stroke-width="2.5" fill="none" marker-end="url(#arrow)" />
+</svg>

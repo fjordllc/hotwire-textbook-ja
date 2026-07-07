@@ -42,7 +42,7 @@ frame は、`turbo_frame_tag` ヘルパーで作ります。
 
 frame の中のリンクをたどると、Turbo はリンク先の HTML を取得し、その中から<strong>同じ `id` を持つ `<turbo-frame>` を探して</strong>、中身を差し替えます。つまり、リンク元のページとリンク先のページの両方に、同じ `id` の frame がなければなりません。
 
-![Turbo Frame の id 一致。frame 内リンクが、レスポンスから同じ id の turbo-frame だけを抽出して差し替える仕組みと、id 不一致時の Content missing を示す構造図](../figures/fig-11-1.svg)
+![Turbo Frame の id 一致。frame 内リンクが、レスポンスから同じ id の turbo-frame だけを抽出して差し替える仕組みと、id 不一致時の Content missing を示す構造図](../assets/fig-11-1.svg)
 
 
 `id` は手で書く以外に、モデルから作ることもできます。`dom_id` を使うと、レコードに対応した `id` になります。
@@ -87,7 +87,7 @@ frame の中にリンクを置くと、そのリンクは frame の中だけを�
 ## 11.5 `data-turbo-frame` で別の frame を target する
 
 
-![既定、自分以外の frame、_top での差し替え先の違いを示す図。](../figures/fig-11-2.svg)
+![既定、自分以外の frame、_top での差し替え先の違いを示す図。](../assets/fig-11-2.svg)
 
 ここまでは、frame の中のリンクが「自分の frame」を差し替える例でした。しかし、「frame の中のリンクで、別の場所を差し替えたい」こともあります。
 

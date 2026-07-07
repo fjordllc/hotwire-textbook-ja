@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 46 960 374" role="img" aria-label="UI にサーバー内容が要るかどうかで Stimulus 単独か Turbo Frames/Streams かを仕分けるフローチャート。">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#3a6ea5"/>
+    </marker>
+  </defs>
+  <rect width="960" height="420" fill="#ffffff"/>
+  <style>
+    .title { font: 700 28px sans-serif; fill: #1f2933; }
+    .label { font: 700 18px sans-serif; fill: #1f2933; }
+    .small { font: 600 15px sans-serif; fill: #52606d; }
+    .tiny { font: 500 13px sans-serif; fill: #52606d; }
+  </style>
+  
+  <rect x="34" y="74" width="892" height="300" rx="18" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="330" y="106" width="300" height="54" rx="14" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><text x="480" y="139" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="480" dy="0">サーバーの内容が要る?</tspan></text><line x1="480" y1="160" x2="480" y2="190" stroke="#3a6ea5" stroke-width="3" fill="none" marker-end="url(#arrow)" /><rect x="130" y="198" width="220" height="74" rx="14" fill="#dce9f2" stroke="#3a6ea5" stroke-width="2"/><rect x="610" y="198" width="220" height="74" rx="14" fill="#dce9f2" stroke="#3a6ea5" stroke-width="2"/><text x="240" y="230" text-anchor="middle" style="font: 700 17px sans-serif; fill: #1f2933;"><tspan x="240" dy="0">No → Stimulus</tspan></text><text x="240" y="252" text-anchor="middle" style="font: 600 14px sans-serif; fill: #52606d;"><tspan x="240" dy="0">ドロップダウン / 静的タブ</tspan></text><text x="720" y="230" text-anchor="middle" style="font: 700 17px sans-serif; fill: #1f2933;"><tspan x="720" dy="0">Yes → Frames / Streams</tspan></text><text x="720" y="252" text-anchor="middle" style="font: 600 14px sans-serif; fill: #52606d;"><tspan x="720" dy="0">遅延タブ / モーダル / 更新</tspan></text><line x1="360" y1="230" x2="330" y2="230" stroke="#3a6ea5" stroke-width="3" fill="none" marker-end="url(#arrow)" /><line x1="600" y1="230" x2="570" y2="230" stroke="#3a6ea5" stroke-width="3" fill="none" marker-end="url(#arrow)" />
+</svg>

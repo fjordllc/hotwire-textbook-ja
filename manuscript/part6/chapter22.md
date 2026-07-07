@@ -69,7 +69,7 @@ export default class extends Controller {
 ## 22.5 Turbo cache との相互作用
 
 
-![connect で初期化し disconnect で破棄し、before-cache で片付ける流れを示すタイムライン。](../figures/fig-22-1.svg)
+![connect で初期化し disconnect で破棄し、before-cache で片付ける流れを示すタイムライン。](../assets/fig-22-1.svg)
 
 もう 1 つ、キャッシュ特有の注意があります。第9章で見たとおり、Turbo はページを離れる直前にスナップショットを保存し、戻る・進むでプレビュー表示します。
 

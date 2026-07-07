@@ -34,9 +34,9 @@ SPA は、多くを解決しました。ネイティブアプリのような滑�
 
 この発想には、利点があります。画面を組み立てるのは、引き続きサーバーです。だから、JavaScript は最小限で済みます。状態も、基本はサーバーが持ちます。検証も、サーバーに一本化できます。SPA が増やした複雑さの多くを、避けられます。Hotwire は、この「HTML を送る部分更新」を、現代的な使い勝手で実現する道具です。
 
-![画面更新の歴史。全ページ再読み込み→Ajax→JSON/SPA→HTML over the wire の流れと、各段の利点と代償を並べたタイムライン](../figures/fig-2-1.svg)
+![画面更新の歴史。全ページ再読み込み→Ajax→JSON/SPA→HTML over the wire の流れと、各段の利点と代償を並べたタイムライン](../assets/fig-2-1.svg)
 
-![JSON+SPA と HTML over the wire の通信比較。wire を流れるもの（JSON か HTML か）と画面を組み立てる場所（ブラウザかサーバーか）の違いを対比](../figures/fig-2-2.svg)
+![JSON+SPA と HTML over the wire の通信比較。wire を流れるもの（JSON か HTML か）と画面を組み立てる場所（ブラウザかサーバーか）の違いを対比](../assets/fig-2-2.svg)
 
 
 ## 2.5 Hotwire が向くアプリケーション

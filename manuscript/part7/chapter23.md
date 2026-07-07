@@ -73,7 +73,7 @@ end
 ## 23.5 Stimulus で requestSubmit を debounce する
 
 
-![Stimulus で debounce した GET 検索が frame を差し替え、advance で URL を反映する構成図。](../figures/fig-23-1.svg)
+![Stimulus で debounce した GET 検索が frame を差し替え、advance で URL を反映する構成図。](../assets/fig-23-1.svg)
 
 「検索」ボタンを押さなくても、入力に追従して絞り込みたいところです。Stimulus で、入力のたびにフォームを送信します。ただし、1 文字ごとに送るとリクエストが多すぎるので、少し待ってから送る（debounce）ようにします。
 

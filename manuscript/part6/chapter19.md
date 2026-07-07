@@ -96,7 +96,7 @@ Stimulus の `connect()` と `disconnect()` は、Turbo の動きと噛み合っ
 
 19.1 で見た `DOMContentLoaded` は、最初の一度しか発火しませんでした。一方 Stimulus の `connect()` は、Turbo が画面を差し替えるたびに呼ばれます。だから、Turbo で動くアプリでは、`DOMContentLoaded` で書いた振る舞いは動かなくなり、Stimulus の controller は動き続けます。
 
-![Stimulus controller と data 属性。data-controller が HTML と controller を名前で結びつけ、Turbo の差し替えのたびに connect/disconnect が呼ばれることを、DOMContentLoaded（初回のみ）との対比で示す図](../figures/fig-19-1.svg)
+![Stimulus controller と data 属性。data-controller が HTML と controller を名前で結びつけ、Turbo の差し替えのたびに connect/disconnect が呼ばれることを、DOMContentLoaded（初回のみ）との対比で示す図](../assets/fig-19-1.svg)
 
 
 逆に、`disconnect()` で後始末をしないと、要素が消えても残骸が残ることがあります。[第9章](../part3/chapter9.md)で見たキャッシュとも関わるこの後始末は、[第22章](chapter22.md)で詳しく扱います。

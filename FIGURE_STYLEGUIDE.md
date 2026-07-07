@@ -1,20 +1,10 @@
 # 図版スタイルガイド
 
-図版の見た目を揃えるためのルールです。
+図版の見た目の基準（配色・フォント・レイアウト・図の型・アクセシビリティなど「どう見せるか」）は、
+FBC Press シリーズ共通のガイドに集約しました。本書もそれに従います。
 
-## 基本方針
+- **[FBC_Press/FIGURE_GUIDE.md](../FBC_Press/FIGURE_GUIDE.md)** … 見た目・技術仕様・レビュー観点
+- **[FBC_Press/ASSET_RULES.md](../FBC_Press/ASSET_RULES.md)** … 図版ファイルの管理・集約スクリプト
 
-- 読みやすさを最優先します。
-- 色数を絞り、部品の意味で色を使い分けます。
-- 本文と同じく、派手な装飾よりも構造の理解を優先します。
-
-## 表記
-
-- Rails 側は `Controller`、`View`、`Model` のように英語表記します。
-- Hotwire 側は `Turbo Drive`、`Turbo Frames`、`Turbo Streams`、`Stimulus` と表記します。
-- 矢印には「HTML」「Turbo Stream」「イベント」など、何が流れているかを短く書きます。
-
-## アクセシビリティ
-
-- 本文で使うすべての図版に `alt` を設定します。
-- 図版だけで説明を完結させず、本文でも同じ内容を説明します。
+本書固有の「何を作るか」（各図の内容仕様）は [`FIGURES.md`](./FIGURES.md) を参照。
+図版の生成は `scripts/figures/build_all.py` に集約し、出力は `manuscript/assets/` に置く。

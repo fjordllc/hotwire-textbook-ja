@@ -21,7 +21,7 @@ Rails のコレクション描画（`render @tasks`）は、同じ partial を�
 ## 30.3 N+1 と preload
 
 
-![一覧描画で N+1 が起きる様子と、includes で解消する様子をクエリ本数で対比する図。](../figures/fig-30-1.svg)
+![一覧描画で N+1 が起きる様子と、includes で解消する様子をクエリ本数で対比する図。](../assets/fig-30-1.svg)
 
 Relay のタスクは、担当者（`assignee`）・タグ（`tags`）・コメント（`comments`）を持ちます。一覧で各タスクの担当者名やタグを表示すると、タスク 1 件ごとに関連を引くクエリが走ります。これが N+1 です。
 

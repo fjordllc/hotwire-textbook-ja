@@ -27,7 +27,7 @@ Hotwire Native のアプリは、大きく 2 つの部分でできています�
 
 ユーザーから見ると、ナビゲーションや遷移はネイティブの操作感で、中身の画面は Web、という形になります。Turbo が Web で実現していた高速な画面遷移が、ネイティブのナビゲーションと組み合わさります。
 
-![WebView と native shell。スマホの外枠の中に、ネイティブのナビゲーションバー（shell）と Relay の Web 画面を表示する WebView を配した構成図](../figures/fig-32-1.svg)
+![WebView と native shell。スマホの外枠の中に、ネイティブのナビゲーションバー（shell）と Relay の Web 画面を表示する WebView を配した構成図](../assets/fig-32-1.svg)
 
 
 ## 32.3 すべてをネイティブ化しない判断

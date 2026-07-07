@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 46 1200 374" role="img" aria-label="data-controller が HTML と controller を名前で結びつけ、Turbo の差し替えのたびに connect/disconnect が呼ばれることを示す図。">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#3a6ea5"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="420" fill="#ffffff"/>
+  <style>
+    .title { font: 700 28px sans-serif; fill: #1f2933; }
+    .label { font: 700 18px sans-serif; fill: #1f2933; }
+    .small { font: 600 15px sans-serif; fill: #52606d; }
+    .tiny { font: 500 13px sans-serif; fill: #52606d; }
+  </style>
+  
+  <rect x="36" y="82" width="1128" height="280" rx="18" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="90" y="144" width="260" height="100" rx="16" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="430" y="144" width="300" height="100" rx="16" fill="#dce9f2" stroke="#3a6ea5" stroke-width="2"/><rect x="800" y="144" width="280" height="100" rx="16" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><text x="220" y="176" text-anchor="middle" style="font: 700 16px sans-serif; fill: #1f2933;"><tspan x="220" dy="0">HTML: data-controller=&quot;autofocus&quot;</tspan></text><text x="580" y="176" text-anchor="middle" style="font: 700 18px sans-serif; fill: #3a6ea5;"><tspan x="580" dy="0">autofocus_controller.js</tspan></text><text x="940" y="176" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="940" dy="0">connect / disconnect</tspan></text><line x1="350" y1="194" x2="424" y2="194" stroke="#3a6ea5" stroke-width="3" fill="none" marker-end="url(#arrow)" /><line x1="730" y1="194" x2="794" y2="194" stroke="#3a6ea5" stroke-width="3" fill="none" marker-end="url(#arrow)" /><text x="580" y="316" text-anchor="middle" style="font: 700 15px sans-serif; fill: #52606d;"><tspan x="580" dy="0">Turbo 遷移のたびに再接続</tspan></text>
+</svg>

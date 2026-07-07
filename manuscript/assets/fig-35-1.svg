@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 46 1200 334" role="img" aria-label="ネイティブのログイン画面と Web のタスク一覧が同じアプリ内に混在し、認証セッションを WebView へ渡す図。">
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#3a6ea5"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="380" fill="#ffffff"/>
+  <style>
+    .title { font: 700 28px sans-serif; fill: #1f2933; }
+    .small { font: 600 15px sans-serif; fill: #52606d; }
+    .tiny { font: 500 13px sans-serif; fill: #52606d; }
+  </style>
+  
+  <rect x="38" y="82" width="1124" height="240" rx="18" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="86" y="146" width="280" height="90" rx="16" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="430" y="146" width="280" height="90" rx="16" fill="#dce9f2" stroke="#3a6ea5" stroke-width="2"/><rect x="774" y="146" width="280" height="90" rx="16" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><text x="226" y="176" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="226" dy="0">Native login</tspan></text><text x="226" y="204" text-anchor="middle" style="font: 700 14px sans-serif; fill: #52606d;"><tspan x="226" dy="0">cookie / token</tspan></text><text x="570" y="176" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="570" dy="0">WebView</tspan></text><text x="570" y="204" text-anchor="middle" style="font: 700 14px sans-serif; fill: #3a6ea5;"><tspan x="570" dy="0">Relay の一覧</tspan></text><text x="914" y="176" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="914" dy="0">同期</tspan></text><text x="914" y="204" text-anchor="middle" style="font: 700 14px sans-serif; fill: #52606d;"><tspan x="914" dy="0">認証セッション</tspan></text><line x1="366" y1="191" x2="424" y2="191" stroke="#3a6ea5" stroke-width="2.5" fill="none" marker-end="url(#arrow)" /><line x1="710" y1="191" x2="768" y2="191" stroke="#3a6ea5" stroke-width="2.5" fill="none" marker-end="url(#arrow)" />
+</svg>

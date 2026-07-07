@@ -69,7 +69,7 @@ Relay のモデルは次の 6 つです。関連は素直で、Rails の学習�
 - `Task` は担当者として `User` を 1 人持ちます（未割り当ても許します）。
 - `Comment` は投稿者として `User` を 1 人持ちます。
 
-![Relay のモデル関連と主要画面の対応図](../figures/fig-4-1.svg)
+![Relay のモデル関連と主要画面の対応図](../assets/fig-4-1.svg)
 
 `Task#status` は `todo`、`in_progress`、`done` の enum にします。ステータスは検索、絞り込み、バリデーション、表示の出し分け、通知のすべてに使えるため、本書のハンズオンを支える軸になります。
 
@@ -82,7 +82,7 @@ Relay のモデルは次の 6 つです。関連は素直で、Rails の学習�
 ## 4.5 主要画面
 
 
-![Relay の主要画面に Turbo Drive、Frames、Streams、Stimulus、Action Cable を対応づけた図。](../figures/fig-4-2.svg)
+![Relay の主要画面に Turbo Drive、Frames、Streams、Stimulus、Action Cable を対応づけた図。](../assets/fig-4-2.svg)
 
 Relay の主要な画面と、そこで主に使う Hotwire の技術を対応させると次のようになります。どの画面でどの技術を使うかは、第3部以降で 1 つずつ実装していきます。
 

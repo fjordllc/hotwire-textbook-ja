@@ -41,7 +41,7 @@ Web 側の controller 名と、ネイティブ側の component が、名前で�
 ## 34.4 メッセージの送受信
 
 
-![Web の Stimulus とネイティブ component が名前で対応し、メッセージを往復する図。](../figures/fig-34-1.svg)
+![Web の Stimulus とネイティブ component が名前で対応し、メッセージを往復する図。](../assets/fig-34-1.svg)
 
 Web とネイティブは、メッセージをやり取りします。
 

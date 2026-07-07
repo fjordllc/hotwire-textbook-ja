@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 46 1200 374" role="img" aria-label="modal frame + dialog + Stimulus open + 成功時 Streams close の流れを示す図。">
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#3a6ea5"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="420" fill="#ffffff"/>
+  <style>
+    .title { font: 700 28px sans-serif; fill: #1f2933; }
+    .small { font: 600 15px sans-serif; fill: #52606d; }
+    .tiny { font: 500 13px sans-serif; fill: #52606d; }
+  </style>
+  
+  <rect x="38" y="82" width="1124" height="280" rx="18" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="80" y="152" width="180" height="72" rx="16" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><text x="170" y="180" text-anchor="middle" style="font: 700 17px sans-serif; fill: #1f2933;"><tspan x="170" dy="0">新規作成リンク</tspan></text><rect x="332" y="144" width="176" height="88" rx="16" fill="#dce9f2" stroke="#3a6ea5" stroke-width="2"/><text x="420" y="176" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="420" dy="0">modal frame</tspan></text><rect x="592" y="128" width="238" height="118" rx="16" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><text x="711" y="158" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="711" dy="0">&lt;dialog&gt;</tspan></text><text x="711" y="188" text-anchor="middle" style="font: 700 14px sans-serif; fill: #1f2933;"><tspan x="711" dy="0">Stimulus modal</tspan></text><rect x="886" y="140" width="238" height="100" rx="16" fill="#dce9f2" stroke="#3a6ea5" stroke-width="2"/><text x="1005" y="168" text-anchor="middle" style="font: 700 17px sans-serif; fill: #1f2933;"><tspan x="1005" dy="0">create.turbo_stream</tspan></text><text x="1005" y="196" text-anchor="middle" style="font: 700 14px sans-serif; fill: #1f2933;"><tspan x="1005" dy="0">prepend + close + flash</tspan></text><line x1="260" y1="188" x2="324" y2="188" stroke="#3a6ea5" stroke-width="2.5" fill="none" marker-end="url(#arrow)" /><line x1="508" y1="188" x2="586" y2="188" stroke="#3a6ea5" stroke-width="2.5" fill="none" marker-end="url(#arrow)" /><line x1="830" y1="188" x2="878" y2="188" stroke="#3a6ea5" stroke-width="2.5" fill="none" marker-end="url(#arrow)" /><text x="711" y="308" text-anchor="middle" style="font: 700 15px sans-serif; fill: #52606d;"><tspan x="711" dy="0">Esc で close / cleanup</tspan></text>
+</svg>

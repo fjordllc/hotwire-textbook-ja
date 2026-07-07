@@ -24,7 +24,7 @@ Hotwire は、いくつかの道具の集まりです。役割が分かれてい
 
 Turbo が屋台骨、Stimulus が補助、Hotwire Native がモバイルへの拡張、という関係です。どれも「HTML over the wire」という一つの考え方の現れです。
 
-![Hotwire の全体像。Turbo / Stimulus / Hotwire Native が、いずれも「HTML over the wire」の上に立つことを示す概念図](../figures/fig-1-1.svg)
+![Hotwire の全体像。Turbo / Stimulus / Hotwire Native が、いずれも「HTML over the wire」の上に立つことを示す概念図](../assets/fig-1-1.svg)
 
 
 ## 1.3 JSON API + SPA との違い
@@ -53,7 +53,7 @@ Relay は、プロジェクトの下にタスクがぶら下がり、タスク�
 
 一つのアプリを最初から最後まで育てるので、「この機能を、なぜこの道具で作るのか」を、文脈の中で理解できます。Relay の詳しい仕様は、第2部（第4章）で共有します。
 
-![Relay を育てる全体像。素の CRUD から各部で機能を足し、実務水準の Relay へ至る本書全体の道筋を示す成長フロー図](../figures/fig-1-2.svg)
+![Relay を育てる全体像。素の CRUD から各部で機能を足し、実務水準の Relay へ至る本書全体の道筋を示す成長フロー図](../assets/fig-1-2.svg)
 
 
 > 第1章では、Hotwire を「HTML over the wire」という設計思想として捉えました。次の第2章では、なぜ今、HTML を送る設計が見直されているのか、その背景を歴史から見ます。

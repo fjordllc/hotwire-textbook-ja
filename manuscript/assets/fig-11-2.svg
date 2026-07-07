@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 46 1200 374" role="img" aria-label="既定、自分以外の frame、_top での差し替え先の違いを示す図。">
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#3a6ea5"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="420" fill="#ffffff"/>
+  <style>
+    .title { font: 700 28px sans-serif; fill: #1f2933; }
+    .small { font: 600 15px sans-serif; fill: #52606d; }
+    .tiny { font: 500 13px sans-serif; fill: #52606d; }
+  </style>
+  
+  <rect x="38" y="82" width="1124" height="280" rx="18" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="84" y="124" width="260" height="180" rx="16" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="460" y="124" width="260" height="180" rx="16" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="836" y="124" width="260" height="180" rx="16" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><text x="214" y="150" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="214" dy="0">既定</tspan></text><text x="214" y="182" text-anchor="middle" style="font: 700 16px sans-serif; fill: #52606d;"><tspan x="214" dy="0">自分の frame</tspan></text><text x="590" y="150" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="590" dy="0">data-turbo-frame</tspan></text><text x="590" y="182" text-anchor="middle" style="font: 700 16px sans-serif; fill: #52606d;"><tspan x="590" dy="0">別 frame</tspan></text><text x="966" y="150" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="966" dy="0">_top</tspan></text><text x="966" y="182" text-anchor="middle" style="font: 700 16px sans-serif; fill: #52606d;"><tspan x="966" dy="0">ページ全体</tspan></text><line x1="344" y1="214" x2="452" y2="214" stroke="#3a6ea5" stroke-width="2.5" fill="none" marker-end="url(#arrow)" /><line x1="720" y1="214" x2="828" y2="214" stroke="#3a6ea5" stroke-width="2.5" fill="none" marker-end="url(#arrow)" /><text x="600" y="350" text-anchor="middle" style="font: 700 15px sans-serif; fill: #52606d;"><tspan x="600" dy="0">frame だけ / 別 frame / 全体 visit</tspan></text>
+</svg>

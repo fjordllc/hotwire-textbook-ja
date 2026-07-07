@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 46 1200 374" role="img" aria-label="1 レスポンスに含めた 3 つの turbo-stream が、一覧・フォーム・フラッシュの 3 か所を同時に更新する図。">
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#3a6ea5"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="420" fill="#ffffff"/>
+  <style>
+    .title { font: 700 28px sans-serif; fill: #1f2933; }
+    .small { font: 600 15px sans-serif; fill: #52606d; }
+    .tiny { font: 500 13px sans-serif; fill: #52606d; }
+  </style>
+  
+  <rect x="38" y="82" width="1124" height="280" rx="18" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="134" y="140" width="236" height="140" rx="16" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><text x="252" y="166" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="252" dy="0">response</tspan></text><rect x="154" y="190" width="196" height="24" rx="10" fill="#dce9f2" stroke="#3a6ea5" stroke-width="2"/><rect x="154" y="222" width="196" height="24" rx="10" fill="#dce9f2" stroke="#3a6ea5" stroke-width="2"/><rect x="154" y="254" width="196" height="24" rx="10" fill="#dce9f2" stroke="#3a6ea5" stroke-width="2"/><text x="252" y="206" text-anchor="middle" style="font: 700 13px sans-serif; fill: #1f2933;"><tspan x="252" dy="0">prepend tasks</tspan></text><text x="252" y="238" text-anchor="middle" style="font: 700 13px sans-serif; fill: #1f2933;"><tspan x="252" dy="0">update form</tspan></text><text x="252" y="270" text-anchor="middle" style="font: 700 13px sans-serif; fill: #1f2933;"><tspan x="252" dy="0">update flash</tspan></text><rect x="460" y="132" width="176" height="54" rx="14" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="460" y="210" width="176" height="54" rx="14" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="460" y="288" width="176" height="54" rx="14" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><text x="548" y="165" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="548" dy="0">一覧</tspan></text><text x="548" y="243" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="548" dy="0">フォーム</tspan></text><text x="548" y="321" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="548" dy="0">flash</tspan></text><line x1="370" y1="206" x2="452" y2="159" stroke="#3a6ea5" stroke-width="2.5" fill="none" marker-end="url(#arrow)" /><line x1="370" y1="238" x2="452" y2="237" stroke="#3a6ea5" stroke-width="2.5" fill="none" marker-end="url(#arrow)" /><line x1="370" y1="270" x2="452" y2="315" stroke="#3a6ea5" stroke-width="2.5" fill="none" marker-end="url(#arrow)" /><text x="760" y="220" text-anchor="middle" style="font: 700 20px sans-serif; fill: #3a6ea5;"><tspan x="760" dy="0">1 レスポンスで複数更新</tspan></text>
+</svg>

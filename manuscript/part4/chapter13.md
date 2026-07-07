@@ -9,7 +9,7 @@ frame に `src` を与えると、その frame は自分で中身を取りに行
 ## 13.1 lazy loading
 
 
-![src と loading=lazy で可視になってから取得し、skeleton が本体に差し替わる流れを示す図。](../figures/fig-13-1.svg)
+![src と loading=lazy で可視になってから取得し、skeleton が本体に差し替わる流れを示す図。](../assets/fig-13-1.svg)
 
 frame に `src` 属性を与えると、frame はページに現れた時点で、その URL から中身を自動で取得します。読み込みのきっかけは `src` です。
 
@@ -113,7 +113,7 @@ skeleton は、読み込みが終われば本物に差し替わって消えま�
 ## 13.4 サイドバー詳細
 
 
-![detail frame の中に task_1 frame が入る入れ子構造を示す図。](../figures/fig-13-2.svg)
+![detail frame の中に task_1 frame が入る入れ子構造を示す図。](../assets/fig-13-2.svg)
 
 第12章では、`show.html.erb` を `render @task` の 1 行にしていました。ここで、第12章の終わりで触れた「外枠の中に frame を置く」構成に進めます。
 

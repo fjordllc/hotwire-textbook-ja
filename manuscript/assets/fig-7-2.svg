@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 46 1200 374" role="img" aria-label="リンククリックから fetch、HTML 応答、body 差し替えまでの流れを示すシーケンス図。">
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#3a6ea5"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="420" fill="#ffffff"/>
+  <style>
+    .title { font: 700 28px sans-serif; fill: #1f2933; }
+    .small { font: 600 15px sans-serif; fill: #52606d; }
+    .tiny { font: 500 13px sans-serif; fill: #52606d; }
+  </style>
+  
+  <rect x="38" y="82" width="1124" height="280" rx="18" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="44" y="118" width="152" height="44" rx="12" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><text x="120" y="146" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="120" dy="0">User</tspan></text><rect x="424" y="118" width="152" height="44" rx="12" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><text x="500" y="146" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="500" dy="0">Turbo</tspan></text><rect x="804" y="118" width="152" height="44" rx="12" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><text x="880" y="146" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="880" dy="0">Server</tspan></text><line x1="196" y1="188" x2="452" y2="188" stroke="#3a6ea5" stroke-width="2.5" fill="none" marker-end="url(#arrow)" /><text x="320" y="176" text-anchor="middle" style="font: 700 13px sans-serif; fill: #52606d;"><tspan x="320" dy="0">click</tspan></text><line x1="548" y1="238" x2="832" y2="238" stroke="#3a6ea5" stroke-width="2.5" fill="none" marker-end="url(#arrow)" /><text x="690" y="226" text-anchor="middle" style="font: 700 13px sans-serif; fill: #52606d;"><tspan x="690" dy="0">fetch</tspan></text><line x1="832" y1="288" x2="548" y2="288" stroke="#3a6ea5" stroke-width="2.5" fill="none" marker-end="url(#arrow)" /><text x="690" y="276" text-anchor="middle" style="font: 700 13px sans-serif; fill: #52606d;"><tspan x="690" dy="0">HTML</tspan></text><line x1="452" y1="338" x2="548" y2="338" stroke="#3a6ea5" stroke-width="2.5" fill="none" marker-end="url(#arrow)" /><text x="500" y="326" text-anchor="middle" style="font: 700 13px sans-serif; fill: #52606d;"><tspan x="500" dy="0">body 差し替え + head マージ</tspan></text><text x="600" y="356" text-anchor="middle" style="font: 700 15px sans-serif; fill: #3a6ea5;"><tspan x="600" dy="0">サーバーは通常どおり HTML を返すだけ</tspan></text>
+</svg>

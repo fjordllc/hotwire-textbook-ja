@@ -28,7 +28,7 @@ Turbo Streams は<strong>命令</strong>です。サーバーが「この `id` �
 
 これは「`id="tasks"` の要素の末尾に、この `<template>` の中身を追加せよ（append）」という命令です。`<turbo-stream>` 自体は画面に表示されず、命令として処理されると消えます。
 
-![Turbo Streams のレスポンスと DOM 更新。turbo-stream の action・target・template の構造と、それが対象 id の DOM をどう操作するかを示す構造図](../figures/fig-15-1.svg)
+![Turbo Streams のレスポンスと DOM 更新。turbo-stream の action・target・template の構造と、それが対象 id の DOM をどう操作するかを示す構造図](../assets/fig-15-1.svg)
 
 
 そして、命令は<strong>1 つのレスポンスに複数入れられます</strong>。ここが frame との決定的な違いです。frame が 1 か所しか差し替えられなかったのに対し、Streams は離れた複数の場所を、それぞれ別の action で同時に操作できます。第14章で frame では応えられなかった「行を消し、件数を更新し、フラッシュを出す」が、Streams なら 3 つの命令で実現できます（第17章で実装します）。
@@ -50,7 +50,7 @@ Turbo Streams には、8 つの action があります。
 
 `replace` と `update` の違いに注意してください。`replace` は target の要素ごと差し替えます。`update` は target の要素は残し、その中身だけを差し替えます。タスクの行ごと入れ替えたいなら `replace`、行の中の一部分だけ変えたいなら `update`、という使い分けです。
 
-![8 つのアクションの図解。append/prepend/replace/update/remove/before/after/refresh が対象要素に与える効果を、ビフォー/アフターで並べた比較図](../figures/fig-15-2.svg)
+![8 つのアクションの図解。append/prepend/replace/update/remove/before/after/refresh が対象要素に与える効果を、ビフォー/アフターで並べた比較図](../assets/fig-15-2.svg)
 
 
 ## 15.3 target と targets

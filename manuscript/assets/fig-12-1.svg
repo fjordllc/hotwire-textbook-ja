@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 46 1200 374" role="img" aria-label="タスク行の frame が表示と編集フォームを、保存・キャンセル・失敗で差し替え合う流れを示す図。">
+  <defs>
+    <marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto">
+      <path d="M0,0 L7,3.5 L0,7 z" fill="#3a6ea5"/>
+    </marker>
+  </defs>
+  <rect width="1200" height="420" fill="#ffffff"/>
+  <style>
+    .title { font: 700 28px sans-serif; fill: #1f2933; }
+    .small { font: 600 15px sans-serif; fill: #52606d; }
+    .tiny { font: 500 13px sans-serif; fill: #52606d; }
+  </style>
+  
+  <rect x="36" y="84" width="1128" height="280" rx="18" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="92" y="138" width="200" height="104" rx="16" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="92" y="270" width="200" height="72" rx="16" fill="#dce9f2" stroke="#3a6ea5" stroke-width="2"/><rect x="420" y="138" width="200" height="104" rx="16" fill="#dce9f2" stroke="#3a6ea5" stroke-width="2"/><rect x="420" y="270" width="200" height="72" rx="16" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><text x="192" y="170" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="192" dy="0">表示</tspan></text><text x="192" y="204" text-anchor="middle" style="font: 600 16px sans-serif; fill: #52606d;"><tspan x="192" dy="0">_task</tspan></text><text x="192" y="314" text-anchor="middle" style="font: 700 16px sans-serif; fill: #1f2933;"><tspan x="192" dy="0">編集リンク</tspan></text><text x="520" y="170" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="520" dy="0">編集</tspan></text><text x="520" y="204" text-anchor="middle" style="font: 600 16px sans-serif; fill: #52606d;"><tspan x="520" dy="0">_form</tspan></text><text x="520" y="314" text-anchor="middle" style="font: 700 16px sans-serif; fill: #1f2933;"><tspan x="520" dy="0">保存 / キャンセル</tspan></text><line x1="292" y1="190" x2="416" y2="190" stroke="#3a6ea5" stroke-width="2.5" fill="none" marker-end="url(#arrow)" /><line x1="620" y1="190" x2="744" y2="190" stroke="#3a6ea5" stroke-width="2.5" fill="none" marker-end="url(#arrow)" /><rect x="760" y="138" width="164" height="104" rx="16" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><rect x="948" y="138" width="164" height="104" rx="16" fill="#eef1f5" stroke="#b8c2cc" stroke-width="2"/><text x="842" y="170" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="842" dy="0">成功</tspan></text><text x="1030" y="170" text-anchor="middle" style="font: 700 18px sans-serif; fill: #1f2933;"><tspan x="1030" dy="0">失敗</tspan></text><text x="842" y="204" text-anchor="middle" style="font: 700 14px sans-serif; fill: #52606d;"><tspan x="842" dy="0">303 → 表示</tspan></text><text x="1030" y="204" text-anchor="middle" style="font: 700 14px sans-serif; fill: #52606d;"><tspan x="1030" dy="0">422 → エラー</tspan></text>
+</svg>

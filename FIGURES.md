@@ -6,8 +6,8 @@
 
 - 図版は Hotwire の仕組みを理解するために使う（装飾目的は置かない）。
 - Rails の controller / view と、Turbo / Stimulus / ブラウザの関係を視覚化する。
-- 図版ファイルは `manuscript/figures/` に置く（`fig-<章>-<連番>.svg` などを想定）。
-- 見た目のルールは `FIGURE_STYLEGUIDE.md` に従う。
+- 図版ファイルは `manuscript/assets/` に置き、生成は `scripts/figures/build_all.py` に集約する（`fig-<章>-<連番>.svg`）。
+- 見た目のルール（どう見せるか）は FBC Press 共通の [`FBC_Press/FIGURE_GUIDE.md`](../FBC_Press/FIGURE_GUIDE.md) に従う。
 - 各図版は、本文の該当節の直後に配置し、alt テキストを必ず付ける。
 
 各図版は次の項目で記述する。

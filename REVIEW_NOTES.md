@@ -2,6 +2,17 @@
 
 執筆・レビュー時に確認する観点をまとめます。
 
+## 図版（2026-07-07 更新）
+
+- 全 46 図を FBC Press の図版規約へ正規化した（`scripts/figures/build_all.py`）。
+  元の作図は `scripts/figures/src/` に残し、`manuscript/assets/` へ再生成する方式。
+  配色を固定パレットへ写像・フォントを sans-serif へ統一・焼き込みタイトルを除去・
+  `aria-label` へ一本化し、上部余白を詰めた（`FBC_Press/FIGURE_GUIDE.md` 準拠）。
+- **続き（要・目視レビュー）**: 正規化は骨格を元図のまま活かすため、元図由来の
+  レイアウトの粗（ラベルと箱の重なりなど）はそのまま残る。例: `fig-7-1` の
+  「Turbo Drive visit」見出しが「head マージ」チップと一部重なる。気になる図は
+  `scripts/figures/src/` 側の座標を直してから再生成する。
+
 ## 技術確認
 
 - 公式ドキュメントの URL が実在するか。
