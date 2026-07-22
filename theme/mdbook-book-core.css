@@ -195,7 +195,7 @@ summary:focus-visible,
 
 .content table thead th {
   background: var(--table-header-bg);
-  border: 1px var(--table-border-color) solid;
+  border: 1px var(--table-border) solid;
   color: var(--text-strong);
   font-weight: 700;
   text-align: left;
