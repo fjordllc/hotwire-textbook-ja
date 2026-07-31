@@ -111,6 +111,10 @@ body {
   line-height: 1.85;
 }
 
+.content blockquote > :first-child {
+  margin-top: 0;
+}
+
 .content blockquote p {
   margin: 0;
 }
@@ -129,6 +133,10 @@ body {
     "Liberation Mono",
     Menlo,
     monospace;
+}
+
+.content code {
+  font-variant-ligatures: none;
 }
 
 .content :not(pre) > code {
