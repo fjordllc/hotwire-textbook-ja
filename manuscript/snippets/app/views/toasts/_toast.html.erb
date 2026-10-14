@@ -1,0 +1,5 @@
+<%# 第21/27章: 自動で消えるトースト %>
+<div data-turbo-temporary class="toast" data-controller="toast" data-toast-delay-value="5000">
+  <%= message %>
+  <button type="button" data-action="toast#dismiss" aria-label="閉じる">×</button>
+</div>

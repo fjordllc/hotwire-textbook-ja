@@ -29,7 +29,7 @@
 | `<meta name="turbo-cache-control" content="no-cache">` | ページをキャッシュしない | 第9章 |
 | `<meta name="turbo-cache-control" content="no-preview">` | プレビュー表示だけ止める | 第9章 |
 
-## 主なイベント（すべて `document` で発火）
+## 主なイベント（バブルするイベントを `document` で観察）
 
 | イベント | タイミング | 主な登場章 |
 | --- | --- | --- |

@@ -1,0 +1,8 @@
+<%= form_with model: [task, comment] do |form| %>
+  <% if comment.errors.any? %>
+    <div role="alert" tabindex="-1" data-controller="autofocus"><%= comment.errors.full_messages.to_sentence %></div>
+  <% end %>
+  <%= form.label :body, "コメント本文" %>
+  <%= form.text_area :body %>
+  <%= form.submit "コメント", data: { turbo_submits_with: "送信中…" } %>
+<% end %>

@@ -1,0 +1,2 @@
+<%= turbo_stream.append "tasks", partial: "tasks/task", collection: @paged_tasks %>
+<%= turbo_stream.update "pagination", partial: "tasks/pagination" %>

@@ -1,0 +1,4 @@
+<% if @next_page %>
+  <%= link_to "もっと読む", tasks_path(request.query_parameters.merge(page: @next_page)),
+    data: { turbo_stream: true, infinite_scroll_target: "button" } %>
+<% end %>

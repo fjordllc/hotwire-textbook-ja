@@ -1,0 +1,59 @@
+<% context = local_assigns.fetch(:context, "page") %>
+<% scope_id = "#{context}_#{dom_id(task)}" %>
+<%= form_with model: task, namespace: scope_id,
+  data: { turbo: context != "page" } do |form| %>
+  <%= hidden_field_tag :form_context, context %>
+  <% if task.errors.any? %>
+    <div role="alert" tabindex="-1" data-controller="autofocus" class="error-summary">
+      <%= pluralize(task.errors.count, "件") %>のエラーがあります。
+      <ul>
+        <% task.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :project_id, "プロジェクト" %>
+    <%= form.collection_select :project_id, Project.order(:name), :id, :name, prompt: "選択してください" %>
+  </div>
+
+  <div>
+    <%= form.label :title, "タイトル" %>
+    <%= form.text_field :title,
+          "aria-invalid": task.errors[:title].any?,
+          "aria-describedby": ("#{scope_id}_title_error" if task.errors[:title].any?) %>
+    <% if task.errors[:title].any? %>
+      <span id="<%= scope_id %>_title_error" class="field-error"><%= task.errors[:title].to_sentence %></span>
+    <% end %>
+  </div>
+
+  <div data-controller="counter">
+    <%= form.label :description, "説明" %>
+    <%= form.text_area :description, data: { counter_target: "field", action: "input->counter#count" } %>
+    <span data-counter-target="output">0</span> 文字
+  </div>
+
+  <div>
+    <%= form.label :status, "ステータス" %>
+    <%= form.select :status, Task.statuses.keys, selected: task.status %>
+  </div>
+
+  <div>
+    <%= form.label :assignee_id, "担当者" %>
+    <%= form.collection_select :assignee_id, User.order(:name), :id, :name, prompt: "未割り当て" %>
+  </div>
+
+  <div>
+    <%= form.label :due_on, "期限" %>
+    <%= form.date_field :due_on, data: { controller: "datepicker", action: "turbo:before-cache@document->datepicker#teardown" } %>
+  </div>
+
+  <fieldset>
+    <legend>タグ</legend>
+    <%= form.collection_check_boxes :tag_ids, Tag.order(:name), :id, :name %>
+  </fieldset>
+
+  <%= form.submit "保存", data: { turbo_submits_with: "送信中…" } %>
+<% end %>

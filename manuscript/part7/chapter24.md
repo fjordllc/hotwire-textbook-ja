@@ -38,7 +38,9 @@ PER_PAGE = 20
 
 def index
   @page = [params[:page].to_i, 1].max
-  scope = Task.order(:id)
+  @task = Task.new
+  scope = filtered_tasks
+  @total_count = scope.count
   @tasks = scope.offset((@page - 1) * PER_PAGE).limit(PER_PAGE)
   @next_page = @page + 1 if scope.count > @page * PER_PAGE
 end
@@ -54,7 +56,7 @@ end
 </div>
 
 <% if @next_page %>
-  <%= link_to "次へ", tasks_path(page: @next_page) %>
+  <%= link_to "次へ", tasks_path(request.query_parameters.merge(page: @next_page)) %>
 <% end %>
 ```
 
@@ -71,7 +73,7 @@ end
   </div>
 
   <% if @next_page %>
-    <%= link_to "次へ", tasks_path(page: @next_page) %>
+    <%= link_to "次へ", tasks_path(request.query_parameters.merge(page: @next_page)) %>
   <% end %>
 <% end %>
 ```
@@ -93,12 +95,12 @@ end
 
 <div id="pagination">
   <% if @next_page %>
-    <%= link_to "もっと読む", tasks_path(page: @next_page), data: { turbo_stream: true } %>
+    <%= link_to "もっと読む", tasks_path(request.query_parameters.merge(page: @next_page)), data: { turbo_stream: true, infinite_scroll_target: "button" } %>
   <% end %>
 </div>
 ```
 
-controller は、`turbo_stream` 形式に応答します。
+コントローラは、`turbo_stream` 形式に応答します。
 
 `app/controllers/tasks_controller.rb`（`index` に追記）
 
@@ -115,7 +117,7 @@ end
 <%= turbo_stream.append "tasks", partial: "tasks/task", collection: @tasks %>
 <%= turbo_stream.update "pagination" do %>
   <% if @next_page %>
-    <%= link_to "もっと読む", tasks_path(page: @next_page), data: { turbo_stream: true } %>
+    <%= link_to "もっと読む", tasks_path(request.query_parameters.merge(page: @next_page)), data: { turbo_stream: true, infinite_scroll_target: "button" } %>
   <% end %>
 <% end %>
 ```
@@ -124,50 +126,31 @@ end
 
 ## 24.6 IntersectionObserver で自動化する
 
-無限スクロールは、この「もっと読む」を自動で押す形です。末尾が画面に見えたことを検知して、ボタンをクリックします。検知には、ブラウザの `IntersectionObserver` を使います。これを Stimulus controller で包みます。
+無限スクロールは、この「もっと読む」を自動で押す形です。末尾が画面に見えたことを検知して、ボタンをクリックします。検知には、ブラウザの `IntersectionObserver` を使います。これを Stimulus コントローラで包みます。
+
+`app/javascript/controllers/infinite_scroll_controller.js`
 
 `app/javascript/controllers/infinite_scroll_controller.js`
 
 ```javascript
-import { Controller } from "@hotwired/stimulus"
-
-export default class extends Controller {
-  static targets = ["button"]
-
-  connect() {
-    this.observer = new IntersectionObserver((entries) => {
-      if (entries[0].isIntersecting) {
-        this.buttonTarget.click()
-      }
-    })
-  }
-
-  buttonTargetConnected(button) {
-    this.observer.observe(button)
-  }
-
-  buttonTargetDisconnected(button) {
-    this.observer.unobserve(button)
-  }
-
-  disconnect() {
-    this.observer.disconnect()
-  }
-}
+{{#include ../snippets/app/javascript/controllers/infinite_scroll_controller.js}}
 ```
+
+
+`buttonTargetConnected` は初回の `connect` より先に呼ばれます。そのため observer は `initialize` で作ります。新旧のリンクを同じ partial から描き、更新後にも target 属性を残します。
 
 ここがこの章の肝です。「もっと読む」を押すと、24.5 のとおり `update "pagination"` でボタンが新しい要素に差し替わります。もし `connect()` で最初のボタンだけを監視していると、差し替え後は削除済みの旧ボタンを見続け、2 回目以降が発火しません。そこで、ターゲットが差し替わるたびに呼ばれる `buttonTargetConnected` / `buttonTargetDisconnected` を使い、新しいボタンを監視し直します。最終ページでボタンが消えれば、`buttonTargetDisconnected` で監視が外れ、自動読み込みも止まります。
 
 ```erb
 <div id="pagination" data-controller="infinite-scroll">
   <% if @next_page %>
-    <%= link_to "もっと読む", tasks_path(page: @next_page),
+    <%= link_to "もっと読む", tasks_path(request.query_parameters.merge(page: @next_page)),
           data: { turbo_stream: true, infinite_scroll_target: "button" } %>
   <% end %>
 </div>
 ```
 
-ここで `data-controller` の値に注意します。ファイル名は `infinite_scroll_controller.js` ですが、識別子はアンダースコアがハイフンになり `infinite-scroll` です（第19章）。`data-controller` の値は変換されないので、`"infinite-scroll"` と書きます。一方、ターゲットの `data: { infinite_scroll_target: "button" }` は、Rails が属性名を `data-infinite-scroll-target` に変換するので、そのままで `infinite-scroll` controller のターゲットになります。
+ここで `data-controller` の値に注意します。ファイル名は `infinite_scroll_controller.js` ですが、識別子はアンダースコアがハイフンになり `infinite-scroll` です（第19章）。`data-controller` の値は変換されないので、`"infinite-scroll"` と書きます。一方、ターゲットの `data: { infinite_scroll_target: "button" }` は、Rails が属性名を `data-infinite-scroll-target` に変換するので、そのままで `infinite-scroll` コントローラのターゲットになります。
 
 「もっと読む」ボタンが画面に見えると、`IntersectionObserver` が検知し、ボタンを `click()` します。クリックは 24.5 の append を起こすので、続きが自動で読み込まれます。`disconnect()` で監視を解除するのを忘れないでください（第22章）。
 
@@ -201,6 +184,50 @@ System Test で、もっと読むを押して件数が増えること、最後�
 - <strong>監視の解除漏れ</strong>。`IntersectionObserver` を `disconnect()` で解除せず、二重に読み込む。
 
 > 第24章では、ページネーションを置換・追記・検知の 3 段階で作り分けました。次の第25章では、フォームのバリデーションエラーと、その UX を扱います。第8章で予告した 422 の契約を、ここで本格的に使います。
+
+## 24.11 完成版への置き換え
+
+ここまでのページ送り・追記型・自動読み込みは、同じ場所へ重ねて追加するコードではなく、表示方式の選択肢です。完成版では `mode=pages` / `more` / `infinite` で切り替えます。以下は第23章の検索、CRUD、モーダルの分岐も含む統合版です。第25・26章ではフォームとモーダル側を読み解きます。
+
+`app/controllers/tasks_controller.rb`
+
+```ruby
+{{#include ../snippets/app/controllers/tasks_controller.rb}}
+```
+`app/views/tasks/index.html.erb`
+
+```erb
+{{#include ../snippets/app/views/tasks/index.html.erb}}
+```
+`app/views/tasks/_pagination.html.erb`
+
+```erb
+{{#include ../snippets/app/views/tasks/_pagination.html.erb}}
+```
+`app/views/tasks/index.turbo_stream.erb`
+
+```erb
+{{#include ../snippets/app/views/tasks/index.turbo_stream.erb}}
+```
+`app/views/tasks/create.turbo_stream.erb`
+
+```erb
+{{#include ../snippets/app/views/tasks/create.turbo_stream.erb}}
+```
+`app/views/tasks/update.turbo_stream.erb`
+
+```erb
+{{#include ../snippets/app/views/tasks/update.turbo_stream.erb}}
+```
+`app/views/tasks/destroy.turbo_stream.erb`
+
+```erb
+{{#include ../snippets/app/views/tasks/destroy.turbo_stream.erb}}
+```
+
+`@total_count` は全該当件数、`@paged_tasks` は現在のページの行です。変更通知後は一覧フレームを再取得し、件数・空状態・次ページの有無を同じ条件で再計算します。編集中と追記モードでは自動で全置換せず通知を出します。
+
+offset 型は読み込みの途中でレコードが増減するとページ境界が動きます。静止したデータでの重複防止テストと、同時更新時の順序保証は別です。本番で厳密な連続性が必要ならカーソル型を検討します。
 
 ## 参考資料
 

@@ -9,4 +9,4 @@
 - [付録E よくあるエラーと対処](e.md)
 - [付録F AI に Hotwire コードを依頼するときのプロンプト集](f.md)
 - [付録G 完成版サンプルアプリのコード解説](g.md)
-- [付録H Hotwire Native ハンズオン（実機ビルド手順 / Xcode・Android Studio 前提）](h.md)
+- [付録H Hotwire Native の最小アプリを起動する](h.md)

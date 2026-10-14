@@ -40,7 +40,7 @@
   - [第20章 Controller / Action / Target](part6/chapter20.md)
   - [第21章 Values / Classes / Outlets](part6/chapter21.md)
   - [第22章 外部ライブラリと連携する](part6/chapter22.md)
-  - [ハンズオン（第6部）: モーダル、確認 UI、ソート UI を作る](part6/exercises.md)
+  - [ハンズオン（第6部）: カウンタ、通知、外部ライブラリを組み込む](part6/exercises.md)
 
 - [第7部 実務で使う Hotwire UI パターン](part7/index.md)
   - [第23章 検索と絞り込み](part7/chapter23.md)

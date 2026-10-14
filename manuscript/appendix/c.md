@@ -39,3 +39,7 @@ Turbo Streams の 8 つのアクションと、対応する Rails のヘルパ�
 - フォーム送信の応答で効く（MIME は `text/vnd.turbo-stream.html`、第15章）。GET は既定では受け取らないが、`data-turbo-stream` で opt-in できる。
 
 > ヘルパーの細かい引数や、ここに載せていない使い方は、公式リファレンスと turbo-rails のソースで確認してください。
+
+## refresh のバージョン
+
+`refresh` stream の `method` / `scroll` 属性は Turbo 8.0.21 以降です。Turbo 8 のすべての版で使える属性ではありません。

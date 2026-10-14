@@ -1,0 +1,6 @@
+<%= turbo_stream.update "new_task_form" do %>
+  <%= render "form", task: Task.new, context: "inline" %>
+<% end %>
+<%= turbo_stream.update "modal" %>
+<%= turbo_stream.update "flash", partial: "layouts/flash" %>
+<%= turbo_stream.update "task_changes", partial: "tasks/change" %>

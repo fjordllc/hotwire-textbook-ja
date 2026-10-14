@@ -12,7 +12,7 @@
 
 まず、タスク一覧の各行を frame にします。第5章の scaffold が生成した `_task` partial を、`turbo_frame_tag` で囲みます。
 
-変更前（scaffold が生成したままの `_task`）:
+変更前（scaffold の表示を学習用に簡略化した `_task`）:
 
 `app/views/tasks/_task.html.erb`
 
@@ -127,24 +127,36 @@ test "一覧でインライン編集できる" do
   visit tasks_path
   within "##{dom_id(task)}" do
     click_on "編集"
-    fill_in "Title", with: "編集後のタイトル"
-    click_on "Update Task"
+    fill_in "タイトル", with: "編集後のタイトル"
+    click_on "保存"
   end
 
   within "##{dom_id(task)}" do
     assert_text "編集後のタイトル"
-    assert_no_field "Title"
+    assert_no_field "タイトル"
   end
 end
 ```
 
 `within "##{dom_id(task)}"` で、対象タスクの frame の中だけに操作を絞っています。frame の中で編集リンクを押し、フォームを書き換え、保存します。
 
-保存後の確認では、2 つを見ます。更新後のタイトルが表示されていること（`assert_text`）と、編集フォームの入力欄が消えていること（`assert_no_field "Title"`）です。タイトルの文字列だけを確認すると、編集フォームが残ったまま（＝保存に失敗して差し替わっていない）でも、入力した値でテストが通ってしまいます。「フォームが消えて表示に戻った」ことまで確かめることで、frame が表示用の `_task` に差し替わったことを保証できます。
+保存後の確認では、2 つを見ます。更新後のタイトルが表示されていること（`assert_text`）と、編集フォームの入力欄が消えていること（`assert_no_field "タイトル"`）です。タイトルの文字列だけを確認すると、編集フォームが残ったまま（＝保存に失敗して差し替わっていない）でも、入力した値でテストが通ってしまいます。「フォームが消えて表示に戻った」ことまで確かめることで、frame が表示用の `_task` に差し替わったことを保証できます。
 
-ページ遷移していないこと、操作したのが 1 つの frame の中だけであること。これが、インライン編集が成立している証拠です。
+この確認だけではフルリロードがないことまでは証明できません。第28章の完成版テストでは JavaScript の印を残して、ページ全体が再読み込みされないことも確認します。
 
 > 第12章では、`id` を揃えた partial を軸に、ページ遷移のないインライン編集を作りました。次の第13章では、`src` を使った遅延読み込みと、サイドバー・タブといった画面分割のパターンを学びます。
+
+## 12.7 削除と詳細へのリンク
+
+第16章で使う削除ボタンも `_task` の frame 内へ置きます。タイトルからコメント付きの詳細ページへ進むリンクには `_top` を指定し、編集リンクは行内のままにします。
+
+```erb
+<%= link_to task.title, task_path(task), data: { turbo_frame: "_top" } %>
+<%= button_to "削除", task_path(task), method: :delete,
+      data: { turbo_confirm: "削除しますか?" } %>
+```
+
+テストで削除するときは `accept_confirm { click_on "削除" }` を使います。
 
 ## 参考資料
 

@@ -30,7 +30,7 @@ native shell は、WebView が URL を開こうとするたびに、この設定
 
 この例では、`/tasks/new` と `/tasks/123/edit` のようなパスに、あるプロパティを当てています。パターンに当てはまらない URL は、既定の振る舞い（通常のプッシュ遷移）になります。なお、`properties` の中身（`context` などのキー名や値）は、ここでは構造を示すための例です。実際に使えるキーと値は 33.3 と公式ドキュメント（付録H）で確認してください。
 
-## 33.3 presentation
+## 33.3 context と presentation を区別する
 
 
 ![URL パターンとネイティブの提示方法を rules が対応づける図。](../assets/fig-33-1.svg)
@@ -39,7 +39,7 @@ native shell は、WebView が URL を開こうとするたびに、この設定
 
 上の例の `"context": "modal"` は、その URL をモーダルとして出す指定です。タスクの新規作成や編集を、モーダルで重ねて表示できます。指定がなければ、画面はナビゲーションに積まれる通常のプッシュ遷移になります。
 
-プロパティの正確なキー名や指定できる値は、Hotwire Native のバージョンによって異なります。本書では考え方を示すにとどめ、実際のキー名と値は公式ドキュメントと付録Hで確認します。大切なのは、「URL に対して見せ方を割り当てる」という構造です。
+`context` は `default` / `modal` のナビゲーションの文脈です。`presentation` は `default` / `push` / `pop` / `replace` / `refresh` / `clear_all` / `none` などの提示操作で、`modal` を指定するキーではありません。ルールは順に適用し、後の一致が同じキーを上書きします。大切なのは、「URL に対して見せ方を割り当てる」という構造です。
 
 ## 33.4 rules の管理
 
@@ -61,5 +61,5 @@ URL が素直に設計されていれば、パターンも素直に書けます�
 
 ## 参考資料
 
-- Hotwire Native: <https://native.hotwired.dev/>
-- Hotwire Native（Path Configuration）: <https://native.hotwired.dev/>
+- Hotwire Native: <https://native.hotwired.dev/reference/path-configuration>
+- Hotwire Native（Path Configuration）: <https://native.hotwired.dev/reference/path-configuration>

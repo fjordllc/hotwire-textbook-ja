@@ -8,7 +8,7 @@
 
 ## 3.1 Rails はもともと HTML を返すフレームワークである
 
-Rails は、登場したときから、サーバーで HTML を組み立てて返すフレームワークでした。controller がデータを用意し、view（ERB など）が HTML を描く。この MVC の流れは、Rails の核です。
+Rails は、登場したときから、サーバーで HTML を組み立てて返すフレームワークでした。コントローラがデータを用意し、view（ERB など）が HTML を描く。この MVC の流れは、Rails の核です。
 
 第2章で見た「HTML over the wire」は、まさにこの Rails の基本そのものです。Hotwire は、Rails に新しい思想を持ち込むのではなく、<strong>Rails がもともと得意なこと（HTML を返す）を、現代的な部分更新へ自然に延長する</strong>ものです。だから、両者は無理なく噛み合います。
 
@@ -18,11 +18,11 @@ Rails には、view の一部を切り出して再利用する partial があり
 
 この partial が、Turbo と抜群に相性がよいのです。Turbo Frames や Turbo Streams で部分更新するとき、更新する HTML は、たいてい partial で作ります。一覧の最初の表示でも、部分更新でも、同じ partial を使えます。Rails 開発者がふだん書いている partial が、そのまま Hotwire の部品になります（本書では第12章以降で実際に使います）。
 
-## 3.3 RESTful controller と Turbo Streams
+## 3.3 RESTful コントローラと Turbo Streams
 
-Rails は、REST に沿った controller を勧めます。`index`・`show`・`new`・`create`・`edit`・`update`・`destroy` という、おなじみの 7 つのアクションです。
+Rails は、REST に沿ったコントローラを勧めます。`index`・`show`・`new`・`create`・`edit`・`update`・`destroy` という、おなじみの 7 つのアクションです。
 
-Hotwire は、この RESTful な作りの上に、素直に乗ります。たとえば、`create` で作成したら一覧に追加する、`destroy` で削除したら一覧から消す、といった部分更新は、Turbo Streams で表現できます。普通の RESTful controller を、少し拡張するだけで、画面遷移のない更新になります（第5部で扱います）。新しい設計を覚え直すのではなく、いつもの controller の延長です。
+Hotwire は、この RESTful な作りの上に、素直に乗ります。たとえば、`create` で作成したら一覧に追加する、`destroy` で削除したら一覧から消す、といった部分更新は、Turbo Streams で表現できます。普通の RESTful コントローラを、少し拡張するだけで、画面遷移のない更新になります（第5部で扱います）。新しい設計を覚え直すのではなく、いつものコントローラの延長です。
 
 ## 3.4 Action Cable とリアルタイム更新
 
@@ -37,7 +37,7 @@ Hotwire を使っても、Rails の基本は変わりません。MVC、REST、pa
 変わるのは、設計の意識です。
 
 - view を、部分更新しやすいように partial へ分けることを、より意識します。
-- controller のレスポンスを、HTML だけでなく Turbo Streams でも返せるように考えます。
+- コントローラのレスポンスを、HTML だけでなく Turbo Streams でも返せるように考えます。
 - 要素の `id` を、`dom_id` で一貫させ、部分更新の宛先にします。
 
 どれも、Rails の作法から大きく外れるものではありません。「いつもの Rails を、部分更新に向く形に少し整える」。それが、Hotwire を使うときの設計の勘所です。本書は、この勘所を、Relay を育てながら身につけていきます。

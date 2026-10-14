@@ -8,7 +8,7 @@
 | --- | --- | --- |
 | `app/models/user.rb` | ログインユーザー。担当タスク・コメントを持つ | [第5章](../part2/chapter5.md) |
 | `app/models/project.rb` | タスクをまとめる単位 | [第5章](../part2/chapter5.md) |
-| `app/models/task.rb` | 中心リソース。`status` enum、`broadcasts_to` | [第5章](../part2/chapter5.md)・[第18章](../part5/chapter18.md) |
+| `app/models/task.rb` | 中心リソース。`status` enum、変更通知の broadcast | [第5章](../part2/chapter5.md)・[第18章](../part5/chapter18.md) |
 | `app/models/comment.rb` / `tag.rb` / `tagging.rb` | コメント・タグ（中間モデル含む） | [第5章](../part2/chapter5.md) |
 
 `Task#status` の enum（`todo` / `in_progress` / `done`）は、検索・絞り込み・バリデーション・表示の軸になりました（[第4章](../part2/chapter4.md)）。
@@ -17,10 +17,10 @@
 
 `app/controllers/tasks_controller.rb` が中心です。
 
-- `index` … 検索・絞り込み（`sanitize_sql_like`）、ページネーション、一覧スコープ `@tasks`（[第23章](../part7/chapter23.md)・[第24章](../part7/chapter24.md)・[第17章](../part5/chapter17.md)）。
+- `index` … 検索・絞り込み（`sanitize_sql_like`）、ページネーション、該当総数 `@total_count` とページ内の `@paged_tasks`（[第23章](../part7/chapter23.md)・[第24章](../part7/chapter24.md)・[第17章](../part5/chapter17.md)）。
 - `create` / `update` / `destroy` … 成功は redirect / Turbo Streams、失敗は 422（[第8章](../part3/chapter8.md)・[第16章](../part5/chapter16.md)）。`format.turbo_stream` と `format.html` の両方を持つ。
 
-認可は controller で行います（[第31章](../part8/chapter31.md)）。Relay は単一チーム前提なので最小限です。
+認可はコントローラで行います（[第31章](../part8/chapter31.md)）。Relay は単一チーム前提なので最小限です。
 
 ## ビューと partial
 
@@ -34,7 +34,7 @@
 
 partial を一覧と stream で共通化したのが、設計の要でした（[第12章](../part4/chapter12.md)・[第17章](../part5/chapter17.md)）。
 
-## Stimulus controller
+## Stimulus コントローラ
 
 | ファイル | 役割 | 章 |
 | --- | --- | --- |
@@ -46,11 +46,11 @@ partial を一覧と stream で共通化したのが、設計の要でした（[
 | `dropdown_controller.js` / `modal_controller.js` | ドロップダウン・モーダル | [第26章](../part7/chapter26.md) |
 | `chart_controller.js` など | 外部ライブラリ連携 | [第22章](../part6/chapter22.md) |
 
-どれも `connect` / `disconnect` を対にし、状態は HTML 側に置きました（[第6部](../part6/index.md)）。
+初期化で確保するタイマー・外部ライブラリには破棄処理を対にし、状態は HTML 側に置きました（[第6部](../part6/index.md)）。
 
 ## リアルタイム
 
-- `turbo_stream_from`（購読、ログイン時のみ）と `broadcasts_to` / `broadcast_*_to`（配信）でリアルタイム更新（[第18章](../part5/chapter18.md)・[第27章](../part7/chapter27.md)）。
+- `turbo_stream_from`（購読、ログイン時のみ）と `broadcast_*_to`（配信）でリアルタイム更新（[第18章](../part5/chapter18.md)・[第27章](../part7/chapter27.md)）。
 - 配信範囲と認可に注意（[第31章](../part8/chapter31.md)）。
 
 ## 読み進め方
@@ -62,3 +62,15 @@ partial を一覧と stream で共通化したのが、設計の要でした（[
 - <https://github.com/fjordllc/Relay>
 
 手元のコードと突き合わせながら読むと、各章の差分が追いやすくなります。
+
+## 完成版モデルと差分の管理
+
+`app/models/task.rb`
+
+```ruby
+{{#include ../snippets/app/models/task.rb}}
+```
+
+本文で掲載する完成版コードは `manuscript/snippets/` に収録しています。`scripts/sync_sample_snippets.py --source /path/to/Relay --check` でサンプルとの一致を確認できます。更新時は `--check` を外して同期し、原稿の説明とテストも確認します。
+
+第13章のサイドバー、第18章前半の行配信、第30章のキャッシュは設計を比較する別案です。完成版へすべて重ねて追加するものではありません。Native の最小構成は付録Hに分離し、Web アプリの検証と実機検証を区別します。

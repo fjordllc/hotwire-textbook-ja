@@ -1,0 +1,2 @@
+<%= turbo_stream.append dom_id(@task, :comments), partial: "comments/comment", locals: { comment: @comment } %>
+<%= turbo_stream.update dom_id(@task, :comment_form), partial: "comments/form", locals: { task: @task, comment: Comment.new } %>

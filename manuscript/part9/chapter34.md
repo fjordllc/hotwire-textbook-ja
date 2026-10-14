@@ -16,27 +16,27 @@ Web とネイティブが、メッセージをやり取りして協調します�
 
 ## 34.2 Web 側のマークアップ
 
-ここで効いてくるのが、第6部の Stimulus です。Bridge Components の Web 側は、<strong>Stimulus の controller の上に乗ります</strong>。
+ここで効いてくるのが、第6部の Stimulus です。Bridge Components の Web 側は、<strong>Stimulus のコントローラの上に乗ります</strong>。
 
-Web 側では、`data-controller` でブリッジ用の controller を要素に結びつけます。
+Web 側では、`data-controller` でブリッジ用のコントローラを要素に結びつけます。
 
 ```erb
-<form data-controller="submit-button">
+<form data-controller="bridge--form">
   ...
 </form>
 ```
 
-この `submit-button` という controller が、ネイティブ側へ「送信ボタンを出して」と伝えるブリッジになります。ブリッジ用の controller は、Stimulus の controller を、ネイティブと通信できるように拡張したものです（基底クラスや拡張の仕方は Hotwire Native のバージョンによります。詳細は付録Hと公式ドキュメントで確認します）。
+この `bridge--form` というコントローラが、ネイティブ側へ「送信ボタンを出して」と伝えるブリッジになります。ブリッジ用のコントローラは、Stimulus のコントローラを、ネイティブと通信できるように拡張したものです（34.6 の `BridgeComponent` を使います）。
 
-大切なのは、Web 側はあくまで Stimulus の延長で書ける、という点です。第6部で学んだ controller の知識が、そのまま土台になります。
+大切なのは、Web 側はあくまで Stimulus の延長で書ける、という点です。第6部で学んだコントローラの知識が、そのまま土台になります。
 
 ## 34.3 ネイティブ側の component
 
 Web 側の宣言を受け取って、実際にネイティブの UI を出すのが、ネイティブ側の component です。
 
-iOS なら Swift、Android なら Kotlin で書きます（第32章）。Web 側の `submit-button` controller に対応するネイティブの component を用意し、「`submit-button` が現れたら、ナビゲーションバーに送信ボタンを出す」といった処理を書きます。
+iOS なら Swift、Android なら Kotlin で書きます（第32章）。Web 側の `bridge--form` コントローラに対応するネイティブの component を用意し、「`bridge--form` が現れたら、ナビゲーションバーに送信ボタンを出す」といった処理を書きます。
 
-Web 側の controller 名と、ネイティブ側の component が、名前で対応づきます。Web の宣言と、ネイティブの実装が、ペアになっている、と考えてください。
+対応のキーは Stimulus 識別子そのものではなく、Web 側の `static component` とネイティブ側の component 名です。たとえば識別子 `bridge--form`、`static component = "form"` ならネイティブ側は `form` に合わせます。Web の宣言と、ネイティブの実装が、ペアになっている、と考えてください。
 
 ## 34.4 メッセージの送受信
 
@@ -48,7 +48,7 @@ Web とネイティブは、メッセージをやり取りします。
 - <strong>Web → ネイティブ</strong>。「送信ボタンを、このラベルで出して」といった指示を送ります。ボタンのラベルや状態など、必要な情報を渡します。
 - <strong>ネイティブ → Web</strong>。「ボタンが押された」といった出来事を伝えます。Web 側はそれを受け取り、フォームを送信するなどの処理をします。
 
-この往復で、Web の状態（フォームの内容など）と、ネイティブの操作（ボタンのタップ）が、つながります。Web 側の受け取りは、ブリッジ用 controller のメソッドとして書きます。ここも Stimulus の延長です。
+この往復で、Web の状態（フォームの内容など）と、ネイティブの操作（ボタンのタップ）が、つながります。Web 側の受け取りは、ブリッジ用コントローラのメソッドとして書きます。ここも Stimulus の延長です。
 
 ## 34.5 使いすぎを避ける判断
 
@@ -61,6 +61,30 @@ Bridge Components は強力ですが、使いすぎは禁物です。
 もう 1 つ、忘れてはいけない前提があります。同じ Web ページは、ネイティブアプリの中だけでなく、<strong>通常のブラウザでも開かれます</strong>（Web-first）。ブラウザには対応するネイティブ component がないので、ブリッジは何も起こしません。だから、Bridge Components は<strong>プログレッシブ・エンハンスメント</strong>として設計します。つまり、ネイティブがあれば良くなる、なくても Web だけで成立する、という形にします。先の例なら、Web 側に通常の送信ボタンを残しておき、ネイティブではそれをナビゲーションバーのボタンで置き換える、と考えます。こうすれば、ブラウザでもアプリでも壊れません。
 
 > 第34章では、Web とネイティブをつなぐ Bridge Components を、Stimulus の延長として学びました。次の第35章では、Web ではなくネイティブ画面そのものが必要になる場面と、その責務分担を扱い、第9部を締めます。
+
+## 34.6 名前の対応をコードで確認する
+
+次は通信の概念を示す Web 側の断片です。通常の Stimulus Controller ではなく BridgeComponent を使います。`bin/importmap pin @hotwired/hotwire-native-bridge` で導入し、ネイティブ側にも `form` component を登録して初めてネイティブのボタンが現れます。Web の送信ボタンは残します。
+
+```javascript
+// app/javascript/controllers/bridge/form_controller.js
+import { BridgeComponent } from "@hotwired/hotwire-native-bridge"
+export default class extends BridgeComponent {
+  static component = "form"
+  static targets = ["submit"]
+  submitTargetConnected(button) {
+    this.send("connect", { submitTitle: button.textContent }, () => button.click())
+  }
+}
+```
+
+```html
+<form data-controller="bridge--form">
+  <button type="submit" data-bridge--form-target="submit">保存</button>
+</form>
+```
+
+ネイティブ実装・登録方法は [iOS Bridge Components](https://native.hotwired.dev/ios/bridge-components) と [Android Bridge Components](https://native.hotwired.dev/android/bridge-components) を参照します。付録Hの最小シェルは Bridge なしで Web の CRUD を開く範囲です。
 
 ## 参考資料
 

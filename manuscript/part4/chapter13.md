@@ -143,7 +143,7 @@ skeleton は、読み込みが終われば本物に差し替わって消えま�
 
 ```erb
 <%= turbo_frame_tag "detail" do %>
-  <h2><%= @task.title %></h2>
+  <%# タイトルは更新対象の _task 内に表示します。 %>
   <%= render @task %>
 <% end %>
 ```
@@ -162,7 +162,7 @@ skeleton は、読み込みが終われば本物に差し替わって消えま�
 
 第9章で、Turbo 8 の page refresh（同じ URL への visit による再描画）を見ました。frame には、この page refresh が起きたときの振る舞いを指定できます。`refresh` 属性です。
 
-page refresh が起きると、`src` を持つ frame は中身を読み込み直します。既定では、frame の中身がまるごと差し替わり、frame の中のスクロール位置や入力中のフォーカスが失われます。
+page refresh の描画方式と frame の再読み込みは分けて考えます。`src` と `refresh="morph"` を持つ frame は、page morph に伴う再取得の対象になります。frame を通常の方法で置換すると、要素の状態やフォーカスが失われる場合があります。
 
 これを避けたいときに、frame へ `refresh="morph"` を付けます。
 
@@ -172,11 +172,24 @@ page refresh が起きると、`src` を持つ frame は中身を読み込み直
 <% end %>
 ```
 
-`refresh: :morph` を付けると、<strong>page refresh のときの</strong> frame の再読み込みが、第9章で見た morph（差分の適用）で行われます。変わった部分だけが書き換わり、frame の中の状態が保たれます。これは一般の `src` 再取得すべてに効くのではなく、あくまで page refresh のときの振る舞いを変える指定です。
+`refresh: :morph` を付けると、page refresh と明示的な `reload()` による frame の再読み込みが、第9章で見た morph（差分の適用）で行われます。対応する要素を再利用しますが、未保存の入力を必ず保持する保証ではありません。通常のフレーム内リンク遷移を、すべて morph に変える指定ではありません。
 
-これは、第18章のリアルタイム更新と組み合わせると効きます。サーバーが「このページを refresh してください」という配信（broadcast refresh）を全員へ送ると、各自の frame が morph で最新化され、見ていた位置や入力が保たれます。
+これは、第18章のリアルタイム更新と組み合わせると効きます。サーバーが「このページを refresh してください」という配信（broadcast refresh）を全員へ送ると、各自の frame が morph で最新化され、要素を再利用しやすくなります。ただし編集中の値が必ず守られる保証ではないため、完成版では第18章の更新通知方式を使います。
 
 > 第13章では、`src` による遅延読み込みと、タブ・サイドバーといった画面分割を作りました。frame は入れ子にでき、組み合わせると複雑な画面も組めます。だからこそ、次の第14章では「使いすぎたときにどうなるか」と、Streams や通常遷移へ切り替える判断を扱います。
+
+## 13.7 この章の別案を混ぜない
+
+13.1 の `src` による一覧、13.3 のクリックによる遅延表示、13.4 のサイドバーは画面構成の別案です。第16章へ進むときは第12章の行一覧と `show` の `render @task` に戻します。サイドバーと行一覧に同じ `_task` を重ねると DOM ID が重複します。
+
+13.3 のルートは `resources :projects` の member に `get :overview` / `get :tasklist` を追加します。両アクションで `@project = Project.find(params[:id])` を取得し、tasklist のビューは `tab_content` frame 内で `render @project.tasks` を行います。完成版の配置は第26章に示します。
+
+skeleton の CSS も用意します。
+
+```css
+.skeleton { padding: 1rem; background: #eee; }
+.skeleton-row { height: 1rem; margin-block: .5rem; background: #ccc; }
+```
 
 ## 参考資料
 

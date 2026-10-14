@@ -1,0 +1,5 @@
+<div id="<%= dom_id(comment) %>" class="comment">
+  <strong><%= comment.user.name %></strong>
+  <span><%= comment.body %></span>
+  <%= button_to "削除", task_comment_path(comment.task, comment), method: :delete %>
+</div>

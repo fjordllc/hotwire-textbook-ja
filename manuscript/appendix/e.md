@@ -6,7 +6,7 @@ Hotwire でつまずきやすいエラーと、その対処をまとめます。
 
 <strong>症状</strong>: フォームを送信したのに、画面が変わらず、エラーも出ない。
 
-<strong>原因</strong>: 失敗時に 422 ではなく 200 でフォームを返している。Turbo は、状態を変えるフォーム送信への 200 のレンダリングを行わず、送信元の URL に留まります（[第8章](../part3/chapter8.md)）。
+<strong>原因</strong>: 失敗時に 422 ではなく 200 でフォームを返している。Turbo Drive は、非 GET のフォーム送信へのリダイレクトなしの 200 HTML を描画せず、送信元の URL に留まります（[第8章](../part3/chapter8.md)）。
 
 <strong>対処</strong>: 失敗時は `render ..., status: :unprocessable_entity`（422）で返す。成功時はリダイレクト（`update` / `destroy` は `status: :see_other`）。
 
@@ -26,11 +26,11 @@ Hotwire でつまずきやすいエラーと、その対処をまとめます。
 
 <strong>対処</strong>: Network タブで stream の中身を見て、`target` の `id` が DOM にあるか、Elements タブで確認する。
 
-## Stimulus の controller が動かない
+## Stimulus のコントローラが動かない
 
 <strong>症状</strong>: `data-controller` を付けたのに、振る舞いが動かない。
 
-<strong>原因</strong>: controller 名とファイル名のずれ、ファイルの置き場所の誤り、target / action の名前の不一致（[第19章](../part6/chapter19.md)・[第20章](../part6/chapter20.md)）。
+<strong>原因</strong>: コントローラ名とファイル名のずれ、ファイルの置き場所の誤り、target / action の名前の不一致（[第19章](../part6/chapter19.md)・[第20章](../part6/chapter20.md)）。
 
 <strong>対処</strong>: `application.debug = true` にして、接続ログが出るか見る（[第29章](../part8/chapter29.md)）。出なければ名前と置き場所、出れば target / action の名前を疑う。
 
@@ -38,9 +38,9 @@ Hotwire でつまずきやすいエラーと、その対処をまとめます。
 
 <strong>症状</strong>: 戻る操作で、古いフラッシュや、初期化済みのウィジェットが一瞬出る。
 
-<strong>原因</strong>: キャッシュのプレビューに、消したい要素や、JavaScript で書き換えた DOM が焼き付いている（[第9章](../part3/chapter9.md)・[第22章](../part6/chapter22.md)）。
+<strong>原因</strong>: 復元用のスナップショットに、消したい要素や JavaScript で書き換えた DOM が残っている（[第9章](../part3/chapter9.md)・[第22章](../part6/chapter22.md)）。
 
-<strong>対処</strong>: 一度きりの要素には `data-turbo-temporary` を付ける。外部ライブラリは `turbo:before-cache` で後始末する。プレビューを止めたいページは `turbo-cache-control` の `no-preview`。
+<strong>対処</strong>: 一度きりの要素には `data-turbo-temporary` を付ける。外部ライブラリは `turbo:before-cache` で後始末する。application visit のプレビューだけを止めるなら `no-preview`、戻る操作でのキャッシュ復元も止めるなら `no-cache`。
 
 ## 外部ライブラリが二重に初期化される
 
@@ -59,3 +59,9 @@ Hotwire でつまずきやすいエラーと、その対処をまとめます。
 <strong>対処</strong>: 購読先と配信先が同じ streamable を指しているか確認する。一括更新では broadcast が走らないことに注意する。
 
 > 解決しないときは、最小の再現コードを作り、第29章の手順で 1 つずつ切り分けてください。
+
+## キャッシュと認証切れを切り分ける
+
+`no-preview` は application visit のプレビューだけを止めます。戻る・進むで古いスナップショットを使わせたくないなら `no-cache` を選びます。
+
+フレーム内操作がログインへ転送されて Content missing になる場合は、ログインビューに `<% turbo_page_requires_reload %>` を加えます。ログイン画面をフレームの外で表示させるための指定です。

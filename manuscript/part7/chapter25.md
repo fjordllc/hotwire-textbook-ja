@@ -26,7 +26,7 @@ else
 end
 ```
 
-Turbo は、422 で返ってきた HTML を画面に反映します。成功時にうっかり 200 で render すると、Turbo は再描画せず送信元の URL に留まります（第8章）。失敗は必ず 422、と徹底します。
+Turbo は、422 で返ってきた HTML を画面に反映します。Drive の非 GET 送信にリダイレクトなしの 200 HTML を返すと再描画されません。Frame の 200 HTML や Turbo Stream の 200 応答は、この制約とは別です（第8章）。失敗は必ず 422、と徹底します。
 
 ## 25.4 フォームを同じ場所に戻す
 
@@ -37,19 +37,9 @@ Turbo は、422 で返ってきた HTML を画面に反映します。成功時�
 
 どちらも、ページ遷移せずに、エラーの付いたフォームがその場に現れ、ユーザーは入力をやり直せます。
 
-## 25.5 成功時に一覧と flash を更新する
+## 25.5 成功時の更新
 
-成功時は、第16章・第17章の Turbo Streams で、複数箇所を同時に更新します。
-
-```erb
-<%= turbo_stream.prepend "tasks", @task %>
-<%= turbo_stream.update "new_task_form" do %>
-  <%= render "form", task: Task.new %>
-<% end %>
-<%= turbo_stream.update "flash", partial: "layouts/flash" %>
-```
-
-新しいタスクを一覧に追加し、フォームを空に戻し、フラッシュを出します。フォームの成功・失敗が、どちらもページ遷移なしで完結します。
+第24章の完成版の stream テンプレートを使います。フォームを空にし、フラッシュを更新し、一覧へ変更通知を渡します。検索・ページ分割のある画面に無条件で `prepend` すると、条件に合わないタスクまで入るので、完成版では行を直接追加しません。
 
 ## 25.6 Stimulus で補助する
 
@@ -63,7 +53,7 @@ Turbo は、422 で返ってきた HTML を画面に反映します。成功時�
 
 これだけで、送信中はボタンが「作成中…」になり、押せなくなります。二重送信の多くは、これで防げます。
 
-<strong>文字数カウンタ</strong>のような入力中の補助は、第20章で作った Stimulus の controller を使います。これらは入力体験を助けるもので、サーバー検証とは別物です。
+<strong>文字数カウンタ</strong>のような入力中の補助は、第20章で作った Stimulus のコントローラを使います。これらは入力体験を助けるもので、サーバー検証とは別物です。
 
 ## 25.7 a11y
 
@@ -72,23 +62,15 @@ Turbo は、422 で返ってきた HTML を画面に反映します。成功時�
 
 フォームのアクセシビリティは、この章の主戦場です。エラーを「見える」だけでなく「伝わる」ようにします。
 
-- <strong>エラーサマリ</strong>。フォームの先頭に、エラーの一覧を出します。`role="alert"` を付けると、表示時に読み上げられます。さらに、再描画後にここへフォーカスを移すと、ユーザーはすぐエラーに気づけます。フォーカス移動は、第19章で作った `autofocus` controller（`connect` で `this.element.focus()` する）を再利用します。`connect` は frame の差し替えでも Turbo Streams の差し込みでも呼ばれるので、どちらの経路で 422 が返っても確実にフォーカスが移ります（HTML の `autofocus` 属性は frame／ページの描画後には効きますが、stream で差し込んだ要素には効かないため、`connect` 方式に寄せます）。
+- <strong>エラーサマリ</strong>。フォームの先頭に、エラーの一覧を出します。`role="alert"` を付けると、表示時に読み上げられます。さらに、再描画後にここへフォーカスを移すと、ユーザーはすぐエラーに気づけます。フォーカス移動は、第19章で作った `autofocus` コントローラ（`connect` で `this.element.focus()` する）を再利用します。`connect` は frame の差し替えでも Turbo Streams の差し込みでも呼ばれるので、新たなエラーサマリ要素が接続されたときにフォーカスが移ります。ルート要素を残す morph では connect が再実行されるとは限りません（HTML の `autofocus` 属性は frame／ページの描画後には効きますが、stream で差し込んだ要素には効かないため、`connect` 方式に寄せます）。
 - <strong>各フィールドの紐づけ</strong>。エラーのあるフィールドに `aria-invalid="true"` を付け、`aria-describedby` でそのフィールドのエラーメッセージと結びつけます。`aria-invalid` は、エラーがないときは `"false"`（妥当である、という意味）になります。これは仕様どおりで問題ありません。
 
-```erb
-<% if task.errors.any? %>
-  <div role="alert" tabindex="-1" data-controller="autofocus">
-    <%= pluralize(task.errors.count, "件") %>のエラーがあります。
-  </div>
-<% end %>
+`app/views/tasks/_form.html.erb`
 
-<%= form.text_field :title,
-      "aria-invalid": task.errors[:title].any?,
-      "aria-describedby": ("title_error" if task.errors[:title].any?) %>
-<% if task.errors[:title].any? %>
-  <span id="title_error"><%= task.errors[:title].to_sentence %></span>
-<% end %>
+```erb
+{{#include ../snippets/app/views/tasks/_form.html.erb}}
 ```
+
 
 目で見るユーザーには色や位置でエラーが分かりますが、スクリーンリーダーのユーザーには、こうした属性がないと伝わりません。
 
@@ -108,11 +90,15 @@ System Test で、無効入力時にフォームが残りエラーが出るこ�
 
 ## 25.10 アンチパターン
 
-- <strong>失敗時に 422 ではなく 200 で render する</strong>。Turbo が再描画せず、エラーが画面に出ません（第8章）。最頻出のつまずきです。
+- <strong>失敗時に 422 ではなく 200 で render する</strong>。Drive の非 GET 送信では HTML が再描画されません。Frame / Stream でも成功と失敗を区別するため 422 にします（第8章）。最頻出のつまずきです。
 - <strong>JavaScript の検証だけにする</strong>。クライアント側の検証は補助です。サーバー検証を省くと、簡単にすり抜けられます。
 - <strong>エラー時にフォーカスが迷子になる</strong>。再描画後、フォーカスがどこにあるか分からないと、キーボードやスクリーンリーダーのユーザーが迷います。エラーサマリへフォーカスを移します。
 
 > 第25章では、フォームのエラー表示・送信中・二重送信・a11y を仕上げました。次の第26章では、モーダル・タブ・ドロップダウンを題材に、「サーバーの状態が要るか」で実装が分かれることを学びます。
+
+## 25.11 同じモデルのフォームを複数置くとき
+
+完成版のフォームは `context`（page / inline / edit / modal）と `dom_id(task)` を namespace に使います。これにより一覧の新規フォームとモーダルが同時に存在しても、入力 ID と `aria-describedby` が重複しません。エラーサマリには件数だけでなく各エラーの本文を表示します。ページ形式の送信はリダイレクトを使うので、25.8 の「URL 不変」は inline / frame / stream の部分更新に限る説明です。
 
 ## 参考資料
 

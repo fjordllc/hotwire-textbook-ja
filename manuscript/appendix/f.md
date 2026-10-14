@@ -6,8 +6,8 @@ AI に Hotwire のコードを書いてもらうとき、前提を伝えない�
 
 AI への依頼には、次の前提を添えます。
 
-- Rails と Hotwire のバージョン（例: Rails 8.0、Turbo 8 以降、importmap 構成）。
-- フォームの契約（成功は redirect、`update` / `destroy` は `status: :see_other`、失敗は `status: :unprocessable_entity`）。
+- Rails と Hotwire のバージョン（例: Rails 8.1.3、Turbo 8.0.21 以降、importmap 構成）。
+- フォームの契約（HTML の成功は redirect（`status: :see_other`）、部分更新の成功は Turbo Stream、失敗は `status: :unprocessable_entity`）。
 - 部分更新の方針（一覧の `id`、`dom_id` で宛先を揃える、partial を一覧と stream で共通化）。
 - 使わない方針（jsbundling ではなく importmap、状態は HTML に置く、など）。
 
@@ -17,7 +17,7 @@ AI への依頼には、次の前提を添えます。
 
 ```text
 Rails 8 / Turbo 8 / importmap 構成です。次の前提を守ってコードを書いてください。
-- フォームの成功は redirect（update/destroy は status: :see_other）、失敗は status: :unprocessable_entity（422）。
+- HTML のフォーム成功は redirect（status: :see_other）。Turbo Streams の成功は stream レスポンス、失敗は status: :unprocessable_entity（422）。
 - 部分更新は Turbo Streams。target の id は dom_id で揃える。
 - 一覧と Streams で同じ partial を使う。
 - JavaScript は Stimulus。状態は HTML の data 属性に置く。

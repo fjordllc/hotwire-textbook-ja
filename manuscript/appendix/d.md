@@ -8,7 +8,7 @@
 
 | コールバック | タイミング |
 | --- | --- |
-| `initialize()` | controller のインスタンスが作られたとき（1 度だけ） |
+| `initialize()` | コントローラのインスタンスが作られたとき（1 度だけ） |
 | `connect()` | 要素に結びついたとき（Turbo の差し替えのたびにも） |
 | `disconnect()` | 要素から外れたとき |
 
@@ -57,13 +57,13 @@ static classes = ["hidden"]
 static outlets = ["list"]
 ```
 
-`this.listOutlet` で、結びついた別 controller のインスタンスを参照します。HTML 側は `data-<identifier>-list-outlet="#selector"`。Outlet 先の要素が当該 controller である必要があります（Stimulus 3.2 以降、第21章）。
+`this.listOutlet` で、結びついた別コントローラのインスタンスを参照します。HTML 側は `data-<identifier>-list-outlet="#selector"`。Outlet 先の要素が当該コントローラである必要があります（Stimulus 3.2 以降、第21章）。
 
 ## Actions
 
 HTML 側の書式は `data-action="イベント->identifier#メソッド"`。
 
-- 既定イベントのある要素（`button` の `click`、`input` / `textarea` / `select` の `input` など）は、イベントを省ける。
+- 既定イベントのある要素（`button` の `click`、`input` / `textarea` の `input`、`select` の `change` など）は、イベントを省ける。
 - `click@window->id#method` のように `@window` / `@document` で、その対象のイベントを拾える。
 - 第20章。
 

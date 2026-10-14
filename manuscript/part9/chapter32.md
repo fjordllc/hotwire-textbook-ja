@@ -59,6 +59,10 @@ native shell のコードは、それぞれのネイティブ言語で書くの�
 
 > 第32章では、Hotwire Native の全体像を、Web-first という考え方で押さえました。次の第33章では、URL ごとに画面の出し方を決める Path Configuration を学びます。
 
+## 32.8 認証方式と cookie の保存先
+
+WebView は Rails の cookie セッション認証を利用できますが、Safari や Chrome など外部ブラウザの cookie が自動共有されるという意味ではありません。WebView 内でログインし、そこで発行された cookie を使います。複数 WebView 間の共有も、プラットフォーム側のデータストア設定に依存します。
+
 ## 参考資料
 
 - Hotwire Native: <https://native.hotwired.dev/>

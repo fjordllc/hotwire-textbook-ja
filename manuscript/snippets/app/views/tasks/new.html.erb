@@ -1,0 +1,12 @@
+<% if turbo_frame_request_id == "modal" %>
+  <%= turbo_frame_tag "modal" do %>
+    <dialog aria-labelledby="new_task_heading" data-controller="modal" data-action="close->modal#cleanup turbo:before-cache@document->modal#cleanup">
+      <h2 id="new_task_heading">新規タスク</h2>
+      <button type="button" data-action="modal#close">閉じる</button>
+      <%= render "form", task: @task, context: "modal" %>
+    </dialog>
+  <% end %>
+<% else %>
+  <h1>新規タスク</h1>
+  <%= render "form", task: @task, context: "page" %>
+<% end %>

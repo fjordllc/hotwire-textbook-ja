@@ -83,7 +83,7 @@ Turbo Streams には、8 つの action があります。
 
 `turbo_stream.append "tasks", @task` は、「`id="tasks"` の末尾に、`@task` の partial（`_task`）を append せよ」という命令の HTML を生成します。第12章で作った `_task` partial が、ここでそのまま使われます。
 
-この命令を返すのは、`*.turbo_stream.erb` という名前のビューです。たとえば `create` アクションなら `create.turbo_stream.erb` を用意します。controller 側では、`turbo_stream` 形式に応答することを宣言します。
+この命令を返すのは、`*.turbo_stream.erb` という名前のビューです。たとえば `create` アクションなら `create.turbo_stream.erb` を用意します。コントローラ側では、`turbo_stream` 形式に応答することを宣言します。
 
 `app/controllers/tasks_controller.rb`（`create` の一部）
 
@@ -131,6 +131,10 @@ Turbo は、フォームを送信するとき（POST / PUT / PATCH / DELETE）�
 `refresh` は、細かい命令を 1 つずつ組み立てる代わりに、「とにかく最新の状態に揃えてほしい」というときに向きます。とくに、複数ユーザーへ「このページを更新して」と一斉に伝えるリアルタイム更新（broadcast refresh）で効きます。これは第18章で扱います。
 
 > 第15章では、Turbo Streams を「差し替え命令の入った HTML」として理解しました。命令は 1 つのレスポンスに複数入れられ、複数箇所を同時に操作できます。次の第16章では、Relay の作成・更新・削除を、実際に Turbo Streams で動かします。
+
+## 15.9 refresh の属性とバージョン
+
+`refresh` 自体は Turbo 8 の機能です。個々の stream に指定する `method="morph"` と `scroll="preserve"` は Turbo 8.0.21 以降が対象です。それ以前は head の meta タグで設定します（第9章）。
 
 ## 参考資料
 

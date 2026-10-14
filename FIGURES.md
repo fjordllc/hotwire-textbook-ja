@@ -33,8 +33,8 @@
 - <strong>配置</strong>: 第1章 1.5（サンプルアプリの見取り図）の直後。
 - <strong>種別</strong>: フロー（成長）図。
 - <strong>ねらい</strong>: 1 つのアプリ（Relay）を素の CRUD から段階的に Hotwire 化していく、本書全体の道筋を示す。
-- <strong>描画内容</strong>: 左に「素の Rails CRUD（第2部）」の箱。右へ矢印が伸び、各段で機能が増える: 「高速な遷移（第3部 Drive）」→「部分更新（第4部 Frames）」→「画面遷移なし更新・リアルタイム（第5部 Streams）」→「振る舞い（第6部 Stimulus）」→「実務 UI（第7部）」→「保守（第8部）」→「モバイル（第9部）」。最終段に「実務水準の Relay」。各段の下に主要画面のサムネイル（一覧・詳細・モーダル）。
-- <strong>alt</strong>: 素の CRUD から各部で機能を足し、実務水準の Relay へ育てる本書全体の道筋を示す図。
+- <strong>描画内容</strong>: 左に「素の Rails CRUD（第2部）」の箱。右へ矢印が伸び、各段で機能が増える: 「高速な遷移（第3部 Drive）」→「部分更新（第4部 Frames）」→「画面遷移なし更新・リアルタイム（第5部 Streams）」→「振る舞い（第6部 Stimulus）」→「実務 UI（第7部）」→「保守（第8部）」→「モバイル（第9部）」。最終段に「基本機能を備えた Relay」。各段の下に主要画面のサムネイル（一覧・詳細・モーダル）。
+- <strong>alt</strong>: 素の CRUD から各部で機能を足し、基本機能を備えた Relay へ育てる本書全体の道筋を示す図。
 
 ### fig-2-1: 画面更新の歴史
 - <strong>配置</strong>: 第2章 2.4（HTML を送ることの再評価）の直後。
@@ -117,9 +117,9 @@
 ### fig-9-1: snapshot cache とプレビュー
 - <strong>配置</strong>: 第9章 9.2（preview 表示）の直後。
 - <strong>種別</strong>: シーケンス／状態図。
-- <strong>ねらい</strong>: 離脱時のスナップショット保存と、戻る/進む時のプレビュー→最新差し替えの流れを示す。
-- <strong>描画内容</strong>: タイムライン: ページA表示 → 離脱直前に A のスナップショット保存（turbo:before-cache）→ ページB へ → 戻る操作 → A のキャッシュを即時プレビュー表示（html[data-turbo-preview]）→ 裏で最新取得 → 本物に差し替え。プレビュー中に「古い内容が一瞬出る」注意の吹き出し。
-- <strong>alt</strong>: ページ離脱時にスナップショットを保存し、戻る操作でキャッシュをプレビュー表示してから最新に差し替える流れを示す図。
+- <strong>ねらい</strong>: 離脱時のスナップショット保存と、リンクで再訪したときのプレビュー→最新差し替えの流れを示す。
+- <strong>描画内容</strong>: タイムライン: ページA表示 → 離脱直前に A のスナップショット保存（turbo:before-cache）→ ページB へ → リンクで A へ再訪 → A のキャッシュを即時プレビュー表示（html[data-turbo-preview]）→ 裏で最新取得 → 本物に差し替え。プレビュー中に「古い内容が一瞬出る」注意の吹き出し。
+- <strong>alt</strong>: ページ離脱時にスナップショットを保存し、リンクによる再訪でキャッシュをプレビュー表示してから最新に差し替える流れを示す図。
 
 ### fig-9-2: replace と morph の違い
 - <strong>配置</strong>: 第9章 9.6（page refresh と morph）の直後。
@@ -342,7 +342,7 @@
 - <strong>alt</strong>: ネイティブのナビゲーションシェルの中で WebView が Relay の Web 画面を表示する、Hotwire Native の構成図。
 
 ### fig-33-1: Path Configuration
-- <strong>配置</strong>: 第33章 33.3（presentation）の直後。
+- <strong>配置</strong>: 第33章 33.3（context と presentation）の直後。
 - <strong>種別</strong>: 対応図。
 - <strong>ねらい</strong>: URL パターンが、ネイティブの見せ方（モーダル/プッシュ）に対応づくことを示す。
 - <strong>描画内容</strong>: 左に URL パターン（/tasks/new、/tasks/:id/edit、その他）。右にネイティブの提示（modal / push）。ルール（JSON の rules）が両者を結ぶ。サーバー配信なら更新可、ネイティブ機能の変更はストア、の注記。

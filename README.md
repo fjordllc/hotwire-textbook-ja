@@ -16,9 +16,9 @@ Hotwire の API リファレンスではありません。Rails を学習済み�
 - Hotwire Native で Web-first なモバイルアプリへ広げる考え方
 - React / Vue / SPA との使い分け、アンチパターン、保守とテスト
 
-Tailwind CSS 本よりもハンズオンを多めにし、チーム向けタスク管理アプリ **Relay** を育てながら Hotwire を理解する構成にします。完成版の Relay のコードは、別リポジトリ **[fjordllc/Relay](https://github.com/fjordllc/Relay)** で公開しています（本書の各章と突き合わせて読めます）。
+ハンズオンでは、チーム向けタスク管理アプリ **Relay** を育てながら Hotwire を理解する構成です。完成版の Relay のコードは、別リポジトリ **[fjordllc/Relay](https://github.com/fjordllc/Relay)** で公開しています（本書の各章と突き合わせて読めます）。
 
-- **対象バージョン:** Hotwire 公式ドキュメントの 2026-06 時点の内容を基準。ハンズオンは Rails 8.0 以上を前提
+- **対象バージョン:** 2026-10-09 に再確認。Web サンプルは Ruby 3.3.5 / Rails 8.1.3 と Gemfile.lock で固定
 - **言語・文体:** 日本語・です/ます調
 - **想定読者:** Rails の基本、CRUD、REST、フォーム、認証の基礎を学習済みの初級エンジニア
 - **JavaScript 構成:** 本編は Rails 標準に近い importmap を主軸にします
@@ -47,7 +47,7 @@ Tailwind CSS 本よりもハンズオンを多めにし、チーム向けタス�
 | `manuscript/part*/chapter*.md` | 各章の本文。章ごとに 1 ページへ分割します。 |
 | `manuscript/part*/exercises.md` | 各部末のハンズオンまたは演習。 |
 | `manuscript/appendix/*.md` | 付録、おわりに。 |
-| `manuscript/figures/` | 本文で使う図版。 |
+| `manuscript/assets/` と `scripts/figures/src/` | 本文で使う図版。 |
 | [`theme/`](./theme/) | mdBook の追加 CSS / JavaScript。日本語テーマと本書固有の上書きを置きます。 |
 | [`OUTLINE.md`](./OUTLINE.md) | 詳細目次。全体像や章の狙いを確認できます。 |
 | [`STYLEGUIDE.md`](./STYLEGUIDE.md) | 用語の統一・表記・引用・コード例・Markdown 記法のルール。 |
@@ -100,7 +100,7 @@ mdbook build
 
 表記ルールとして、半角英数字・英単語と日本語の間には半角スペースを入れます。このルールは本文だけでなく、章見出し、部見出し、`manuscript/SUMMARY.md` の目次表記にも適用します。ただし `第8章` `第1部` `付録A` のような日本語の番号ラベル内ではスペースを入れません。
 
-図版を追加・修正するときは、`manuscript/figures/` に SVG を置き、本文から相対パスで参照します。図版の内容仕様は [`FIGURES.md`](./FIGURES.md)、見た目のルールは [`FIGURE_STYLEGUIDE.md`](./FIGURE_STYLEGUIDE.md) を参照してください。
+図版を追加・修正するときは、`scripts/figures/src/` の SVG を編集し、`python3 scripts/figures/build_all.py` で `manuscript/assets/` へ生成します。本文は生成先を相対パスで参照します。図版の内容仕様は [`FIGURES.md`](./FIGURES.md)、見た目のルールは [`FIGURE_STYLEGUIDE.md`](./FIGURE_STYLEGUIDE.md) を参照してください。
 
 <a id="readme-html"></a>
 ## HTML を生成する

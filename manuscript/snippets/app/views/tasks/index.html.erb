@@ -1,0 +1,47 @@
+<% content_for :title, "タスク" %>
+<h1>タスク</h1>
+<%= turbo_stream_from :tasks %>
+<div id="task_changes"></div>
+<p><%= link_to "新規作成（モーダル）", new_task_path, id: "new_task_modal_link", data: { turbo_frame: "modal" } %></p>
+<section class="new-task">
+  <h2>新規タスク</h2>
+  <div id="new_task_form"><%= render "form", task: @task, context: "inline" %></div>
+</section>
+<%= form_with url: tasks_path, method: :get,
+  data: { turbo_frame: "task_list", turbo_action: "replace", controller: "search",
+    action: "input->search#submit change->search#submit compositionstart->search#startComposition compositionend->search#endComposition" } do |form| %>
+  <%= form.label :q, "タイトルで検索" %>
+  <%= form.search_field :q, value: params[:q] %>
+  <%= form.label :status, "ステータス" %>
+  <%= form.select :status, Task.statuses.keys, { include_blank: "すべて", selected: params[:status] } %>
+  <%= form.label :project_id, "プロジェクト" %>
+  <%= form.collection_select :project_id, Project.order(:name), :id, :name, { include_blank: "すべて", selected: params[:project_id] } %>
+  <%= form.label :tag_id, "タグ" %>
+  <%= form.collection_select :tag_id, Tag.order(:name), :id, :name, { include_blank: "すべて", selected: params[:tag_id] } %>
+  <%= form.hidden_field :mode, value: @mode %>
+  <%= form.submit "検索" %>
+<% end %>
+<nav aria-label="一覧の表示方式">
+  <% { "pages" => "ページ送り", "more" => "もっと読む", "infinite" => "自動読み込み" }.each do |mode, label| %>
+    <%= link_to label, tasks_path(request.query_parameters.except("page").merge(mode: mode)) %>
+  <% end %>
+</nav>
+<section data-controller="task-list" data-mode="<%= @mode %>" data-action="tasks:received@document->task-list#changed turbo:frame-load->task-list#loaded">
+  <p hidden data-task-list-target="notice" role="status">更新があります。編集中の内容を保存してから
+    <button type="button" data-action="task-list#refresh">最新の一覧を表示</button>してください。追記型は先頭から表示します。
+  </p>
+  <%= turbo_frame_tag "task_list", data: { turbo_action: "advance", task_list_target: "frame" } do %>
+    <p role="status" data-task-list-target="location" data-url="<%= request.fullpath %>"><span id="task_count"><%= @total_count %></span> 件該当（現在 <%= @page %> ページ）</p>
+    <%= render "tasks", tasks: @paged_tasks %>
+    <% if @mode == "pages" %>
+      <nav aria-label="ページ送り">
+        <%= link_to "前へ", tasks_path(request.query_parameters.merge(page: @page - 1)) if @page > 1 %>
+        <%= link_to "次へ", tasks_path(request.query_parameters.merge(page: @next_page)) if @next_page %>
+      </nav>
+    <% else %>
+      <div id="pagination" data-controller="<%= "infinite-scroll" if @mode == "infinite" %>">
+        <%= render "pagination" %>
+      </div>
+    <% end %>
+  <% end %>
+</section>

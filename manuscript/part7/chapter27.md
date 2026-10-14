@@ -29,7 +29,7 @@
 
 ```erb
 <% flash.each do |type, message| %>
-  <div class="flash flash-<%= type %>"><%= message %></div>
+  <div class="flash flash-<%= type %>" data-turbo-temporary><%= message %></div>
 <% end %>
 ```
 
@@ -51,11 +51,11 @@
 <%= turbo_stream.update "flash", partial: "layouts/flash" %>
 ```
 
-controller では `flash.now` を使います（ページ遷移しないため、第16章）。これで、操作のたびにフラッシュがその場に出ます。
+コントローラでは `flash.now` を使います（ページ遷移しないため、第16章）。これで、操作のたびにフラッシュがその場に出ます。
 
 ## 27.5 Stimulus で自動消滅・閉じる・transition
 
-フラッシュを「少し経つと消えるトースト」にするのは、Stimulus の役割です。第21章で作ったトーストの controller を、閉じるボタンに対応させて使います。
+フラッシュを「少し経つと消えるトースト」にするのは、Stimulus の役割です。第21章で作ったトーストのコントローラを、閉じるボタンに対応させて使います。
 
 `app/javascript/controllers/toast_controller.js`
 
@@ -80,7 +80,7 @@ export default class extends Controller {
 ```
 
 ```erb
-<div data-controller="toast" data-toast-delay-value="5000">
+<div data-controller="toast" data-toast-delay-value="5000" data-turbo-temporary>
   保存しました。
   <button type="button" data-action="toast#dismiss" aria-label="閉じる">×</button>
 </div>
@@ -104,17 +104,17 @@ export default class extends Controller {
 <%= turbo_stream.append "toasts", partial: "toasts/toast", locals: { message: "保存しました。" } %>
 ```
 
-それぞれのトーストが自分の `toast` controller を持つので、各自が独立して時間で消えます。`#toasts` を `aria-live` 領域にしておけば、追加されたトーストが読み上げられます。
+それぞれのトーストが自分の `toast` コントローラを持つので、各自が独立して時間で消えます。`#toasts` を `aria-live` 領域にしておけば、追加されたトーストが読み上げられます。
 
 ## 27.7 Action Cable でリアルタイム通知に拡張する
 
 ここまでは「自分の操作」への通知でした。最後に、「他のユーザーの操作」への通知を足します。第18章の broadcast を使います。
 
-各ユーザーのページが、自分宛ての通知を購読します。レイアウトに置きますが、未ログインのページでは `current_user` が `nil` になるので、ログイン時だけ描きます。
+各ユーザーのページが、自分宛ての通知を購読します。レイアウトに置きますが、Rails 標準認証では `authenticated?` でセッションを復元して判定し、`Current.user` を参照するので、ログイン時だけ描きます。
 
 ```erb
-<% if current_user %>
-  <%= turbo_stream_from current_user %>
+<% if authenticated? %>
+  <%= turbo_stream_from Current.user %>
 <% end %>
 ```
 
@@ -157,7 +157,19 @@ end
 - <strong>無限に積もる</strong>。古いトーストを消さないと、画面が埋まります。自動消滅と、必要なら上限を設けます。
 - <strong>見せてはいけない情報を broadcast する</strong>。配信先を誤ると、他人に通知が届きます。配信範囲と認可（第18章・第31章）に注意します。
 
-> 第27章で、第7部を締めます。検索・ページネーション・フォーム UX・モーダル・通知という実務的な UI を、Turbo と Stimulus の組み合わせで作りました。Relay は実務水準の管理画面になりました。次の第8部では、こうして育てた Relay を、テスト・デバッグ・性能・セキュリティの面から保守します。
+> 第27章で、第7部を締めます。検索・ページネーション・フォーム UX・モーダル・通知という実務的な UI を、Turbo と Stimulus の組み合わせで作りました。Relay に管理画面の基本的な操作が揃いました。本番運用には認可・監視・性能・配信基盤などの追加設計と検証が必要です。次の第8部では、こうして育てた Relay を、テスト・デバッグ・性能・セキュリティの面から保守します。
+
+## 27.11 配信用 partial と callback
+
+`app/views/toasts/_toast.html.erb` を次の内容で作成します。`data-turbo-temporary` は空の受信コンテナではなく、消したい個々のメッセージに付けます。
+
+`app/views/toasts/_toast.html.erb`
+
+```erb
+{{#include ../snippets/app/views/toasts/_toast.html.erb}}
+```
+
+27.7 の送信コードは、Task の `after_create_commit` と `after_update_commit` から呼びます。更新では `saved_change_to_assignee_id?` のときだけ送ります。担当者を変更していない保存まで通知しないためです。完成したモデルは付録Gに掲載します。
 
 ## 参考資料
 

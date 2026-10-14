@@ -2,15 +2,15 @@
 
 ## この章のねらい
 
-第19章では、controller を要素に結びつけ、`connect()` で振る舞いを足しました。しかし、`connect()` だけでは「結びついたとき」しか動けません。
+第19章では、コントローラを要素に結びつけ、`connect()` で振る舞いを足しました。しかし、`connect()` だけでは「結びついたとき」しか動けません。
 
 実際の UI では、「ボタンを押したら」「入力したら」といった<strong>操作</strong>に反応し、「この要素の値を読む」「あの要素を書き換える」といった<strong>要素の出し入れ</strong>が必要です。これを担うのが action と target です。
 
-この章では、Stimulus の 3 つの中心概念、controller・action・target を、Relay のタスク説明欄に「文字数カウンタ」を作りながら覚えます。
+この章では、Stimulus の 3 つの中心概念、コントローラ・action・target を、Relay のタスク説明欄に「文字数カウンタ」を作りながら覚えます。
 
-## 20.1 controller の作成
+## 20.1 コントローラの作成
 
-作るのは、入力された文字数を数えて表示するカウンタです。controller を作ります。
+作るのは、入力された文字数を数えて表示するカウンタです。コントローラを作ります。
 
 ```bash
 bin/rails generate stimulus counter
@@ -29,7 +29,7 @@ export default class extends Controller {
 
 ## 20.2 action の接続
 
-カウンタは「入力されたとき」に動いてほしいので、入力イベントを controller のメソッドに結びつけます。これが action です。
+カウンタは「入力されたとき」に動いてほしいので、入力イベントをコントローラのメソッドに結びつけます。これが action です。
 
 action は、HTML 側で `data-action` 属性に書きます。書式は `イベント->controller名#メソッド名` です。
 
@@ -41,9 +41,9 @@ action は、HTML 側で `data-action` 属性に書きます。書式は `イベ
 </div>
 ```
 
-`input->counter#count` は、「`input` イベントが起きたら、`counter` controller の `count` メソッドを呼ぶ」という意味です。
+`input->counter#count` は、「`input` イベントが起きたら、`counter` コントローラの `count` メソッドを呼ぶ」という意味です。
 
-controller 側に `count` メソッドを足します。
+コントローラ側に `count` メソッドを足します。
 
 `app/javascript/controllers/counter_controller.js`
 
@@ -52,7 +52,7 @@ import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
   count(event) {
-    console.log(event.target.value.length)
+    console.log([...new Intl.Segmenter("ja", { granularity: "grapheme" }).segment(event.target.value)].length)
   }
 }
 ```
@@ -64,9 +64,9 @@ export default class extends Controller {
 ## 20.3 target の参照
 
 
-![data-action がイベントを controller に、data-target が要素を this.xTarget に結びつける流れを示す図。](../assets/fig-20-1.svg)
+![data-action がイベントをコントローラに、data-target が要素を this.xTarget に結びつける流れを示す図。](../assets/fig-20-1.svg)
 
-文字数を Console ではなく、画面に表示したいところです。表示先の要素を、controller から参照できるようにします。これが target です。
+文字数を Console ではなく、画面に表示したいところです。表示先の要素を、コントローラから参照できるようにします。これが target です。
 
 target も、HTML 側で宣言します。`data-controller名-target` 属性に、target の名前を書きます。
 
@@ -77,7 +77,7 @@ target も、HTML 側で宣言します。`data-controller名-target` 属性に�
 </div>
 ```
 
-入力欄を `field`、表示先を `output` という target にしました（target 名は、`input` イベントと紛れないよう `field` にしています）。controller 側では、使う target の名前を `static targets` で宣言します。すると、`this.fieldTarget`、`this.outputTarget` で要素を参照できます。
+入力欄を `field`、表示先を `output` という target にしました（target 名は、`input` イベントと紛れないよう `field` にしています）。コントローラ側では、使う target の名前を `static targets` で宣言します。すると、`this.fieldTarget`、`this.outputTarget` で要素を参照できます。
 
 `app/javascript/controllers/counter_controller.js`
 
@@ -92,7 +92,7 @@ export default class extends Controller {
   }
 
   count() {
-    this.outputTarget.textContent = this.fieldTarget.value.length
+    this.outputTarget.textContent = [...new Intl.Segmenter("ja", { granularity: "grapheme" }).segment(this.fieldTarget.value)].length
   }
 }
 ```
@@ -105,7 +105,7 @@ export default class extends Controller {
 
 target は、同じ名前を複数の要素に付けられます。その場合は、複数形の `this.名前Targets` で、配列として受け取れます。
 
-たとえば、複数のチェックボックスをまとめて操作する controller を考えます。
+たとえば、複数のチェックボックスをまとめて操作するコントローラを考えます。
 
 ```erb
 <div data-controller="bulk">
@@ -135,11 +135,11 @@ export default class extends Controller {
 
 ## 20.5 よくある命名ミス
 
-controller・action・target は、名前で結びつきます。だから、名前のずれが、そのままつまずきになります。代表的なものを挙げます。
+コントローラ・action・target は、名前で結びつきます。だから、名前のずれが、そのままつまずきになります。代表的なものを挙げます。
 
-- <strong>controller 名とファイル名のずれ</strong>。`data-controller="counter"` なら `counter_controller.js` です。ここがずれると、controller がまったく結びつきません。
-- <strong>action の書式ミス</strong>。`イベント->controller名#メソッド名` の `->` や `#` を間違える、controller 名をタイプミスする、と動きません。
-- <strong>target の宣言漏れ</strong>。`data-counter-target="output"` を付けても、controller 側の `static targets` に `"output"` を書き忘れると、`this.outputTarget` で「target が見つからない」エラーになります。
+- <strong>コントローラ名とファイル名のずれ</strong>。`data-controller="counter"` なら `counter_controller.js` です。ここがずれると、コントローラがまったく結びつきません。
+- <strong>action の書式ミス</strong>。`イベント->controller名#メソッド名` の `->` や `#` を間違える、コントローラ名をタイプミスする、と動きません。
+- <strong>target の宣言漏れ</strong>。`data-counter-target="output"` を付けても、コントローラ側の `static targets` に `"output"` を書き忘れると、アクセサ自体が生成されず `this.outputTarget` は `undefined` になります。宣言済みなのに対応要素がないときは、単数の target アクセスで Missing target エラーになります。
 - <strong>target の属性名のずれ</strong>。target の属性は `data-controller名-target` です。`data-counter-target` を `data-target` などと書くと、結びつきません。
 - <strong>単数・複数の取り違え</strong>。1 つの要素なら `this.xTarget`、複数なら `this.xTargets` です。複数あるのに単数で書くと、最初の 1 つしか取れません。
 
@@ -161,7 +161,7 @@ class CounterTest < ApplicationSystemTestCase
 
   test "説明の文字数が表示される" do
     visit new_task_path
-    fill_in "Description", with: "hello"
+    fill_in "説明", with: "hello"
 
     assert_selector "[data-counter-target='output']", text: "5"
   end
@@ -170,7 +170,11 @@ end
 
 `fill_in` で説明欄に入力すると、`input` イベントが発火し、`count` が呼ばれ、`output` target に文字数が出ます。`assert_selector` で、その表示が `5` になっていることを確認します。
 
-> 第20章では、controller・action・target で、操作に反応して要素を出し入れする振る舞いを作りました。次の第21章では、controller に設定値を渡す Values、状態を表す CSS Classes、他の controller とつなぐ Outlets を学び、「状態を HTML に置く」という第6部の軸を深めます。
+> 第20章では、コントローラ・action・target で、操作に反応して要素を出し入れする振る舞いを作りました。次の第21章では、コントローラに設定値を渡す Values、状態を表す CSS Classes、他のコントローラとつなぐ Outlets を学び、「状態を HTML に置く」という第6部の軸を深めます。
+
+## 20.7 何を一文字と数えるか
+
+JavaScript の文字列の `length` は UTF-16 のコード単位数です。絵文字や結合文字を利用者が見る一文字として数えるため、この例は `Intl.Segmenter` の grapheme を使います。サーバー側の文字数制限と自動的に同じ単位になるわけではありません。サンプルは説明欄の参考表示として使い、文字数制限は設けていません。
 
 ## 参考資料
 

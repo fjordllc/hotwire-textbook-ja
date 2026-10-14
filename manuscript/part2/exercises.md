@@ -8,7 +8,7 @@
 
 このハンズオンを終えると、次の状態になります。
 
-- Rails 8.0 以上で Relay が起動する
+- Rails 8.1.3で Relay が起動する
 - ログイン・ログアウトができる（Rails 標準の認証機能）
 - `Project` と `Task` を一覧・詳細・作成・編集・削除できる
 - `Comment`、`Tag`、`Tagging` はモデルと migration だけ用意してある（UI は後の部で作る）
@@ -20,7 +20,7 @@
 順番に進めます。各手順は「変更前 → 変更後 → 動作確認」で確認します。
 
 1. <strong>アプリを作成する</strong>
-   - Rails 8.0 以上で新規アプリを作成します（`importmap` を使う標準構成）。
+   - Rails 8.1.3で新規アプリを作成します（`importmap` を使う標準構成）。
 2. <strong>認証を追加する</strong>
    - Rails 標準の認証ジェネレータでログイン機能を入れます。
    - 生成された `User` は `email_address` と `password_digest` だけを持つので、`name` を追加します。

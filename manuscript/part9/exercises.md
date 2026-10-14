@@ -10,7 +10,7 @@
 
 ## 演習
 
-1. Relay の主要 URL に presentation（modal / push）を割り当てる
+1. Relay の主要 URL に context（modal / default）を割り当てる
 2. ネイティブ化の候補（ログインなど）と、Web のまま残す画面を仕分ける
 3. 状態同期（認証・セッション）で注意する点を、第31章と結びつけて挙げる
 

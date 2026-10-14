@@ -32,16 +32,16 @@ Hotwire のアプリがうまく動かないとき、「どこで差し替えが
 
 これで、visit が始まったか、送信が成功したか、frame が読み込まれたか、といった節目が Console に出ます。frame の描画を細かく見たいときは、`turbo:frame-render` も加えます。「イベントが出ない＝そもそも Turbo が動いていない」と分かります。
 
-## 29.3 Stimulus controller の接続を確認する
+## 29.3 Stimulus コントローラの接続を確認する
 
-Stimulus が動かないときは、controller が結びついているかを確かめます。第6章で見たとおり、`application.debug` を `true` にすると、controller の接続・切断がログに出ます。
+Stimulus が動かないときは、コントローラが結びついているかを確かめます。第6章で見たとおり、`application.debug` を `true` にすると、コントローラの接続・切断がログに出ます。
 
 ```javascript
 // app/javascript/controllers/application.js
 application.debug = true
 ```
 
-接続のログが出なければ、`data-controller` の名前とファイル名がずれている（第19章）、ファイルの置き場所が違う、といった原因が疑えます。`window.Stimulus` から、登録された controller を確認することもできます。
+接続のログが出なければ、`data-controller` の名前とファイル名がずれている（第19章）、ファイルの置き場所が違う、といった原因が疑えます。`window.Stimulus` から、登録されたコントローラを確認することもできます。
 
 ## 29.4 Frame / Stream の target を確認する
 
@@ -79,7 +79,7 @@ document.addEventListener("turbo:before-morph-element", (event) => console.log("
 
 - 「Content missing」「frame に案内メッセージ」… Frame の `id` 不一致（29.4）。
 - フォームを送ったのに何も起きない … 失敗を 200 で返している（29.1 でステータスを確認）。
-- Stimulus が動かない … controller の接続ログが出ない（29.3）。
+- Stimulus が動かない … コントローラの接続ログが出ない（29.3）。
 - 更新の命令が効かない … stream の `target` が存在しない（29.4）。
 
 代表的なエラーと対処は、付録Eにまとめます。困ったら、まず Network、次に Turbo イベント、Stimulus、target、morph。この順で見れば、たいていの不具合は場所が分かります。
